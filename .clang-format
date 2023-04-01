@@ -1,0 +1,35 @@
+SeparateDefinitionBlocks: Always
+
+IndentWidth: 4
+
+AlignConsecutiveMacros: Consecutive
+SpacesBeforeTrailingComments: 2
+AlignTrailingComments: true 
+
+AllowShortFunctionsOnASingleLine: None 
+AllowShortBlocksOnASingleLine: Never
+AllowShortIfStatementsOnASingleLine: Never
+AllowShortLoopsOnASingleLine: false
+
+AccessModifierOffset: -3
+
+EmptyLineBeforeAccessModifier: Always
+
+MaxEmptyLinesToKeep: 1
+SeparateDefinitionBlocks : Always
+
+AlignArrayOfStructures: Left
+
+AlignConsecutiveAssignments: AcrossEmptyLinesAndComments
+AlignConsecutiveDeclarations: AcrossEmptyLinesAndComments
+AlignAfterOpenBracket: Align
+BinPackParameters: true
+BinPackArguments: true
+
+SeparateDefinitionBlocks: Always
+
+RequiresClausePosition: OwnLine
+AlwaysBreakTemplateDeclarations: Yes
+
+SpaceBeforeCaseColon: false
+ColumnLimit: 80
