@@ -234,6 +234,10 @@ return {
         end,
     },
     {
+       "nvim-treesitter/nvim-treesitter-context",
+        opts = {}
+    },
+    {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
