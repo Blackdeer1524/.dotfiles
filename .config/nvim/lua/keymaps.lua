@@ -42,8 +42,13 @@ vim.keymap.set("n", "N", "Nzzzv")
 -- keymap("v", "<A-h>", ":m -2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
+vim.keymap.set('n',
+    '<leader>e',
+    vim.cmd.NvimTreeFocus,
+    { desc = "Focus nvim tree" })
+
+keymap("n", "<leader>e", ":NvimTreeFocus<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>r", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>t", ":NvimTreeFocus<CR>", { noremap = true, silent = true })
 keymap("n", "<C-c>", ":w<CR>:bd<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>p", "<C-w><C-p>", { noremap = true, silent = true })
 
@@ -54,4 +59,3 @@ keymap("n", "<S-h>", ":bprevious<CR>", opts)
 keymap("n", "<leader>f", ":Format<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
-

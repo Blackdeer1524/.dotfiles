@@ -26,26 +26,6 @@ return {
         -- Add your own debuggers here
         'leoluz/nvim-dap-go',
         'mfussenegger/nvim-dap-python',
-        {
-            "simrat39/rust-tools.nvim",
-            opts = {
-                tools = {
-                    inlay_hints = {
-                        auto = false
-                    }
-                }
-            },
-        },
-        {
-            'Civitasv/cmake-tools.nvim',
-            opts = {
-                cmake_build_directory = "build",
-                cmake_build_directory_prefix = "" -- It seems that you can't select build dir
-            }
-        },
-        {
-            "mfussenegger/nvim-jdtls",
-        },
     },
     config = function()
         require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
@@ -57,7 +37,7 @@ return {
             port = "${port}",
             executable = {
                 -- CHANGE THIS to your path!
-                command = '/home/blackdeer/codelldb/extension/adapter/codelldb',
+                command = vim.fn.stdpath('data') .. '/mason/bin/codelldb',
                 args = { "--port", "${port}" },
                 -- On windows you may have to uncomment this:
                 -- detached = false,
@@ -72,6 +52,7 @@ return {
             -- You'll need to check that you have the required things installed
             -- online, please don't ask me how to install them :)
             ensure_installed = {
+                'debugpy', 'codelldb', 'go-debug-adapter'
                 -- Update this to ensure that you have the debuggers for the langs you want
             },
         }

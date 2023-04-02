@@ -299,6 +299,29 @@ return {
         ft = { "go", 'gomod' },
         build = ':lua require("go.install").update_all_sync()' -- if you need to install/update all binaries
     },
+    {
+        "simrat39/rust-tools.nvim",
+        opts = {
+            server = {
+                on_attach = require('lsp/defaults').on_attach,
+            },
+            tools = {
+                inlay_hints = {
+                    auto = false
+                }
+            }
+        },
+    },
+    {
+        'Civitasv/cmake-tools.nvim',
+        opts = {
+            cmake_build_directory = "build",
+            cmake_build_directory_prefix = "" -- It seems that you can't select build dir
+        }
+    },
+    {
+        "mfussenegger/nvim-jdtls",
+    },
 
     -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
     --       These are some example plugins that I've included in the kickstart repository.
