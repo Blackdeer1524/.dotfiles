@@ -41,7 +41,7 @@ vim.keymap.set("n", "N", "Nzzzv")
 keymap("v", "p", '"_dP', opts)
 
 vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeFocus, { desc = "Focus nvim tree" })
-vim.keymap.set('n', '<leader>r', vim.cmd.NvimTreeToggle, { desc = "Toggle nvim tree" })
+vim.keymap.set('n', '<leader>tt', vim.cmd.NvimTreeToggle, { desc = "Toggle nvim tree" })
 
 vim.keymap.set('n', '<leader>|', "<c-w>v", { desc = "Vertical split" })
 vim.keymap.set('n', '<leader>\\', "<c-w>s", { desc = "Horizontal split" })
