@@ -23,8 +23,9 @@ AlignArrayOfStructures: Left
 AlignConsecutiveAssignments: AcrossEmptyLinesAndComments
 AlignConsecutiveDeclarations: AcrossEmptyLinesAndComments
 AlignAfterOpenBracket: Align
-BinPackParameters: true
-BinPackArguments: true
+BinPackParameters: false
+BinPackArguments: false 
+AllowAllParametersOfDeclarationOnNextLine: false
 
 SeparateDefinitionBlocks: Always
 
