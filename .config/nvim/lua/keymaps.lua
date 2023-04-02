@@ -38,17 +38,14 @@ vim.keymap.set("n", "<C-u>", "<C-u>zz")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
--- keymap("v", "<A-j>", ":m +1<CR>==", opts)
--- keymap("v", "<A-h>", ":m -2<CR>==", opts)
 keymap("v", "p", '"_dP', opts)
 
-vim.keymap.set('n',
-    '<leader>e',
-    vim.cmd.NvimTreeFocus,
-    { desc = "Focus nvim tree" })
+vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeFocus, { desc = "Focus nvim tree" })
+vim.keymap.set('n', '<leader>r', vim.cmd.NvimTreeToggle, { desc = "Toggle nvim tree" })
 
-keymap("n", "<leader>e", ":NvimTreeFocus<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>r", ":NvimTreeToggle<CR>", { noremap = true, silent = true })
+vim.keymap.set('n', '<leader>|', "<c-w>v", { desc = "Vertical split" })
+vim.keymap.set('n', '<leader>\\', "<c-w>s", { desc = "Horizontal split" })
+
 keymap("n", "<C-c>", ":w<CR>:bd<CR>", { noremap = true, silent = true })
 keymap("n", "<leader>p", "<C-w><C-p>", { noremap = true, silent = true })
 
