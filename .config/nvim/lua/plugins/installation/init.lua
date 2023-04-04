@@ -54,7 +54,7 @@ return {
     },
     {
         "Pocco81/auto-save.nvim",
-        opts = { trigger_events = { "InsertLeave" } }
+        opts = { trigger_events = { "InsertLeave", "BufLeave" } }
     },
     {
         "iamcco/markdown-preview.nvim",
@@ -149,6 +149,19 @@ return {
         },
     },
     {
+        "glepnir/lspsaga.nvim",
+        event = "LspAttach",
+        config = function()
+            require("lspsaga").setup({})
+            vim.keymap.set('n', "gP", "<cmd>Lspsaga peek_definition<CR>", { desc = "peek definition" })
+        end,
+        dependencies = {
+            { "nvim-tree/nvim-web-devicons" },
+            --Please make sure you install markdown and markdown_inline parser
+            { "nvim-treesitter/nvim-treesitter" }
+        }
+    },
+    {
         -- Autocompletion
         'hrsh7th/nvim-cmp',
         opts = {
@@ -234,7 +247,7 @@ return {
         end,
     },
     {
-       "nvim-treesitter/nvim-treesitter-context",
+        "nvim-treesitter/nvim-treesitter-context",
         opts = {}
     },
     {
