@@ -47,13 +47,53 @@ vim.keymap.set('n', '<leader>t', vim.cmd.NvimTreeToggle, { desc = "Toggle nvim t
 vim.keymap.set('n', '<leader>|', "<c-w>v", { desc = "Vertical split" })
 vim.keymap.set('n', '<leader>\\', "<c-w>s", { desc = "Horizontal split" })
 
-keymap("n", "<C-c>", ":w<CR>:bd<CR>", { noremap = true, silent = true })
-keymap("n", "<leader>p", "<C-w><C-p>", { noremap = true, silent = true })
-
--- Navigate buffers
-keymap("n", "<S-l>", ":bnext<CR>", opts)
-keymap("n", "<S-h>", ":bprevious<CR>", opts)
+-- keymap("n", "<leader>p", "<C-w><C-p>", { noremap = true, silent = true })
 
 keymap("n", "<leader>f", ":Format<CR>", { noremap = true, silent = true })
 
 vim.keymap.set("n", "<leader>u", vim.cmd.UndotreeToggle)
+
+-- Navigate buffers
+-- keymap("n", "<S-l>", ":bnext<CR>", opts)
+-- keymap("n", "<S-h>", ":bprevious<CR>", opts)
+
+-- Move to previous/next
+vim.keymap.set('n', '<S-h>', '<Cmd>BufferPrevious<CR>')
+vim.keymap.set('n', '<S-l>', '<Cmd>BufferNext<CR>')
+-- Re-order to previous/next
+vim.keymap.set('n', '<C-A-h>', '<Cmd>BufferMovePrevious<CR>')
+vim.keymap.set('n', '<C-A-l>', '<Cmd>BufferMoveNext<CR>')
+-- Goto buffer in position...
+vim.keymap.set('n', '<A-1>', '<Cmd>BufferGoto 1<CR>')
+vim.keymap.set('n', '<A-2>', '<Cmd>BufferGoto 2<CR>')
+vim.keymap.set('n', '<A-3>', '<Cmd>BufferGoto 3<CR>')
+vim.keymap.set('n', '<A-4>', '<Cmd>BufferGoto 4<CR>')
+vim.keymap.set('n', '<A-5>', '<Cmd>BufferGoto 5<CR>')
+vim.keymap.set('n', '<A-6>', '<Cmd>BufferGoto 6<CR>')
+vim.keymap.set('n', '<A-7>', '<Cmd>BufferGoto 7<CR>')
+vim.keymap.set('n', '<A-8>', '<Cmd>BufferGoto 8<CR>')
+vim.keymap.set('n', '<A-9>', '<Cmd>BufferGoto 9<CR>')
+vim.keymap.set('n', '<A-0>', '<Cmd>BufferLast<CR>')
+-- Pin/unpin buffer
+vim.keymap.set('n', '<A-p>', '<Cmd>BufferPin<CR>')
+-- Close buffer
+vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>')
+-- Wipeout buffer
+--                 :BufferWipeout
+-- Close commands
+--                 :BufferCloseAllButCurrent
+--                 :BufferCloseAllButPinned
+--                 :BufferCloseAllButCurrentOrPinned
+--                 :BufferCloseBuffersLeft
+--                 :BufferCloseBuffersRight
+-- Magic buffer-picking mode
+vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>')
+-- Sort automatically by...
+vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>')
+vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>')
+vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>')
+vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
+
+-- Other:
+-- :BarbarEnable - enables barbar (enabled by default)
+-- :BarbarDisable - very bad command, should never be used
