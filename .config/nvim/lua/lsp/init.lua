@@ -18,8 +18,7 @@ capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 capabilities.offsetEncoding = "utf-8"
 
 local servers = {
-    clangd = {
-    },
+    clangd = {},
     gopls = {
         gopls = {
             analyses = {
@@ -53,6 +52,16 @@ local servers = {
     },
 }
 
+local on_attach = require("lsp.defaults").on_attach
+
+-- require("clangd_extensions").setup {
+--     server = {
+--         capabilities = capabilities,
+--         on_attach = on_attach,
+--         -- options to pass to nvim-lspconfig
+--         -- i.e. the arguments to require("lspconfig").clangd.setup({})
+--     },
+-- }
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
@@ -63,17 +72,33 @@ mason_lspconfig.setup {
     ensure_installed = vim.tbl_keys(servers),
 }
 
-local on_attach = require("lsp.defaults").on_attach
+local clangd_conf = require("clangd_extensions").prepare(
+    {
+        server = {
+            capabilities = capabilities,
+            on_attach = on_attach,
+            settings = servers["clangd"],
+        },
+        extensions = {
+            autoSetHints = false
+        }
+    }
+)
 
 mason_lspconfig.setup_handlers {
     function(server_name)
-        require('lspconfig')[server_name].setup {
-            capabilities = capabilities,
-            on_attach = on_attach,
-            settings = servers[server_name],
-        }
+        if (server_name == "clangd") then
+            require('lspconfig')[server_name].setup(clangd_conf)
+        else
+            require('lspconfig')[server_name].setup {
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = servers[server_name],
+            }
+        end
     end,
 }
+
 
 vim.api.nvim_create_user_command("ReloadLaunchJson",
     function()
