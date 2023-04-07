@@ -5,6 +5,8 @@ local luasnip = require 'luasnip'
 luasnip.config.setup {}
 
 cmp.setup {
+    -- https://github.com/hrsh7th/nvim-cmp/issues/750
+    preselect = cmp.PreselectMode.None,
     snippet = {
         expand = function(args)
             luasnip.lsp_expand(args.body)
