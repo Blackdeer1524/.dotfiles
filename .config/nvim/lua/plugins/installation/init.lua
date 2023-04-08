@@ -176,11 +176,6 @@ return {
     {
         -- Autocompletion
         'hrsh7th/nvim-cmp',
-        opts = {
-            -- completion = {
-            --     autocomplete = false,
-            -- }
-        },
         dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
     },
     -- Useful plugin to show you pending keybinds.
