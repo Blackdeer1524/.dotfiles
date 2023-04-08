@@ -6,6 +6,8 @@ AlignConsecutiveMacros: Consecutive
 SpacesBeforeTrailingComments: 2
 AlignTrailingComments: true 
 
+IndentCaseLabels: true
+
 AllowShortFunctionsOnASingleLine: None 
 AllowShortBlocksOnASingleLine: Never
 AllowShortIfStatementsOnASingleLine: Never
