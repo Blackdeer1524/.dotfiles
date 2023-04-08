@@ -78,6 +78,17 @@ local clangd_conf = require("clangd_extensions").prepare(
             capabilities = capabilities,
             on_attach = on_attach,
             settings = servers["clangd"],
+            cmd = {
+                "clangd",
+                "--background-index",
+                -- by default, clang-tidy use -checks=clang-diagnostic-*,clang-analyzer-*
+                -- to add more checks, create .clang-tidy file in the root directory
+                -- and add Checks key, see https://clang.llvm.org/extra/clang-tidy/
+                "--clang-tidy",
+                "--completion-style=bundled",
+                "--cross-file-rename",
+                "--header-insertion=iwyu",
+            }
         },
         extensions = {
             autoSetHints = false

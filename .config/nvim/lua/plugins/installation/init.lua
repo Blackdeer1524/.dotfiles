@@ -270,10 +270,11 @@ return {
                 sources = {
                     -- C / C++
                     null_ls.builtins.diagnostics.clang_check.with({ extra_args = { "-std=c++20" } }), -- sudo apt install clang-tools
-                    null_ls.builtins.diagnostics.cmake_lint,
                     null_ls.builtins.diagnostics.cppcheck.with({ extra_args = { "--std=c++20" } }),   -- sudo apt install cppcheck
-                    null_ls.builtins.diagnostics.cpplint,
-                    null_ls.builtins.formatting.clang_format,                                         -- https://github.com/clangd/coc-clangd/issues/345
+                    null_ls.builtins.diagnostics.cpplint,                                             -- https://github.com/clangd/coc-clangd/issues/345
+
+                    null_ls.builtins.formatting.clang_format,
+                    null_ls.builtins.diagnostics.cmake_lint,
 
                     null_ls.builtins.diagnostics.mypy,
 
