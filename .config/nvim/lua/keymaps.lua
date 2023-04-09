@@ -89,10 +89,10 @@ vim.keymap.set('n', '<A-c>', '<Cmd>BufferClose<CR>')
 -- Magic buffer-picking mode
 vim.keymap.set('n', '<C-p>', '<Cmd>BufferPick<CR>')
 -- Sort automatically by...
-vim.keymap.set('n', '<Space>bb', '<Cmd>BufferOrderByBufferNumber<CR>')
-vim.keymap.set('n', '<Space>bd', '<Cmd>BufferOrderByDirectory<CR>')
-vim.keymap.set('n', '<Space>bl', '<Cmd>BufferOrderByLanguage<CR>')
-vim.keymap.set('n', '<Space>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
+vim.keymap.set('n', '<leader>bb', '<Cmd>BufferOrderByBufferNumber<CR>')
+vim.keymap.set('n', '<leader>bd', '<Cmd>BufferOrderByDirectory<CR>')
+vim.keymap.set('n', '<leader>bl', '<Cmd>BufferOrderByLanguage<CR>')
+vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
 
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)

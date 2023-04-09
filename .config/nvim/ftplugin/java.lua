@@ -33,8 +33,7 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)
 
 -- Main Config
---
---
+
 -- Install open-jdk-17
 -- sudo apt install openjdk-17-jdk openjdk-17-jre
 local config = {
