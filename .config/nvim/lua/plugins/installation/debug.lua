@@ -59,7 +59,7 @@ return {
 
         -- You can provide additional configuration to the handlers,
         -- see mason-nvim-dap README for more information
-        require('mason-nvim-dap').setup_handlers()
+        -- require('mason-nvim-dap').setup_handlers()
 
         -- Dap UI setup
         -- For more information, see |:help nvim-dap-ui|
