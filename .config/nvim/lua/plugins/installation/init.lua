@@ -261,21 +261,42 @@ return {
         "jose-elias-alvarez/null-ls.nvim",
         config = function()
             local null_ls = require("null-ls")
-            null_ls.setup({
-                sources = {
-                    -- C / C++
-                    null_ls.builtins.diagnostics.clang_check.with({ extra_args = { "-std=c++20" } }), -- sudo apt install clang-tools
-                    null_ls.builtins.diagnostics.cppcheck.with({ extra_args = { "--std=c++20" } }),   -- sudo apt install cppcheck
-                    null_ls.builtins.diagnostics.cpplint,                                             -- https://github.com/clangd/coc-clangd/issues/345
+            local sources = {
+                -- C / C++
+                null_ls.builtins.diagnostics.clang_check.with({ extra_args = { "-std=c++20" } }), -- sudo apt install clang-tools
+                null_ls.builtins.diagnostics.cppcheck.with({ extra_args = { "--std=c++20" } }),   -- sudo apt install cppcheck
+                null_ls.builtins.diagnostics.cpplint,                                             -- https://github.com/clangd/coc-clangd/issues/345
 
-                    null_ls.builtins.formatting.clang_format,
-                    null_ls.builtins.diagnostics.cmake_lint,
+                null_ls.builtins.formatting.clang_format,
+                null_ls.builtins.diagnostics.cmake_lint,
 
-                    null_ls.builtins.diagnostics.mypy,
+                -- Go
+                null_ls.builtins.diagnostics.revive,
+                null_ls.builtins.formatting.golines.with({
+                    extra_args = {
+                        "--max-len=80",
+                        "--base-formatter=gofumpt",
+                    },
+                }),
 
-                    null_ls.builtins.diagnostics.markdownlint,
-                }
-            })
+                -- Python
+                null_ls.builtins.diagnostics.mypy,
+                null_ls.builtins.diagnostics.flake8,
+                -- Markdown
+
+                null_ls.builtins.diagnostics.markdownlint,
+            }
+
+            -- for go.nvim
+            local gotest = require("go.null_ls").gotest()
+            local gotest_codeaction = require("go.null_ls").gotest_action()
+            local golangci_lint = require("go.null_ls").golangci_lint()
+            table.insert(sources, gotest)
+            table.insert(sources, golangci_lint)
+            table.insert(sources, gotest_codeaction)
+            null_ls.setup({ sources = sources, debounce = 1000, default_timeout = 5000 })
+
+            -- null_ls.register(gotest)
         end
     },
     -- Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim

@@ -27,6 +27,5 @@ Follow instructions for [debugpy](https://github.com/mfussenegger/nvim-dap/wiki/
 Just works
 
 ## Go
-Just works
-
+`go install github.com/mgechev/revive@latest`
 
