@@ -42,12 +42,12 @@ vim.keymap.set("n", "N", "Nzzzv")
 keymap("v", "p", '"_dP', opts)
 
 vim.keymap.set('n', '<leader>e', vim.cmd.NvimTreeFocus, { desc = "Focus nvim tree" })
-vim.keymap.set('n', '<leader>t', vim.cmd.NvimTreeToggle, { desc = "Toggle nvim tree" })
+vim.keymap.set('n', '<leader>tt', vim.cmd.NvimTreeToggle, { desc = "Toggle nvim tree" })
 
 vim.keymap.set('n', '<leader>|', "<c-w>v", { desc = "Vertical split" })
 vim.keymap.set('n', '<leader>\\', "<c-w>s", { desc = "Horizontal split" })
 
--- keymap("n", "<leader>p", "<C-w><C-p>", { noremap = true, silent = true })
+keymap("n", "<leader>p", "<C-w><C-p>", { noremap = true, silent = true })
 
 keymap("n", "<leader>f", ":Format<CR>", { noremap = true, silent = true })
 
@@ -97,3 +97,13 @@ vim.keymap.set('n', '<leader>bw', '<Cmd>BufferOrderByWindowNumber<CR>')
 -- Other:
 -- :BarbarEnable - enables barbar (enabled by default)
 -- :BarbarDisable - very bad command, should never be used
+
+vim.keymap.set('n', "<Leader>ta", '<Cmd>lua require("telescope").extensions.vstask.tasks()<CR>', { desc = "T[a]sks" })
+vim.keymap.set('n', "<Leader>ti", '<Cmd>lua require("telescope").extensions.vstask.inputs()<CR>', { desc = "Tasks [I]nputs" })
+vim.keymap.set('n', "<Leader>th", '<Cmd>lua require("telescope").extensions.vstask.history()<CR>', { desc = "Tasks [H]istory" })
+vim.keymap.set('n', "<Leader>tl", '<Cmd>lua require("telescope").extensions.vstask.launch()<CR>', { desc = "Tasks [L]aunch" })
+
+-- vim.keymap.set('n', '<leader>ta', '<Cmd>require("telescope").extensions.vstask.tasks()<CR>')
+-- vim.keymap.set('n', '<leader>ti', '<Cmd>require("telescope").extensions.vstask.inputs()<CR>')
+-- vim.keymap.set('n', '<leader>th', '<Cmd>require("telescope").extensions.vstask.history()<CR>')
+-- vim.keymap.set('n', '<leader>tl', '<Cmd>require("telescope").extensions.vstask.launch()<CR>')

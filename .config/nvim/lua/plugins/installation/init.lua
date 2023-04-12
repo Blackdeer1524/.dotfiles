@@ -32,8 +32,7 @@ return {
         }
     },
     {
-        'windwp/nvim-autopairs',
-        config = function()
+        'windwp/nvim-autopairs', config = function()
             require("nvim-autopairs").setup()
         end
     },
@@ -323,6 +322,13 @@ return {
         'p00f/clangd_extensions.nvim',
     },
     {
+        'EthanJWright/vs-tasks.nvim',
+        dependencies = {
+            'nvim-lua/popup.nvim',
+            'nvim-lua/plenary.nvim',
+        },
+    },
+    {
         "ray-x/go.nvim",
         dependencies = { -- optional packages
             "ray-x/guihua.lua",
@@ -331,6 +337,7 @@ return {
         },
         config = function()
             require("go").setup({
+                icons = false,
                 lsp_inlay_hints = {
                     enable = false
                 }

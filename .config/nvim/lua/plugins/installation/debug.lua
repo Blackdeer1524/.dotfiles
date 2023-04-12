@@ -24,10 +24,22 @@ return {
         'jay-babu/mason-nvim-dap.nvim',
 
         -- Add your own debuggers here
-        'leoluz/nvim-dap-go',
         'mfussenegger/nvim-dap-python',
     },
     config = function()
+        require('mason-nvim-dap').setup {
+            -- Makes a best effort to setup the various debuggers with
+            -- reasonable debug configurations
+            automatic_setup = true,
+
+            -- You'll need to check that you have the required things installed
+            -- online, please don't ask me how to install them :)
+            ensure_installed = {
+                'debugpy', 'codelldb', 'delve',
+                -- Update this to ensure that you have the debuggers for the langs you want
+            },
+        }
+
         require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
 
         local dap = require 'dap'
@@ -44,17 +56,33 @@ return {
             }
         }
 
-        require('mason-nvim-dap').setup {
-            -- Makes a best effort to setup the various debuggers with
-            -- reasonable debug configurations
-            automatic_setup = true,
-
-            -- You'll need to check that you have the required things installed
-            -- online, please don't ask me how to install them :)
-            ensure_installed = {
-                'debugpy', 'codelldb', 'go-debug-adapter'
-                -- Update this to ensure that you have the debuggers for the langs you want
+        dap.adapters.go = {
+            type = 'executable',
+            command = 'node',
+            args = { os.getenv('HOME') .. '/vscode-go/dist/debugAdapter.js' },
+        }
+        dap.configurations.go = {
+            {
+                type = 'go',
+                name = 'Launch Debug',
+                request = 'launch',
+                program = "${file}",
+                console = "integratedTerminal",
+                dlvToolPath = vim.fn.stdpath('data') .. '/mason/bin/dlv'
             },
+            {
+                name = "Connect to delve server",
+                type = "go",
+                request = "attach",
+                preLaunchTask = "delve",
+                mode = "remote",
+                remotePath = "${workspaceFolder}",
+                port = 23456,
+                host = "127.0.0.1",
+                cwd = "${workspaceFolder}",
+                dlvToolPath = vim.fn.stdpath('data') .. '/mason/bin/dlv'
+            },
+
         }
 
         -- You can provide additional configuration to the handlers,
@@ -114,7 +142,5 @@ return {
         dap.listeners.after.event_initialized['dapui_config'] = dapui.open
         dap.listeners.before.event_terminated['dapui_config'] = dapui.close
         dap.listeners.before.event_exited['dapui_config'] = dapui.close
-        -- Install golang specific config
-        require('dap-go').setup()
     end,
 }

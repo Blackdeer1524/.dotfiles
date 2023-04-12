@@ -98,7 +98,15 @@ local clangd_conf = require("clangd_extensions").prepare(
 
 mason_lspconfig.setup_handlers {
     function(server_name)
-        if (server_name == "clangd") then
+        if (server_name == "gopls") then
+            require('lspconfig')[server_name].setup({
+                capabilities = capabilities,
+                on_attach = on_attach,
+                settings = servers[server_name],
+                dap_debug = true,
+                dap_debug_gui = true
+            })
+        elseif (server_name == "clangd") then
             require('lspconfig')[server_name].setup(clangd_conf)
         else
             require('lspconfig')[server_name].setup {
