@@ -25,6 +25,7 @@ return {
 
         -- Add your own debuggers here
         'mfussenegger/nvim-dap-python',
+        'leoluz/nvim-dap-go',
     },
     config = function()
         require('mason-nvim-dap').setup {
@@ -41,7 +42,6 @@ return {
         }
 
         require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
-
         local dap = require 'dap'
         local dapui = require 'dapui'
         dap.adapters.codelldb = {
@@ -55,35 +55,59 @@ return {
                 -- detached = false,
             }
         }
-
-        dap.adapters.go = {
-            type = 'executable',
-            command = 'node',
-            args = { os.getenv('HOME') .. '/vscode-go/dist/debugAdapter.js' },
-        }
-        dap.configurations.go = {
-            {
-                type = 'go',
-                name = 'Launch Debug',
-                request = 'launch',
-                program = "${file}",
-                console = "integratedTerminal",
-                dlvToolPath = vim.fn.stdpath('data') .. '/mason/bin/dlv'
+        require('dap-go').setup {
+            -- Additional dap configurations can be added.
+            -- dap_configurations accepts a list of tables where each entry
+            -- represents a dap configuration. For more details do:
+            -- :help dap-configuration
+            dap_configurations = {
+                {
+                    -- Must be "go" or it will be ignored by the plugin
+                    type = "go",
+                    name = "Attach remote",
+                    mode = "remote",
+                    request = "attach",
+                },
             },
-            {
-                name = "Connect to delve server",
-                type = "go",
-                request = "attach",
-                preLaunchTask = "delve",
-                mode = "remote",
-                remotePath = "${workspaceFolder}",
-                port = 23456,
-                host = "127.0.0.1",
-                cwd = "${workspaceFolder}",
-                dlvToolPath = vim.fn.stdpath('data') .. '/mason/bin/dlv'
+            -- delve configurations
+            delve = {
+                -- time to wait for delve to initialize the debug session.
+                -- default to 20 seconds
+                initialize_timeout_sec = 20,
+                -- a string that defines the port to start delve debugger.
+                -- default to string "${port}" which instructs nvim-dap
+                -- to start the process in a random available port
+                port = "${port}"
             },
-
         }
+
+        -- dap.adapters.go = {
+        --     type = 'executable',
+        --     command = 'node',
+        --     args = { os.getenv('HOME') .. '/vscode-go/dist/debugAdapter.js' },
+        -- }
+        -- dap.configurations.go = {
+        --     {
+        --         type = 'go',
+        --         name = 'Launch Debug',
+        --         request = 'launch',
+        --         program = "${file}",
+        --         console = "integratedTerminal",
+        --         dlvToolPath = vim.fn.stdpath('data') .. '/mason/bin/dlv'
+        --     },
+        --     {
+        --         name = "Connect to delve server",
+        --         type = "go",
+        --         request = "attach",
+        --         preLaunchTask = "delve",
+        --         mode = "remote",
+        --         remotePath = "${workspaceFolder}",
+        --         port = 23456,
+        --         host = "127.0.0.1",
+        --         cwd = "${workspaceFolder}",
+        --         dlvToolPath = vim.fn.stdpath('data') .. '/mason/bin/dlv'
+        --     },
+        -- }
 
         -- You can provide additional configuration to the handlers,
         -- see mason-nvim-dap README for more information

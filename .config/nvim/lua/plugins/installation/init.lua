@@ -32,7 +32,8 @@ return {
         }
     },
     {
-        'windwp/nvim-autopairs', config = function()
+        'windwp/nvim-autopairs',
+        config = function()
             require("nvim-autopairs").setup()
         end
     },
@@ -178,7 +179,7 @@ return {
         dependencies = { 'hrsh7th/cmp-nvim-lsp', 'L3MON4D3/LuaSnip', 'saadparwaiz1/cmp_luasnip' },
     },
     -- Useful plugin to show you pending keybinds.
-    { 'folke/which-key.nvim',          opts = {} },
+    { 'folke/which-key.nvim',  opts = {} },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
@@ -225,10 +226,21 @@ return {
         },
     },
     -- "gc" to comment visual regions/lines
-    { 'numToStr/Comment.nvim',         opts = {} },
+    { 'numToStr/Comment.nvim', opts = {} },
 
-    -- Fuzzy Finder (files, lsp, etc)
-    { 'nvim-telescope/telescope.nvim', version = '*', dependencies = { 'nvim-lua/plenary.nvim' } },
+    {
+        'EthanJWright/vs-tasks.nvim',
+        dependencies = {
+            'nvim-lua/popup.nvim',
+            'nvim-lua/plenary.nvim',
+            -- Fuzzy Finder (files, lsp, etc)
+            {
+                'nvim-telescope/telescope.nvim',
+                version = '*',
+                dependencies = { 'nvim-lua/plenary.nvim' }
+            },
+        },
+    },
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
     -- Only load if `make` is available. Make sure you have the system
@@ -280,7 +292,10 @@ return {
 
                 -- Python
                 null_ls.builtins.diagnostics.mypy,
-                null_ls.builtins.diagnostics.flake8,
+                null_ls.builtins.formatting.black.with({
+                    extra_args = { "--line-length=80" }
+                }),
+                null_ls.builtins.formatting.isort,
                 -- Markdown
 
                 null_ls.builtins.diagnostics.markdownlint,
@@ -322,13 +337,6 @@ return {
         'p00f/clangd_extensions.nvim',
     },
     {
-        'EthanJWright/vs-tasks.nvim',
-        dependencies = {
-            'nvim-lua/popup.nvim',
-            'nvim-lua/plenary.nvim',
-        },
-    },
-    {
         "ray-x/go.nvim",
         dependencies = { -- optional packages
             "ray-x/guihua.lua",
@@ -337,6 +345,7 @@ return {
         },
         config = function()
             require("go").setup({
+                run_in_floaterm = true,
                 icons = false,
                 lsp_inlay_hints = {
                     enable = false
