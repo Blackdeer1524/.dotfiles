@@ -76,11 +76,22 @@ vim.diagnostic.config({
   float = {
     border = "single",
     format = function(diagnostic)
+      local code = diagnostic.code
+      if not code and diagnostic.user_data ~= nil then
+        code = diagnostic.user_data.lsp.code
+      end
+      if code then
+        return string.format(
+          "%s (%s) [%s]",
+          diagnostic.message,
+          diagnostic.source,
+          code
+        )
+      end
       return string.format(
-        "%s (%s) [%s]",
+        "%s (%s)",
         diagnostic.message,
-        diagnostic.source,
-        diagnostic.code or diagnostic.user_data.lsp.code
+        diagnostic.source
       )
     end,
   },
