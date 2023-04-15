@@ -22,8 +22,6 @@ audio_ext_cfg["apkg"] = {
 }
 
 return {
-    -- NOTE: First, some plugins that don't require any configuration
-    'ThePrimeagen/vim-be-good',
     {
         'akinsho/toggleterm.nvim',
         version = "*",
@@ -40,11 +38,12 @@ return {
     {
         "tpope/vim-surround",
     },
-    -- {
-    --     "akinsho/bufferline.nvim",
-    --     version = "v3.*",
-    --     opts = {}
-    -- },
+    {
+        'nvim-pack/nvim-spectre',
+        dependencies = {
+            'nvim-lua/plenary.nvim'
+        }
+    },
     {
         'romgrk/barbar.nvim',
         dependencies = 'nvim-tree/nvim-web-devicons',

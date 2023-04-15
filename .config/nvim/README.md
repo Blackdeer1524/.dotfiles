@@ -1,5 +1,7 @@
 # Installation
 
+Install [ripgrep](https://github.com/BurntSushi/ripgrep#installation)
+
 ## Java
 * I tried configuring JDTLS with Mason, but to no avail :(.
 1. Install OpenJDK-17 with OpenJRE-17 (eclipse.jdt.ls requires Java 17 as of March, 2023) 
