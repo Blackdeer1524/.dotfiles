@@ -51,6 +51,12 @@ return {
         },
     },
     {
+        'rcarriga/nvim-notify',
+        config = function()
+            vim.notify = require("notify")
+        end
+    },
+    {
         'romgrk/barbar.nvim',
         dependencies = 'nvim-tree/nvim-web-devicons',
         init = function() vim.g.barbar_auto_setup = false end,
