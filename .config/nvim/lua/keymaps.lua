@@ -111,3 +111,27 @@ vim.keymap.set('n', "<Leader>tl", '<Cmd>lua require("telescope").extensions.vsta
 vim.keymap.set('n', '<leader>S', '<cmd>lua require("spectre").open()<CR>', {
     desc = "Open Spectre"
 })
+
+-- trouble.nvim
+-- Lua
+vim.keymap.set("n", "<leader>m", "<cmd>TroubleToggle<cr>",
+    { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xw", "<cmd>TroubleToggle workspace_diagnostics<cr>",
+    { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xd", "<cmd>TroubleToggle document_diagnostics<cr>",
+    { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xl", "<cmd>TroubleToggle loclist<cr>",
+    { silent = true, noremap = true }
+)
+vim.keymap.set("n", "<leader>xq", "<cmd>TroubleToggle quickfix<cr>",
+    { silent = true, noremap = true }
+)
+
+-- Diagnostic keymaps
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = "Go to previous diagnostic message" })
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = "Go to next diagnostic message" })
+vim.keymap.set('n', '<leader>q', vim.diagnostic.open_float, { desc = "Open floating diagnostic message" })
+-- vim.keymap.set('n', '<leader>m', vim.diagnostic.setloclist, { desc = "Open diagnostics list" })
