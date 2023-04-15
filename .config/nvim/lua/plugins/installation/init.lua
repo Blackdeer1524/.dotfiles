@@ -194,6 +194,12 @@ return {
             "onsails/lspkind.nvim"
         },
     },
+    {
+        "rafamadriz/friendly-snippets",
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+    },
 
     -- Useful plugin to show you pending keybinds.
     { 'folke/which-key.nvim',  opts = {} },
