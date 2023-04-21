@@ -85,6 +85,10 @@ return {
         build = function() vim.fn["mkdp#util#install"]() end,
     },
     {
+        "ekickx/clipboard-image.nvim",
+        opts={}
+    },
+    {
         "lervag/vimtex",
     },
     {
@@ -316,6 +320,7 @@ return {
 
                 -- Javascript
                 null_ls.builtins.formatting.prettier,
+                require("typescript.extensions.null-ls.code-actions"),
 
                 -- Python
                 null_ls.builtins.diagnostics.mypy,
@@ -364,9 +369,9 @@ return {
     {
         'p00f/clangd_extensions.nvim',
     },
-    -- {
-    --     'jose-elias-alvarez/typescript.nvim',
-    -- },
+    {
+        'jose-elias-alvarez/typescript.nvim',
+    },
     {
         "ray-x/go.nvim",
         dependencies = { -- optional packages

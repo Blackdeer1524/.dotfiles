@@ -13,7 +13,6 @@ capabilities.offsetEncoding = "utf-8"
 
 local servers = {
     clangd = {},
-    tsserver = {},
     gopls = {
         gopls = {
             analyses = {
@@ -38,6 +37,17 @@ local servers = {
         }
     },
     pyright = {
+        pyright = {
+            autoImportCompletion = true,
+        },
+        python = {
+            analysis = {
+                autoSearchPaths = true,
+                diagnosticMode = 'openFilesOnly',
+                useLibraryCodeForTypes = true,
+                typeCheckingMode = 'basic'
+            },
+        }
     },
     lua_ls = {
         Lua = {
@@ -49,14 +59,16 @@ local servers = {
 
 local on_attach = require("lsp.defaults").on_attach
 
--- require("clangd_extensions").setup {
---     server = {
---         capabilities = capabilities,
---         on_attach = on_attach,
---         -- options to pass to nvim-lspconfig
---         -- i.e. the arguments to require("lspconfig").clangd.setup({})
---     },
--- }
+require("typescript").setup({
+    disable_commands = false, -- prevent the plugin from creating Vim commands
+    debug = false,            -- enable debug logging for commands
+    go_to_source_definition = {
+        fallback = true,      -- fall back to standard LSP definition on failure
+    },
+    server = {                -- pass options to lspconfig's setup method
+        on_attach = on_attach,
+    },
+})
 
 -- Setup mason so it can manage external tooling
 require('mason').setup()
@@ -93,36 +105,7 @@ local clangd_conf = require("clangd_extensions").prepare(
 
 mason_lspconfig.setup_handlers {
     function(server_name)
-        if (server_name == "tsserver") then
-            require('lspconfig')[server_name].setup({
-                settings = {
-                    -- cmd = { 'typescript-language-server', '--stdio' },
-                    capabilities = capabilities,
-                    on_attach = on_attach,
-                    settings = servers[server_name],
-                    root_dir = vim.loop.cwd,
-                    completions = {
-                        completeFunctionCalls = true
-                    }
-                }
-            })
-            -- require("typescript").setup({
-            --     disable_commands = false, -- prevent the plugin from creating Vim commands
-            --     debug = false,            -- enable debug logging for commands
-            --     go_to_source_definition = {
-            --         fallback = true,      -- fall back to standard LSP definition on failure
-            --     },
-            --     server = {
-            --         cmd = { 'typescript-language-server', '--stdio' },
-            --         capabilities = capabilities,
-            --         on_attach = on_attach,
-            --         settings = servers[server_name],
-            --         root_dir = function(fname)
-            --             return vim.loop.cwd()
-            --         end,
-            --     },
-            -- })
-        elseif (server_name == "gopls") then
+        if (server_name == "gopls") then
             require('lspconfig')[server_name].setup({
                 capabilities = capabilities,
                 on_attach = on_attach,
