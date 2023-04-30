@@ -86,7 +86,7 @@ return {
     },
     {
         "ekickx/clipboard-image.nvim",
-        opts={}
+        opts = {}
     },
     {
         "lervag/vimtex",
@@ -265,7 +265,8 @@ return {
             {
                 'nvim-telescope/telescope.nvim',
                 version = '*',
-                dependencies = { 'nvim-lua/plenary.nvim' }
+                dependencies = { 'nvim-lua/plenary.nvim' },
+                lazy = false,
             },
         },
     },
