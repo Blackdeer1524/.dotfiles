@@ -41,22 +41,29 @@ return {
     {
         "tpope/vim-surround",
     },
+    -- search and replace tool
     {
         'nvim-pack/nvim-spectre',
         dependencies = {
             'nvim-lua/plenary.nvim'
         }
     },
+    -- diagnostics list
     {
         'folke/trouble.nvim',
         dependencies = {
             'nvim-tree/nvim-web-devicons'
         },
     },
+    -- floating notifications
     {
         'rcarriga/nvim-notify',
         config = function()
-            vim.notify = require("notify")
+            require("notify").setup {
+                stages = 'static',
+                timeout = 2000,
+            }
+            vim.notify = require('notify')
         end,
         lazy = false,
     },
@@ -258,7 +265,6 @@ return {
     },
     -- "gc" to comment visual regions/lines
     { 'numToStr/Comment.nvim', opts = {} },
-
     {
         'EthanJWright/vs-tasks.nvim',
         dependencies = {
@@ -269,9 +275,9 @@ return {
                 'nvim-telescope/telescope.nvim',
                 version = '*',
                 dependencies = { 'nvim-lua/plenary.nvim' },
-                lazy = false,
             },
         },
+        lazy = false,
     },
 
     -- Fuzzy Finder Algorithm which requires local dependencies to be built.
@@ -327,14 +333,13 @@ return {
                 require("typescript.extensions.null-ls.code-actions"),
 
                 -- Python
-                null_ls.builtins.diagnostics.mypy,
+                -- null_ls.builtins.diagnostics.mypy,
                 null_ls.builtins.formatting.black.with({
                     extra_args = { "--line-length=80" }
                 }),
                 null_ls.builtins.formatting.isort,
 
                 -- Markdown
-
                 null_ls.builtins.diagnostics.markdownlint,
             }
 
