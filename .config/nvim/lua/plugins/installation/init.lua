@@ -311,7 +311,13 @@ return {
         },
         config = function()
             pcall(require('nvim-treesitter.install').update { with_sync = true })
+            -- folding
+            vim.o.foldexpr = "nvim_treesitter#foldexpr()"
+            vim.o.foldmethod = "expr"
+            vim.o.foldlevel = 20
+            vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
         end,
+        lazy = false,
     },
     {
         "nvim-treesitter/nvim-treesitter-context",
