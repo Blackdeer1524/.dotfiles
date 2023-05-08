@@ -75,7 +75,7 @@ vim.diagnostic.config({
   signs = true,
   update_in_insert = false,
   virtual_text = {
-    severity = vim.diagnostic.severity.ERROR,
+    severity = vim.diagnostic.severity.WARN,
     severity_sort = true,
   },
   float = {

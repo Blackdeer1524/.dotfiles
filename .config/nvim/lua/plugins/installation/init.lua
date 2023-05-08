@@ -315,7 +315,7 @@ return {
             vim.o.foldexpr = "nvim_treesitter#foldexpr()"
             vim.o.foldmethod = "expr"
             vim.o.foldlevel = 20
-            vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
+            -- vim.api.nvim_create_autocmd({ "BufEnter" }, { pattern = { "*" }, command = "normal zx", })
         end,
         lazy = false,
     },
