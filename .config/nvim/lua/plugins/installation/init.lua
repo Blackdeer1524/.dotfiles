@@ -67,6 +67,7 @@ return {
         end,
         lazy = false,
     },
+    -- buffers line
     {
         'romgrk/barbar.nvim',
         dependencies = 'nvim-tree/nvim-web-devicons',
@@ -79,6 +80,7 @@ return {
         },
         -- version = '^1.0.0', -- optional: only update when a new 1.x version is released
     },
+    -- file structure view
     {
         "simrat39/symbols-outline.nvim",
         opts = {},
@@ -108,6 +110,7 @@ return {
             log_level = "error",
         }
     },
+    -- filetree
     {
         'nvim-tree/nvim-tree.lua',
         dependencies = {
@@ -186,11 +189,20 @@ return {
             'folke/neodev.nvim',
         },
     },
+    -- peek definition
     {
         "glepnir/lspsaga.nvim",
         event = "LspAttach",
         config = function()
-            require("lspsaga").setup({})
+            require("lspsaga").setup({
+                lightbulb = {
+                    enable = true,
+                    enable_in_insert = true,
+                    sign = true,
+                    sign_priority = 40,
+                    virtual_text = true,
+                },
+            })
             vim.keymap.set('n', "gP", "<cmd>Lspsaga peek_definition<CR>", { desc = "peek definition" })
         end,
         dependencies = {
@@ -215,7 +227,6 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
         end,
     },
-
     -- Useful plugin to show you pending keybinds.
     { 'folke/which-key.nvim',  opts = {} },
     {

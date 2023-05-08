@@ -73,6 +73,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.diagnostic.config({
   signs = true,
+  update_in_insert = false,
+  virtual_text = {
+    severity = vim.diagnostic.severity.ERROR,
+    severity_sort = true,
+  },
   float = {
     border = "single",
     format = function(diagnostic)
