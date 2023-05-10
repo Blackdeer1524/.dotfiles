@@ -22,8 +22,18 @@ SeparateDefinitionBlocks : Always
 
 AlignArrayOfStructures: Left
 
-AlignConsecutiveAssignments: AcrossEmptyLinesAndComments
-AlignConsecutiveDeclarations: AcrossEmptyLinesAndComments
+AlignConsecutiveAssignments: 
+    Enabled: true
+    AcrossComments: true
+    AcrossEmptyLines: true
+    AlignCompound: true
+    PadOperators: true
+
+AlignConsecutiveDeclarations: 
+    Enabled: true
+    AcrossComments: true
+    AcrossEmptyLines: true
+
 AlignAfterOpenBracket: Align
 BinPackParameters: false
 BinPackArguments: false 
