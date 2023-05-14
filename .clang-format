@@ -6,6 +6,7 @@ AlignConsecutiveMacros: Consecutive
 SpacesBeforeTrailingComments: 2
 AlignTrailingComments: true 
 
+IndentPPDirectives: BeforeHash
 IndentCaseLabels: true
 
 AllowShortFunctionsOnASingleLine: None 
@@ -42,6 +43,7 @@ AllowAllParametersOfDeclarationOnNextLine: false
 SeparateDefinitionBlocks: Always
 
 RequiresClausePosition: OwnLine
+RequiresExpressionIndentation: Keyword
 AlwaysBreakTemplateDeclarations: Yes
 
 SpaceBeforeCaseColon: false
