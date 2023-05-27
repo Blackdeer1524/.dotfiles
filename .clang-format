@@ -21,7 +21,7 @@ EmptyLineBeforeAccessModifier: Always
 MaxEmptyLinesToKeep: 1
 SeparateDefinitionBlocks : Always
 
-AlignArrayOfStructures: Left
+AlignArrayOfStructures: Right
 
 AlignConsecutiveAssignments: 
     Enabled: true

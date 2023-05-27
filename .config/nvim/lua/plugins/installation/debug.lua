@@ -42,6 +42,10 @@ return {
         }
 
         require('dap-python').setup('~/.virtualenvs/debugpy/bin/python')
+        require('dap-python').resolve_python = function()
+            return '/usr/bin/python'
+        end
+
         local dap = require 'dap'
         local dapui = require 'dapui'
         dap.adapters.codelldb = {
