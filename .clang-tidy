@@ -13,6 +13,7 @@ Checks: >
   performance-*,
   readability-*,
   -readability-implicit-bool-conversion,
+  -readability-identifier-length,
   -readability-uppercase-literal-suffix
 CheckOptions:
   - { key: readability-identifier-naming.NamespaceCase,       value: lower_case }
