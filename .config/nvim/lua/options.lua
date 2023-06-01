@@ -75,7 +75,7 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 vim.diagnostic.config({
   signs = true,
-  update_in_insert = false,
+  update_in_insert = true,
   virtual_text = false,
   -- virtual_text = {
   --   severity = vim.diagnostic.severity.WARN,
