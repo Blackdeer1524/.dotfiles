@@ -203,7 +203,6 @@ return {
                     virtual_text = true,
                 },
             })
-            vim.keymap.set('n', "gP", "<cmd>Lspsaga peek_definition<CR>", { desc = "peek definition" })
         end,
         dependencies = {
             { "nvim-tree/nvim-web-devicons" },
@@ -228,7 +227,7 @@ return {
         end,
     },
     -- Useful plugin to show you pending keybinds.
-    { 'folke/which-key.nvim',  opts = {} },
+    { 'folke/which-key.nvim',      opts = {} },
     {
         -- Adds git releated signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
@@ -244,12 +243,27 @@ return {
         },
     },
     {
-        -- Theme inspired by Atom
-        'navarasu/onedark.nvim',
+        'weilbith/nvim-code-action-menu',
+        cmd = 'CodeActionMenu',
+    },
+    -- multiline diagnostics
+    {
+        "https://git.sr.ht/~whynothugo/lsp_lines.nvim",
+        config = function()
+            require("lsp_lines").setup()
+        end,
+    },
+    { "navarasu/onedark.nvim",     name = "onedark", lazy = false, priority = 1000 },
+    { "bluz71/vim-moonfly-colors", name = "moonfly", lazy = false, priority = 1000 },
+    {
+        "LunarVim/horizon.nvim",
+        name = "horizon",
+        lazy = false,
         priority = 1000,
         config = function()
-            vim.cmd.colorscheme 'onedark'
-        end,
+            vim.cmd.colorscheme "horizon"
+            vim.cmd('highlight Comment guifg=#707070')
+        end
     },
     {
         -- Set lualine as statusline
@@ -258,9 +272,8 @@ return {
         opts = {
             options = {
                 icons_enabled = true,
-                theme = 'onedark',
-                component_separators = '|',
-                section_separators = '',
+                -- component_separators = { left = '', right = '' },
+                -- section_separators = { left = '', right = '' },
             },
         },
     },

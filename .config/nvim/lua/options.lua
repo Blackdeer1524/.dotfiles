@@ -61,6 +61,8 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 
+vim.g.code_action_menu_show_details = false
+
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
 vim.api.nvim_create_autocmd('TextYankPost', {
@@ -74,10 +76,11 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 vim.diagnostic.config({
   signs = true,
   update_in_insert = false,
-  virtual_text = {
-    severity = vim.diagnostic.severity.WARN,
-    severity_sort = true,
-  },
+  virtual_text = false,
+  -- virtual_text = {
+  --   severity = vim.diagnostic.severity.WARN,
+  --   severity_sort = true,
+  -- },
   float = {
     border = "single",
     format = function(diagnostic)
