@@ -1,3 +1,6 @@
 require("plugins.configuration.completion")
-require("plugins.configuration.telescope_conf")
-require("plugins.configuration.treesitter_conf")
+require("plugins.configuration.telescope")
+require("plugins.configuration.treesitter")
+require("plugins.configuration.vimtex")
+require("plugins.configuration.dap")
+require("plugins.configuration.overseer")

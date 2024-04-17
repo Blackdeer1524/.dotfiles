@@ -1,0 +1,5 @@
+require("mason-setup.debug.langs.cpp")
+require("mason-setup.debug.langs.python")
+require("mason-setup.debug.langs.js")
+require("mason-setup.debug.langs.bash")
+require("mason-setup.debug.langs.scala")

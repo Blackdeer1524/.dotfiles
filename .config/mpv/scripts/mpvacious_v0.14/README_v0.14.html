@@ -1,0 +1,364 @@
+<html>
+<head>
+<title></title>
+<meta name="generator" content="md2html">
+</head>
+<body>
+<p align="center">
+<img src="https://user-images.githubusercontent.com/69171671/94564113-1dc82b80-0257-11eb-8cc9-1c7d7b6973a0.png"/>
+</p>
+<h1>mpvacious</h1>
+<p><a href="https://tatsumoto-ren.github.io/blog/join-our-community.html"><img src="https://img.shields.io/badge/chat-join-green.svg" alt="Chat"></a>
+<img src="https://img.shields.io/github/license/Ajatt-Tools/mpvacious" alt="GitHub">
+<a href="https://www.patreon.com/bePatron?u=43555128"><img src="https://img.shields.io/badge/support-patreon-orange" alt="Patreon"></a>
+<img src="https://img.shields.io/github/languages/top/Ajatt-Tools/mpvacious" alt="GitHub top language">
+<img src="https://img.shields.io/tokei/lines/github/Ajatt-Tools/mpvacious" alt="Lines of code">
+<a href="https://aur.archlinux.org/packages/mpv-mpvacious/"><img src="https://img.shields.io/badge/AUR-install-blue.svg" alt="AUR"></a></p>
+<p>mpvacious is your semi-automatic subs2srs for mpv.
+It supports multiple workflows and allows you to quickly create Anki cards
+while watching your favorite TV show.
+<a href="https://youtu.be/vU85ramvyo4">Video demonstration</a>.</p>
+<h2>Table of contents</h2>
+<ul>
+<li><a href="#requirements">Requirements</a></li>
+<li><a href="#installation">Installation</a><ul>
+<li><a href="#manually">Manually</a></li>
+<li><a href="#from-the-aur">From the AUR</a></li>
+<li><a href="#using-curl">Using curl</a></li>
+<li><a href="#using-git">Using git</a></li>
+<li><a href="#updating-with-git">Updating with git</a></li>
+</ul>
+</li>
+<li><a href="#configuration">Configuration</a></li>
+<li><a href="#usage">Usage</a><ul>
+<li><a href="#global-bindings">Global bindings</a></li>
+<li><a href="#menu-options">Menu options</a></li>
+<li><a href="#how-to-add-definitions-to-new-cards">How to add definitions to new cards</a></li>
+<li><a href="#modifying-cards-added-with-yomichan">Modifying cards added with Yomichan</a></li>
+<li><a href="#example-sentence-card">Example sentence card</a></li>
+<li><a href="#audio-cards">Audio cards</a></li>
+<li><a href="#other-tools">Other tools</a></li>
+<li><a href="#additional-mpv-key-bindings">Additional mpv key bindings</a></li>
+</ul>
+</li>
+<li><a href="#hacking">Hacking</a></li>
+</ul>
+<h2>Requirements</h2>
+<table>
+<tr>
+    <th><a href="https://www.gnu.org/gnu/about-gnu.html">GNU/Linux</a></th>
+    <th><a href="https://www.gnu.org/proprietary/malware-microsoft.en.html">Windows 10</a></th>
+    <th><a href="https://www.gnu.org/proprietary/malware-apple.en.html">macOS</a></th>
+    <th>Comments</th>
+</tr>
+<tr>
+    <td><a href="https://wiki.archlinux.org/index.php/Mpv">mpv</a></td>
+    <td><a href="https://sourceforge.net/projects/mpv-player-windows/files">mpv</a></td>
+    <td><a href="https://mpv.io/installation/">mpv</a></td>
+    <td>v0.32.0 or newer.</td>
+</tr>
+<tr>
+    <td><a href="https://wiki.archlinux.org/index.php/Anki">Anki</a></td>
+    <td colspan="2" align="center"><a href="https://apps.ankiweb.net/">Anki</a></td>
+    <td></td>
+</tr>
+<tr>
+    <td colspan="3" align="center"><a href="https://ankiweb.net/shared/info/2055492159">AnkiConnect</a></td>
+    <td>Install from AnkiWeb.</td>
+</tr>
+<tr>
+    <td><a href="https://www.archlinux.org/packages/core/x86_64/curl/">curl</a></td>
+    <td colspan="2" align="center"><a href="https://curl.haxx.se/">curl</a></td>
+    <td>Installed by default on all platforms except Windows 7.</td>
+</tr>
+<tr>
+    <td><a href="https://www.archlinux.org/packages/extra/x86_64/xclip/">xclip</a></td>
+    <td></td>
+    <td>pbcopy</td>
+    <td>To copy subtitle text to clipboard.</td>
+</tr>
+</table>
+<p>Install all dependencies at once (on <a href="https://www.parabola.nu/">Arch-based</a>
+<a href="https://www.gnu.org/distros/free-distros.en.html">distros</a>):</p>
+<pre><code>$ sudo pacman -Syu mpv anki curl xclip --needed
+</code></pre>
+<h2>Prerequisites</h2>
+<ul>
+<li>If you're on a <strong>Windows</strong> machine, watch <a href="https://youtu.be/bbg6ztWecbU?t=103">this tutorial</a>.
+Make sure you choose a build by <code>shinchiro</code>,
+otherwise you may encounter problems when making Anki cards.</li>
+<li><strong>macOS</strong> users should use <a href="https://brew.sh/">homebrew</a> or manually add <code>mpv</code> to <code>PATH</code>.</li>
+<li>If you're using a GNU/Linux distro different from Arch Linux,
+make sure that your build of mpv supports encoding of audio and images.
+To test that, this shell command can be used:<pre><code>$ mpv 'test_video.mkv' --loop-file=no --frames=1 -o='test_image.jpg'
+</code></pre>
+If the command fails, find a compatible build on the <a href="https://mpv.io/installation/">mpv website</a>.</li>
+</ul>
+<h2>Installation</h2>
+<h3>Manually</h3>
+<p>Download the repository or
+<a href="https://github.com/Ajatt-Tools/mpvacious/releases">the latest release</a>
+and extract the folder containing
+<a href="https://raw.githubusercontent.com/Ajatt-Tools/mpvacious/master/subs2srs.lua">subs2srs.lua</a>
+to your <a href="https://github.com/mpv-player/mpv/wiki/User-Scripts">mpv scripts</a> directory:</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNU/Linux</td>
+<td><code>~/.config/mpv/scripts/</code></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>C:/Users/Username/AppData/Roaming/mpv/scripts/</code></td>
+</tr>
+</tbody>
+</table>
+<p><strong>Note:</strong> in <a href="https://www.archlinux.org/packages/community/x86_64/celluloid/">Celluloid</a>
+user scripts are installed by switching to the &quot;Plugins&quot; tab
+in the preferences dialog and dropping the files there.</p>
+<h3>From the AUR</h3>
+<p>mpvacious can be installed with the <a href="https://aur.archlinux.org/packages/mpv-mpvacious/">mpv-mpvacious</a> package.</p>
+<h3>Using git</h3>
+<p>If you already have your dotfiles set up according to
+<a href="https://wiki.archlinux.org/index.php/Dotfiles#Tracking_dotfiles_directly_with_Git">Arch Wiki recommendations</a>, execute:</p>
+<pre><code>$ config submodule add 'https://github.com/Ajatt-Tools/mpvacious.git' ~/.config/mpv/scripts/subs2srs
+</code></pre>
+<p>If not, either proceed to Arch Wiki and come back when you're done, or simply clone the repo:</p>
+<pre><code>$ git clone 'https://github.com/Ajatt-Tools/mpvacious.git' ~/.config/mpv/scripts/subs2srs
+</code></pre>
+<p>Since you've just cloned the script to its own subfolder,
+you need to tell mpv where to look for it.</p>
+<p><strong>Note:</strong> the step below is not necessary if you're running mpv <code>v0.33</code> or newer.</p>
+<p>Open or create  <code>~/.config/mpv/scripts/modules.lua</code> and add these lines:</p>
+<pre><code>local mpv_scripts_dir_path = os.getenv(&quot;HOME&quot;) ..  &quot;/.config/mpv/scripts/&quot;
+function load(relative_path) dofile(mpv_scripts_dir_path .. relative_path) end
+load(&quot;subs2srs/subs2srs.lua&quot;)
+</code></pre>
+<h3>Updating with git</h3>
+<table>
+<thead>
+<tr>
+<th>Install method</th>
+<th>Command</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Submodules</td>
+<td><code>$ config submodule update --remote --merge</code></td>
+</tr>
+<tr>
+<td>Plain git</td>
+<td><code>$ cd ~/.config/mpv/scripts/subs2srs &amp;&amp; git pull</code></td>
+</tr>
+</tbody>
+</table>
+<h2>Configuration</h2>
+<p>The config file should be created by the user, if needed.</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Config location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNU/Linux</td>
+<td><code>~/.config/mpv/script-opts/subs2srs.conf</code></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>C:/Users/Username/AppData/Roaming/mpv/script-opts/subs2srs.conf</code></td>
+</tr>
+<tr>
+<td>Windows (portable)</td>
+<td><code>mpv.exeフォルダ/portable_config/script-opts/subs2srs.conf</code></td>
+</tr>
+</tbody>
+</table>
+<p>If a parameter is not specified
+in the config file, the default value will be used.
+mpv doesn't tolerate spaces before and after <code>=</code>.</p>
+<p align="center">
+  <a href="https://github.com/Ajatt-Tools/mpvacious/blob/master/.github/RELEASE/subs2srs.conf">Example configuration file</a>
+</p>
+<p>Sentence field should be first in the note type settings.
+Otherwise, Anki won't allow mpvacious to add new notes.
+Alternatively, refer to <a href="#modifying-cards-added-with-yomichan">Modifying cards added with Yomichan</a>
+or use an addon that <a href="https://ankiweb.net/shared/info/46741504">allows empty first field</a>.</p>
+<p><strong>Tip</strong>: Try <a href="https://ankiweb.net/shared/info/1557722832">this note type</a>
+if you don't want to configure note fields yourself.</p>
+<p>If you are having problems playing media files on older mobile devices,
+set <code>audio_format</code> to <code>mp3</code> and/or <code>snapshot_format</code> to <code>jpg</code>.
+Otherwise, I recommend sticking with <code>opus</code> and <code>webp</code>,
+as they greatly reduce the size of the generated files.</p>
+<h3>Key bindings</h3>
+<p>The user may change some key bindings, though this step is not necessary.
+See <a href="#usage">Usage</a> for the explanation of what they do.</p>
+<table>
+<thead>
+<tr>
+<th>OS</th>
+<th>Config location</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>GNU/Linux</td>
+<td><code>~/.config/mpv/input.conf</code></td>
+</tr>
+<tr>
+<td>Windows</td>
+<td><code>C:/Users/Username/AppData/Roaming/mpv/input.conf</code></td>
+</tr>
+</tbody>
+</table>
+<p>Default bindings:</p>
+<pre><code>Ctrl+c       script-binding mpvacious-copy-sub-to-clipboard
+Ctrl+e       script-binding mpvacious-export-note
+Ctrl+h       script-binding mpvacious-sub-rewind
+Ctrl+Shift+h script-binding mpvacious-sub-replay
+a            script-binding mpvacious-menu-open
+H            script-binding mpvacious-sub-seek-back
+L            script-binding mpvacious-sub-seek-forward
+Alt+h        script-binding mpvacious-sub-seek-back-pause
+Alt+l        script-binding mpvacious-sub-seek-forward-pause
+</code></pre>
+<p>These additional bindings aren't enabled by default but can be accessed via the menu by pressing <code>a</code>.</p>
+<pre><code>Ctrl+s script-binding mpvacious-set-starting-line
+Ctrl+r script-binding mpvacious-reset-timings
+Ctrl+t script-binding mpvacious-toggle-sub-autocopy
+Ctrl+u script-binding mpvacious-update-last-note
+</code></pre>
+<h2>Usage</h2>
+<h3>Global bindings</h3>
+<p>These bindings work everywhere, even if the menu (covered later) is closed.</p>
+<ul>
+<li><code>Shift+h</code> and <code>Shift+l</code> - Seek to the previous or the next subtitle.</li>
+<li><code>Alt+h</code> and <code>Alt+l</code> - Seek to the previous, or the next subtitle, and pause.</li>
+<li><code>Ctrl+h</code> - Seek to the start of the currently visible subtitle. Use it if you missed something.</li>
+<li><code>Ctrl+Shift+h</code> - Replay current subtitle line, and pause.</li>
+<li><code>Ctrl+e</code> - Export a card with the currently visible subtitle line on the front.
+Use this when your subs are perfectly timed, and the target sentence doesn't span multiple subs.</li>
+<li><code>Ctrl+c</code> - Copy current subtitle string to the system clipboard. For automatic copying see
+<a href="#modifying-cards-added-with-yomichan">Modifying cards added with Yomichan</a>.</li>
+</ul>
+<h3>Menu options</h3>
+<ul>
+<li><code>a</code> - Open <code>advanced menu</code> with a list of all available keybindings.</li>
+</ul>
+<p>Let's say your subs are still perfectly timed,
+but the sentence you want to add is split between multiple subs.
+We need to combine the lines before making a card.</p>
+<ul>
+<li><code>c</code> - Set timings to the current sub and remember the corresponding line.
+It does nothing if there are no subs on screen.</li>
+</ul>
+<p>Then seek with <code>shift+h</code> and <code>shift+l</code> to the previous/next line that you want to add.
+Press <code>n</code> to make the card.</p>
+<ul>
+<li><code>r</code> - Forget all previously saved timings and associated dialogs.</li>
+</ul>
+<p>If subs are badly timed, first of all, you could try to re-time them.
+<a href="https://github.com/smacke/ffsubsync">ffsubsync</a> is a program that will do it for you.
+Another option would be to shift timings using key bindings provided by mpv.</p>
+<ul>
+<li><code>z</code> and <code>Shift+z</code> - Adjust subtitle delay.</li>
+</ul>
+<p>If above fails, you have to manually set timings.</p>
+<ul>
+<li><code>s</code> - Set the start time.</li>
+<li><code>e</code> - Set the end time.</li>
+</ul>
+<p>Then, as earlier, press <code>n</code> to make the card.</p>
+<p><strong>Tip</strong>: change playback speed by pressing <code>[</code> and <code>]</code>
+to precisely mark start and end of the phrase.</p>
+<h3>How to add definitions to new cards</h3>
+<p>After the card is created, you can find it by typing <code>tag:subs2srs added:1</code>
+in the Anki Browser. Then use <a href="https://aur.archlinux.org/packages/qolibri/">qolibri</a>
+or similar software to add definitions to the card.</p>
+<h3>Modifying cards added with Yomichan</h3>
+<p>You can add a card first using Yomichan,
+and then append an audio clip and a snapshot to it.</p>
+<p>Pressing <code>t</code> in the <code>advanced menu</code> toggles the <code>autoclip</code> option.
+Now as subtitles appear on the screen, they will be immediately copied to the clipboard.
+You can use it in combination with
+<a href="https://foosoft.net/projects/yomichan/">Yomichan</a> clipboard monitor.</p>
+<h4>The process:</h4>
+<ol>
+<li>Open <code>Yomichan Search</code> by pressing <code>Alt+Insert</code> in your web browser.</li>
+<li>Enable <code>Clipboard autocopy</code> in mpvacious by pressing <code>t</code> in the <code>advanced menu</code>.</li>
+<li>When you find an unknown word, click
+<a href="https://foosoft.net/projects/yomichan/index.html#flashcard-creation"><img src="https://foosoft.net/projects/yomichan/img/btn-add-expression.png" alt="＋"></a>
+in Yomichan to make a card for it.</li>
+<li>Go back to mpv and add the snapshot and the audio clip
+to the card you've just made by pressing <code>m</code> in the <code>advanced menu</code>.
+Pressing <code>Shift+m</code> will overwrite any existing data in media fields.</li>
+</ol>
+<p>Don't forget to set the right timings and join lines together
+if the sentence is split between multiple subs.</p>
+<h3>Example sentence card</h3>
+<p>With the addon you can make cards like this in just a few seconds.</p>
+<p><img src="https://user-images.githubusercontent.com/69171671/92900057-e102d480-f40e-11ea-8cfc-b00848ca66ff.png" alt="card-example"></p>
+<h3>Audio cards</h3>
+<p>It is possible to make a card with just audio, and a picture
+when subtitles for the show you are watching aren't available, for example.
+mpv by default allows you to do a <code>1</code> second exact seek by pressing <code>Shift+LEFT</code> and <code>Shift+RIGHT</code>.
+Open the mpvacious menu by pressing <code>a</code>, seek to the position you need, and set the timings.
+Then press <code>g</code> to invoke the <code>Add Cards</code> dialog.</p>
+<p>If the show is hardsubbed, you can use <a href="https://github.com/tesseract-ocr/tesseract">Tesseract</a>
+or <a href="https://getsharex.com/">ShareX</a> OCR to add text to the card.</p>
+<h3>Other tools</h3>
+<p>If you don't like the default Yomichan Search tool, try:</p>
+<ul>
+<li>Clipboard Inserter browser add-on
+(<a href="https://chrome.google.com/webstore/detail/clipboard-inserter/deahejllghicakhplliloeheabddjajm">chrome</a>)
+(<a href="https://addons.mozilla.org/ja/firefox/addon/clipboard-inserter/">firefox</a>)</li>
+<li>An html page (<a href="https://pastebin.com/zDY6s3NK">1</a>) (<a href="https://pastebin.com/hZ4sawL4">2</a>)
+to paste the contents of you clipboard to</li>
+</ul>
+<p>You can use any html page as long as it has &lt;body&gt;&lt;/body&gt; in it.</p>
+<h3>Additional mpv key bindings</h3>
+<p>I recommend adding these lines to your <a href="#key-bindings">input.conf</a> for smoother experience.</p>
+<pre><code># vim-like seeking
+l seek 5
+h seek -5
+j seek -60
+k seek 60
+
+# Cycle between subtitle files
+K cycle sub
+J cycle sub down
+
+# Add/subtract 50 ms delay from subs
+Z add sub-delay +0.05
+z add sub-delay -0.05
+
+# Adjust timing to previous/next subtitle
+X sub-step 1
+x sub-step -1
+</code></pre>
+<h2>Hacking</h2>
+<p>If you want to modify this script
+or make an entirely new one from scratch,
+these links may help.</p>
+<ul>
+<li><a href="https://mpv.io/manual/master/#lua-scripting">https://mpv.io/manual/master/#lua-scripting</a></li>
+<li><a href="https://github.com/mpv-player/mpv/blob/master/player/lua/defaults.lua">https://github.com/mpv-player/mpv/blob/master/player/lua/defaults.lua</a></li>
+<li><a href="https://github.com/SenneH/mpv2anki">https://github.com/SenneH/mpv2anki</a></li>
+<li><a href="https://github.com/kelciour/mpv-scripts/blob/master/subs2srs.lua">https://github.com/kelciour/mpv-scripts/blob/master/subs2srs.lua</a></li>
+<li><a href="https://pastebin.com/M2gBksHT">https://pastebin.com/M2gBksHT</a></li>
+<li><a href="https://pastebin.com/NBudhMUk">https://pastebin.com/NBudhMUk</a></li>
+<li><a href="https://pastebin.com/W5YV1A9q">https://pastebin.com/W5YV1A9q</a></li>
+<li><a href="https://github.com/ayuryshev/subs2srs">https://github.com/ayuryshev/subs2srs</a></li>
+<li><a href="https://github.com/erjiang/subs2srs">https://github.com/erjiang/subs2srs</a></li>
+</ul>
+</body>
+</html>

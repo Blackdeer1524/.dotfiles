@@ -1,11 +1,7 @@
 local M = {}
--- LSP settings.
---  This function gets run when an LSP connects to a particular buffer.
-M.on_attach = function(_, bufnr)
-    -- NOTE: Remember that lua is a real programming language, and as such it is possible
-    -- to define small helper and utility functions so you don't have to repeat yourself
-    -- many times.
-    --
+
+
+M.on_attach = function(client, bufnr, is_tsserver)
     -- In this case, we create a function that lets us more easily define mappings specific
     -- for LSP related items. It sets the mode, buffer and description for us each time.
     local nmap = function(keys, func, desc)
@@ -16,21 +12,55 @@ M.on_attach = function(_, bufnr)
         vim.keymap.set('n', keys, func, { buffer = bufnr, desc = desc })
     end
 
-    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
-    -- nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
-    vim.keymap.set('n', "<leader>ca", "<cmd>CodeActionMenu<CR>", { desc = "peek definition" })
-    vim.keymap.set('n', "gP", "<cmd>Lspsaga peek_definition<CR>", { desc = "peek definition" })
+    if client.server_capabilities.codeLensProvider ~= nil and client.server_capabilities.codeLensProvider ~= false then
+        vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+            callback = function(ev)
+                vim.lsp.codelens.refresh()
+            end,
+            buffer = bufnr,
+        })
+    end
 
-    nmap('gd', vim.lsp.buf.definition, '[G]oto [D]efinition')
-    nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
-    nmap('gI', vim.lsp.buf.implementation, '[G]oto [I]mplementation')
-    nmap('<leader>D', vim.lsp.buf.type_definition, 'Type [D]efinition')
-    nmap('<leader>ds', require('telescope.builtin').lsp_document_symbols, '[D]ocument [S]ymbols')
-    nmap('<leader>ws', require('telescope.builtin').lsp_dynamic_workspace_symbols, '[W]orkspace [S]ymbols')
+    nmap('<leader>rn', vim.lsp.buf.rename, '[R]e[n]ame')
+    nmap('<leader>cl', vim.lsp.codelens.run, 'select [C]ode[L]ens')
+
+    local telescope_search_layout =
+    {
+        -- sorting_strategy = "ascending",
+        -- layout_strategy = "flex",
+        -- layout_config = {
+        --     flip_columns = 200,
+        --     vertical = { height = 0.9, preview_height = 0.5, prompt_position = 'bottom' },
+        --     horizontal = { prompt_position = 'top', },
+        -- },
+        -- mappings = { i = { ['<C-u>'] = false, ['<C-d>'] = false, }, },
+        sorting_strategy = "ascending",
+        layout_strategy = "vertical",
+        mappings = { i = { ['<C-u>'] = false, ['<C-d>'] = false, }, },
+    }
+
+    nmap('gd', function() require('telescope.builtin').lsp_definitions(telescope_search_layout) end,
+        '[G]oto [D]efinition')
+    nmap('gr', function() require('telescope.builtin').lsp_references(telescope_search_layout) end,
+        '[G]oto [R]eferences')
+    nmap('gI', function() require('telescope.builtin').lsp_implementations(telescope_search_layout) end,
+        '[G]oto [I]mplementation')
+
+    nmap('<leader>oc', function() require('telescope.builtin').lsp_outgoing_calls(telescope_search_layout) end,
+        'LSP [o]utgoing [c]alls')
+    nmap('<leader>ic', function() require('telescope.builtin').lsp_incoming_calls(telescope_search_layout) end,
+        'LSP incoming [c]alls')
+
+    nmap('<leader>D', function() require('telescope.builtin').lsp_type_definitions(telescope_search_layout) end,
+        'Type [D]efinition')
+    nmap('<leader>ws',
+        function() require('telescope.builtin').lsp_dynamic_workspace_symbols(telescope_search_layout) end,
+        '[W]orkspace [S]ymbols')
 
     -- See `:help K` for why this keymap
     nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
-    -- nmap('<C-K>', vim.lsp.buf.signature_help, 'Signature Documentation')
+
+    nmap('<leader>K', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
     nmap('gD', vim.lsp.buf.declaration, '[G]oto [D]eclaration')
@@ -44,6 +74,26 @@ M.on_attach = function(_, bufnr)
     vim.api.nvim_buf_create_user_command(bufnr, 'Format', function(_)
         vim.lsp.buf.format {}
     end, { desc = 'Format current buffer with LSP' })
+
+    vim.api.nvim_buf_create_user_command(bufnr, 'LongFormat', function(_)
+        vim.lsp.buf.format { timeout_ms = 5000 }
+    end, { desc = 'Format current buffer with LSP [longer timeout]' })
+
+    vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
+        border = "rounded",
+    })
+    vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
+        border = "rounded",
+    })
+
+    if client.server_capabilities.inlayHintProvider then
+        vim.lsp.inlay_hint.enable(bufnr, true)
+    end
+
+    -- require("lsp-inlayhints").on_attach(client, bufnr)
 end
+
+M.MASON_PACKAGES = vim.fn.stdpath("data") .. "/mason/packages"
+M.MASON_BIN = vim.fn.stdpath("data") .. "/mason/bin"
 
 return M

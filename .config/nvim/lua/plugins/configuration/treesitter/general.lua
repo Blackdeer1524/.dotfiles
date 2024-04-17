@@ -1,27 +1,44 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 -- See `:help nvim-treesitter`
+---@diagnostic disable-next-line: missing-fields
 require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
     ensure_installed = {
         'java',
+        'json5',
+        'scala',
+        'yaml',
         'c',
         'cpp',
         'go',
         'lua',
         'python',
         'rust',
+        "html",
+        "css",
         'tsx',
         'javascript',
+        'jsdoc',
         'typescript',
-        'help',
+        'vimdoc',
+        'proto',
         'markdown',
         'markdown_inline',
-        'comment',
-        'vim' },
+        'latex',
+        'regex',
+        'dap_repl',
+        'vim',
+    },
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
 
-    highlight = { enable = true },
+    autotag = { enable = true, },
+    highlight = {
+        enable = true,
+        disable = function(lang, bufnr) -- Disable in files with more than 5K
+            return vim.api.nvim_buf_line_count(bufnr) > 5000
+        end,
+    },
     indent = { enable = true, disable = { 'python' } },
     incremental_selection = {
         enable = true,
@@ -69,10 +86,10 @@ require('nvim-treesitter.configs').setup {
         swap = {
             enable = true,
             swap_next = {
-                ['<leader>a'] = '@parameter.inner',
+                ['<leader>sn'] = '@parameter.inner',
             },
             swap_previous = {
-                ['<leader>A'] = '@parameter.inner',
+                ['<leader>sb'] = '@parameter.inner',
             },
         },
     },

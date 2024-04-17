@@ -6,32 +6,32 @@ AlignConsecutiveMacros: Consecutive
 SpacesBeforeTrailingComments: 2
 AlignTrailingComments: true 
 
-IndentPPDirectives: BeforeHash
+IndentPPDirectives: None # BeforeHash
 IndentCaseLabels: true
 
 AllowShortFunctionsOnASingleLine: None 
 AllowShortBlocksOnASingleLine: Never
 AllowShortIfStatementsOnASingleLine: Never
 AllowShortLoopsOnASingleLine: false
+AllowShortEnumsOnASingleLine: false
 
 AccessModifierOffset: -3
 
 EmptyLineBeforeAccessModifier: Always
 
 MaxEmptyLinesToKeep: 1
-SeparateDefinitionBlocks : Always
 
 AlignArrayOfStructures: Right
 
 AlignConsecutiveAssignments: 
-    Enabled: true
+    Enabled: false
     AcrossComments: true
     AcrossEmptyLines: true
     AlignCompound: true
     PadOperators: true
 
 AlignConsecutiveDeclarations: 
-    Enabled: true
+    Enabled: false
     AcrossComments: true
     AcrossEmptyLines: true
 
@@ -40,11 +40,11 @@ BinPackParameters: false
 BinPackArguments: false 
 AllowAllParametersOfDeclarationOnNextLine: false
 
-SeparateDefinitionBlocks: Always
-
 RequiresClausePosition: OwnLine
-RequiresExpressionIndentation: Keyword
+RequiresExpressionIndentation: OuterScope 
+
 AlwaysBreakTemplateDeclarations: Yes
 
 SpaceBeforeCaseColon: false
 ColumnLimit: 80
+
