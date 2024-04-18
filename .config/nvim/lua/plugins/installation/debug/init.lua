@@ -80,6 +80,19 @@ return {
                         program = "${file}"
                     }
                 )
+
+                vim.api.nvim_create_user_command("DelveLaunch", function()
+                    local overseer = require("overseer")
+                    overseer.run_template({ name = "launch delve" }, function(task)
+                        if task then
+                            local main_win = vim.api.nvim_get_current_win()
+                            overseer.run_action(task, "open vsplit")
+                            vim.api.nvim_set_current_win(main_win)
+                        else
+                            vim.notify("WatchRun not supported for filetype " .. vim.bo.filetype, vim.log.levels.ERROR)
+                        end
+                    end)
+                end, {})
             end
         },
     },
