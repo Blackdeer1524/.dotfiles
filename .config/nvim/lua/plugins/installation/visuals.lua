@@ -101,15 +101,16 @@ local M = {
         },
     },
     -- -- colors select
-    -- {
-    --     "uga-rosa/ccc.nvim",
-    --     opts = {
-    --         highlighter = {
-    --             auto_enable = true,
-    --             lsp = true,
-    --         },
-    --     },
-    -- },
+    {
+        "uga-rosa/ccc.nvim",
+        enabled = false,
+        opts = {
+            highlighter = {
+                auto_enable = true,
+                lsp = true,
+            },
+        },
+    },
     {
         -- gui colors select
         "KabbAmine/vCoolor.vim",

@@ -34,6 +34,8 @@ vim.wo.relativenumber = true
 -- Limit the maximum number of items to show in the popup menu
 vim.o.pumheight = 20
 
+vim.o.splitright = true
+
 -- Enable mouse mode
 vim.o.mouse = 'a'
 

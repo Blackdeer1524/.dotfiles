@@ -45,35 +45,41 @@ return {
                     }
                 })
 
+                local DELVE_LAUNCH_NAME = "[overseer delve] debug"
+
                 local dap = require("dap")
-                dap.adapters.delve = {
-                    type = "server",
-                    host = "127.0.0.1",
-                    port = 38697, -- overseer/template/user/launch_delve.lua
-                }
+                dap.adapters.delve = function(cb, config)
+                    if config.name == DELVE_LAUNCH_NAME then
+                        local overseer = require("overseer")
+                        overseer.run_template({ name = "launch delve" }, function(task)
+                            if task then
+                                local main_win = vim.api.nvim_get_current_win()
+                                overseer.run_action(task, "open vsplit")
+                                vim.api.nvim_set_current_win(main_win)
+                            else
+                                vim.notify("Couldn't start delve debugger", vim.log.levels.ERROR)
+                            end
+                        end)
+                    end
+
+                    if config.preLaunchTask then vim.fn.system(config.preLaunchTask) end
+                    local adapter = {
+                        type = "server",
+                        host = "127.0.0.1",
+                        port = 38697, -- overseer/template/user/launch_delve.lua
+                    }
+                    cb(adapter)
+                end
 
                 table.insert(
                     dap.configurations.go,
                     {
                         type = "delve",
-                        name = "[overseer delve] debug",
+                        name = DELVE_LAUNCH_NAME,
                         request = "launch",
                         program = "${file}"
                     }
                 )
-
-                vim.api.nvim_create_user_command("DelveLaunch", function()
-                    local overseer = require("overseer")
-                    overseer.run_template({ name = "launch delve" }, function(task)
-                        if task then
-                            local main_win = vim.api.nvim_get_current_win()
-                            overseer.run_action(task, "open vsplit")
-                            vim.api.nvim_set_current_win(main_win)
-                        else
-                            vim.notify("WatchRun not supported for filetype " .. vim.bo.filetype, vim.log.levels.ERROR)
-                        end
-                    end)
-                end, {})
             end
         },
     },

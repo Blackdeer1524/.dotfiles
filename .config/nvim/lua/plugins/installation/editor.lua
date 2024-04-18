@@ -2,17 +2,18 @@ local HEIGHT_RATIO = 0.8 -- You can change this
 local WIDTH_RATIO = 0.5  -- You can change this too
 
 local M = {
-    -- {
-    --     -- terminal emulator
-    --     'akinsho/toggleterm.nvim',
-    --     version = "*",
-    --     opts = {
-    --         open_mapping = [[<leader>tt]],
-    --         start_in_insert = true,
-    --         insert_mappings = false,   -- whether or not the open mapping applies in insert mode
-    --         terminal_mappings = false, -- whether or not the open mapping applies in the opened terminals
-    --     }
-    -- },
+    {
+        -- terminal emulator
+        'akinsho/toggleterm.nvim',
+        version = "*",
+        enabled = false,
+        opts = {
+            open_mapping = [[<leader>tt]],
+            start_in_insert = true,
+            insert_mappings = false,   -- whether or not the open mapping applies in insert mode
+            terminal_mappings = false, -- whether or not the open mapping applies in the opened terminals
+        }
+    },
     {
         -- diagnostics list
         'folke/trouble.nvim',
@@ -40,19 +41,20 @@ local M = {
         end,
         lazy = false,
     },
-    -- {
-    --     -- buffers line
-    --     'romgrk/barbar.nvim',
-    --     dependencies = 'nvim-tree/nvim-web-devicons',
-    --     init = function() vim.g.barbar_auto_setup = false end,
-    --     opts = {
-    --         -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
-    --         animation = false,
-    --         -- insert_at_start = true,
-    --         -- …etc.
-    --     },
-    --     version = '^1.0.0', -- optional: only update when a new 1.x version is released
-    -- },
+    {
+        -- buffers line
+        'romgrk/barbar.nvim',
+        dependencies = 'nvim-tree/nvim-web-devicons',
+        init = function() vim.g.barbar_auto_setup = false end,
+        opts = {
+            -- lazy.nvim will automatically call setup for you. put your options here, anything missing will use the default:
+            animation = false,
+            -- insert_at_start = true,
+            -- …etc.
+        },
+        version = '^1.0.0', -- optional: only update when a new 1.x version is released
+        enabled = false,
+    },
     {
         "mbbill/undotree",
     },
@@ -135,20 +137,7 @@ local M = {
                 override_by_extension = custom_icons
             })
         end
-    }, -- not strictly required, but recommended
-    -- {
-    --     "ms-jpq/chadtree",
-    --     branch = "chad",
-    --     build = "python3 -m chadtree deps",
-    --     config = function()
-    --         local chadtree_settings = {
-    --             theme = {
-    --                 icon_colour_set = "github"
-    --             }
-    --         }
-    --         vim.api.nvim_set_var("chadtree_settings", chadtree_settings)
-    --     end,
-    -- },
+    },
     {
         "nvim-tree/nvim-tree.lua",
         dependencies = {
