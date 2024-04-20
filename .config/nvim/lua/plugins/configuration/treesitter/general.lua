@@ -32,11 +32,15 @@ require('nvim-treesitter.configs').setup {
     auto_install = false,
     autotag = {
         enable = true,
+        enable_rename = true,
+        enable_close = true,
+        enable_close_on_slash = true,
         filetypes = {
             'html', 'javascript', 'typescript', 'javascriptreact',
             'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
             'rescript', 'xml', 'php', 'markdown',
-            'astro', 'glimmer', 'handlebars', 'hbs', "template", "tmpl", "gotmpl"
+            'astro', 'glimmer', 'handlebars', 'hbs',
+            "gotmpl", "template", "tmpl",
         },
     },
     highlight = {
@@ -100,3 +104,14 @@ require('nvim-treesitter.configs').setup {
         },
     },
 }
+
+local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+parser_config.gotmpl = {
+    install_info = {
+        url = "https://github.com/ngalaiko/tree-sitter-go-template",
+        files = { "src/parser.c" }
+    },
+    filetype = "gotmpl",
+    used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" }
+}
+vim.treesitter.language.register('html', 'template')

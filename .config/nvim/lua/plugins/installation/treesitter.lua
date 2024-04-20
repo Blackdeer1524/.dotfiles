@@ -43,7 +43,6 @@ local M = {
     },
     {
         "windwp/nvim-ts-autotag",
-        opts = {}
     },
     {
         "folke/todo-comments.nvim",

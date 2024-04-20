@@ -249,7 +249,7 @@ mason_lspconfig.setup_handlers {
                 client.server_capabilities.documentRangeFormattingProvider = false
                 client.server_capabilities.documentFormattingProvider = false
             end,
-            filetypes = { "html", "templ" },
+            filetypes = { "html", "templ", "template" },
             settings = {
                 html = {
                     hover = {
