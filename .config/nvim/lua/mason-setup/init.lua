@@ -17,7 +17,8 @@ require('mason').setup({
         "mypy",
         "ruff",
         -- Go
-        "revive",
+        -- "revive",
+        "golangci-lint",
         -- SQL
         "sqlfluff",
     }

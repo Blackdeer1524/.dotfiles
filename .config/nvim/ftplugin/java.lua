@@ -7,7 +7,7 @@ end
 -- See `:help vim.lsp.start_client` for an overview of the supported `config` options.
 
 -- place installed jdtls into home/%USERNAME% directory
-local jdtls_path = require("lsp/defaults").MASON_PACKAGES .. "/jdtls"
+local jdtls_path = require("lsp.defaults").MASON_PACKAGES .. "/jdtls"
 local path_to_lsp_server = jdtls_path .. "/config_linux"
 local path_to_plugins = jdtls_path .. "/plugins"
 local path_to_jar = vim.split(
@@ -143,7 +143,7 @@ local config = {
     }
 }
 
-local default_on_attach = require("lsp/defaults").on_attach
+local default_on_attach = require("lsp.defaults").on_attach
 config['on_attach'] = function(client, bufnr)
     -- You need java 17 to be able to install java-debug!!!
     require("jdtls").setup_dap({ hotcodereplace = "auto" })
@@ -154,7 +154,7 @@ end
 -- DEBUG
 local bundles = {
     vim.fn.glob(
-        require("lsp/defaults").MASON_PACKAGES ..
+        require("lsp.defaults").MASON_PACKAGES ..
         "/java-debug-adapter/extension/server/com.microsoft.java.debug.plugin-*.jar",
         1)
 }
@@ -163,7 +163,7 @@ local bundles = {
 vim.list_extend(bundles,
     vim.split(
         vim.fn.glob(
-            require("lsp/defaults").MASON_PACKAGES .. "/java-test/extension/server/*.jar", 1),
+            require("lsp.defaults").MASON_PACKAGES .. "/java-test/extension/server/*.jar", 1),
         "\n")
 )
 config['init_options'] = {

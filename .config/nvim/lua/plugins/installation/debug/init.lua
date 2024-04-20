@@ -31,7 +31,7 @@ return {
         {
             'mfussenegger/nvim-dap-python',
             config = function()
-                local path = require("lsp/defaults").MASON_PACKAGES .. "/debugpy/venv/bin/python"
+                local path = require("lsp.defaults").MASON_PACKAGES .. "/debugpy/venv/bin/python"
                 require("dap-python").setup(path)
             end
         },

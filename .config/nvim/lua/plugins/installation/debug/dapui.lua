@@ -24,11 +24,11 @@ M.setup = function()
         }, {
             elements = {
                 {
-                    id = "repl",
+                    id = "console",
                     size = 0.5
                 },
                 {
-                    id = "console",
+                    id = "repl",
                     size = 0.5
                 },
             },
@@ -40,6 +40,7 @@ M.setup = function()
 
     local function on_open()
         dapui.open()
+        vim.cmd("NvimTreeClose")
     end
 
     local dap = require("dap")

@@ -136,22 +136,25 @@ local M = {
                         "--base-formatter=gofumpt",
                     },
                 }),
+                null_ls.builtins.diagnostics.golangci_lint.with({
+                    command = require("lsp.defaults").MASON_BIN .. "/golangci-lint"
+                }),
                 -- Markdown
                 -- null_ls.builtins.diagnostics.markdownlint,
 
                 -- SQL
                 null_ls.builtins.diagnostics.sqlfluff.with({
-                    command = require("lsp/defaults").MASON_BIN .. "/sqlfluff",
+                    command = require("lsp.defaults").MASON_BIN .. "/sqlfluff",
                     extra_args = { "--dialect", SQL_DIALECT }, -- change to your dialect
                 }),
                 null_ls.builtins.formatting.sqlfluff.with({
-                    command = require("lsp/defaults").MASON_BIN .. "/sqlfluff",
+                    command = require("lsp.defaults").MASON_BIN .. "/sqlfluff",
                     extra_args = { "--dialect", SQL_DIALECT }, -- change to your dialect
                 }),
 
                 -- TS/JS
                 null_ls.builtins.formatting.prettier.with({
-                    command = require("lsp/defaults").MASON_BIN .. "/prettier",
+                    command = require("lsp.defaults").MASON_BIN .. "/prettier",
                 }
                 ),
             }
@@ -175,7 +178,7 @@ local M = {
         "mrcjkb/rustaceanvim",
         config = function()
             vim.g.rustaceanvim = function()
-                local package_path = require("lsp/defaults").MASON_PACKAGES .. "/codelldb"
+                local package_path = require("lsp.defaults").MASON_PACKAGES .. "/codelldb"
                 local codelldb_path = package_path .. "/codelldb"
                 local liblldb_path = package_path .. "/extension/lldb/lib/liblldb"
                 local this_os = vim.loop.os_uname().sysname
@@ -203,7 +206,7 @@ local M = {
                             },
                         },
                         on_attach = function(_, bufnr)
-                            require('lsp/defaults').on_attach(_, bufnr)
+                            require('lsp.defaults').on_attach(_, bufnr)
                             vim.keymap.set("n", "<leader>rd", "<cmd>RustLsp debuggables<cr>",
                                 { buffer = bufnr, desc = "RustLps debuggables" })
                         end,
@@ -327,7 +330,7 @@ local M = {
         },
         opts = {
             lsp = {
-                on_attach = require("lsp/defaults").on_attach,
+                on_attach = require("lsp.defaults").on_attach,
             },
             mappings = true,
         }
@@ -342,7 +345,7 @@ local M = {
         opts = {
             server = {
                 on_attach = function(client, bufnr)
-                    require("lsp/defaults").on_attach(client, bufnr)
+                    require("lsp.defaults").on_attach(client, bufnr)
                     local idris = require("idris2")
                     local idris2_ca = require("idris2.code_action")
 

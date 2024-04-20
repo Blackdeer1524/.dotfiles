@@ -7,7 +7,7 @@ capabilities.textDocument.foldingRange = {
 
 require('ufo').setup()
 
-local on_attach = require("lsp/defaults").on_attach
+local on_attach = require("lsp.defaults").on_attach
 
 local function init_metals()
     local metals_config = require("metals").bare_config()
@@ -157,12 +157,23 @@ mason_lspconfig.setup_handlers {
                         nilness = true,
                         unusedparams = true,
                         unusedwrite = true,
-                        useany = true
+                        useany = true,
+                        shadow = true,
                     },
                     experimentalPostfixCompletions = true,
                     gofumpt = true,
                     staticcheck = true,
                     usePlaceholders = true,
+                    codelenses = {
+                        gc_details = false,
+                        generate = true,
+                        regenerate_cgo = true,
+                        run_govulncheck = true,
+                        test = true,
+                        tidy = true,
+                        upgrade_dependency = true,
+                        vendor = true,
+                    },
                     hints = {
                         assignVariableTypes = true,
                         compositeLiteralFields = true,
@@ -238,6 +249,7 @@ mason_lspconfig.setup_handlers {
                 client.server_capabilities.documentRangeFormattingProvider = false
                 client.server_capabilities.documentFormattingProvider = false
             end,
+            filetypes = { "html", "template" },
             settings = {
                 html = {
                     hover = {
@@ -272,7 +284,7 @@ mason_lspconfig.setup_handlers {
             end,
             filetypes = { "c", "cpp", "objc", "objcpp", "cuda" },
             cmd = {
-                require("lsp/defaults").MASON_BIN .. "/clangd",
+                require("lsp.defaults").MASON_BIN .. "/clangd",
                 "--background-index",
                 string.format("-j=%d", #vim.loop.cpu_info()),
                 "--header-insertion=iwyu",

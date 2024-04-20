@@ -1,7 +1,7 @@
 local dap = require 'dap'
 
-local BASH_DEBUG_ADAPTER_BIN = require("lsp/defaults").MASON_BIN .. "/bash-debug-adapter"
-local BASHDB_DIR = require("lsp/defaults").MASON_PACKAGES ..
+local BASH_DEBUG_ADAPTER_BIN = require("lsp.defaults").MASON_BIN .. "/bash-debug-adapter"
+local BASHDB_DIR = require("lsp.defaults").MASON_PACKAGES ..
     "/bash-debug-adapter/extension/bashdb_dir"
 
 dap.adapters.sh = {

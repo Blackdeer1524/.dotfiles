@@ -29,10 +29,16 @@ require('nvim-treesitter.configs').setup {
         'dap_repl',
         'vim',
     },
-    -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,
-
-    autotag = { enable = true, },
+    autotag = {
+        enable = true,
+        filetypes = {
+            'html', 'javascript', 'typescript', 'javascriptreact',
+            'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'rescript', 'xml', 'php', 'markdown',
+            'astro', 'glimmer', 'handlebars', 'hbs', "template", "tmpl", "gotmpl"
+        },
+    },
     highlight = {
         enable = true,
         disable = function(lang, bufnr) -- Disable in files with more than 5K
