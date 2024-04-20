@@ -162,7 +162,7 @@ mason_lspconfig.setup_handlers {
                     },
                     experimentalPostfixCompletions = true,
                     gofumpt = true,
-                    staticcheck = true,
+                    -- staticcheck = true,
                     usePlaceholders = true,
                     codelenses = {
                         gc_details = false,
@@ -249,7 +249,7 @@ mason_lspconfig.setup_handlers {
                 client.server_capabilities.documentRangeFormattingProvider = false
                 client.server_capabilities.documentFormattingProvider = false
             end,
-            filetypes = { "html", "template" },
+            filetypes = { "html", "templ" },
             settings = {
                 html = {
                     hover = {

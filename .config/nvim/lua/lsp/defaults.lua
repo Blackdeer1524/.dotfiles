@@ -58,8 +58,20 @@ M.on_attach = function(client, bufnr, is_tsserver)
         '[W]orkspace [S]ymbols')
 
     -- See `:help K` for why this keymap
-    nmap('K', vim.lsp.buf.hover, 'Hover Documentation')
+    local show_documentation = function()
+        local filetype = vim.bo.filetype
+        if vim.tbl_contains({ 'vim', 'help' }, filetype) then
+            vim.cmd('h ' .. vim.fn.expand('<cword>'))
+        elseif vim.tbl_contains({ 'man' }, filetype) then
+            vim.cmd('Man ' .. vim.fn.expand('<cword>'))
+        elseif vim.fn.expand('%:t') == 'Cargo.toml' then
+            require('crates').show_popup()
+        else
+            vim.lsp.buf.hover()
+        end
+    end
 
+    nmap('K', show_documentation, 'Hover Documentation')
     nmap('<leader>K', vim.lsp.buf.signature_help, 'Signature Documentation')
 
     -- Lesser used LSP functionality
