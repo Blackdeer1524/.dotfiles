@@ -68,6 +68,7 @@ M.on_attach = function(client, bufnr, is_tsserver)
             require('crates').show_popup()
         else
             vim.lsp.buf.hover()
+            -- require("pretty_hover").hover()
         end
     end
 
