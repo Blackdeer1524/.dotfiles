@@ -45,7 +45,7 @@ return {
                     }
                 })
 
-                local DELVE_LAUNCH_NAME = "[overseer delve] debug"
+                local DELVE_LAUNCH_NAME = "[Overseer Delve] Debug Package"
 
                 local dap = require("dap")
                 dap.adapters.delve = function(cb, config)
@@ -66,7 +66,7 @@ return {
                     local adapter = {
                         type = "server",
                         host = "127.0.0.1",
-                        port = 38697, -- overseer/template/user/launch_delve.lua
+                        port = 38697, -- see `overseer/template/user/launch_delve.lua`
                     }
                     cb(adapter)
                 end
@@ -74,10 +74,19 @@ return {
                 table.insert(
                     dap.configurations.go,
                     {
-                        type = "delve",
                         name = DELVE_LAUNCH_NAME,
+                        type = "delve",
                         request = "launch",
-                        program = "${file}"
+                        program = "${fileDirname}",
+                        args = function()
+                            return coroutine.create(function(dap_run_co)
+                                local args = {}
+                                vim.ui.input({ prompt = "Args: " }, function(input)
+                                    args = vim.split(input or "", " ")
+                                    coroutine.resume(dap_run_co, args)
+                                end)
+                            end)
+                        end
                     }
                 )
 
