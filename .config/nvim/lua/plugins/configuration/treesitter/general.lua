@@ -45,7 +45,10 @@ require('nvim-treesitter.configs').setup {
     },
     highlight = {
         enable = true,
-        disable = function(lang, bufnr) -- Disable in files with more than 5K
+        disable = function(lang, bufnr)
+            if lang == "go" then
+                return vim.api.nvim_buf_line_count(bufnr) > 3000
+            end
             return vim.api.nvim_buf_line_count(bufnr) > 5000
         end,
     },

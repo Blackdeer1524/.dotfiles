@@ -40,4 +40,9 @@ vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[s]earch current [w]ord' })
 vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { desc = '[s]earch [d]iagnostics' })
 
-vim.keymap.set('n', '<leader>st', function()require('telescope.builtin').tagstack(telescope_search_layout) end, { desc = '[s]earch [t]agstack' })
+vim.keymap.set('n', '<leader>st', function() require('telescope.builtin').tagstack(telescope_search_layout) end,
+    { desc = '[s]earch [t]agstack' })
+
+
+vim.keymap.set('n', 'gbc', "<no-op>", { noremap=true, })
+vim.keymap.set('n', 'gb', "<C-t>", { desc = '[t]ag [b]ack' })

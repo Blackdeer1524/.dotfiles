@@ -246,6 +246,7 @@ mason_lspconfig.setup_handlers {
         lspconfig["html"].setup {
             capabilities = capabilities,
             on_attach = function(client, bufnr)
+                on_attach(client, bufnr)
                 client.server_capabilities.documentRangeFormattingProvider = false
                 client.server_capabilities.documentFormattingProvider = false
             end,
