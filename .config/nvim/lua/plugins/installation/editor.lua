@@ -82,44 +82,46 @@ local M = {
     {
         'nvim-tree/nvim-web-devicons',
         config = function()
-            local custom_icons = {}
+            local web_devicons_ok, web_devicons = pcall(require, "nvim-web-devicons")
+            if not web_devicons_ok then
+                return
+            end
+
+            local icons_override = {}
             for _, v in pairs({ "mp3", "wav", "aac", "flac", "m4a", "wma", "ogg", "opus", "aiff", "au" }) do
-                custom_icons[v] = {
+                icons_override[v] = {
                     icon = "",
                     name = v,
                     color = "#672168"
                 }
             end
-            custom_icons["pyw"] = {
+            icons_override["tmpl"] = {
+                icon = "",
+                name = "Template",
+                color = "#00B1FF",
+            }
+            icons_override["pyw"] = {
                 icon = "󰌠",
                 name = "PythonNoConsole"
             }
-            custom_icons["apkg"] = {
+            icons_override["apkg"] = {
                 icon = "󰘸",
                 name = "AnkiPackage"
             }
-            custom_icons["proto"] = {
+            icons_override["proto"] = {
                 icon = "󱁜",
                 name = "protobufs"
             }
-            custom_icons["ev"] = custom_icons["proto"]
 
-            custom_icons["toml"] = {
-                icon = "",
-                name = "toml"
-            }
-
-            custom_icons["make"] = {
-                icon = "󰣪",
-                name = "make",
-            }
-
-            require("nvim-web-devicons").setup({
+            web_devicons.setup({
                 -- globally enable different highlight colors per icon (default to true)
                 -- if set to false all icons will have the default icon's color
                 color_icons = true,
                 -- globally enable default icons (default to false)
                 -- will get overriden by `get_icons` option
+                -- globally enable "strict" selection of icons - icon will be looked up in
+                -- globally enable "strict" selection of icons - icon will be looked up in
+                -- globally enable "strict" selection of icons - icon will be looked up in
                 default = true,
                 -- globally enable "strict" selection of icons - icon will be looked up in
                 -- different tables, first by filename, and if not found by extension; this
@@ -129,12 +131,23 @@ local M = {
                 -- same as `override` but specifically for overrides by filename
                 -- takes effect when `strict` is true
                 override_by_filename = {
+                    ["go.mod"] = {
+                        icon = "󰟓",
+                        color = "#D30000",
+                        name = "go.mod"
+                    },
+                    ["go.sum"] = {
+                        icon = "󰟓",
+                        color = "#D30000",
+                        name = "go.mod"
+                    },
                     -- [".gitignore"] = {
                     --     icon = "",
                     --     name = "Gitignore"
                     -- }
                 },
-                override_by_extension = custom_icons
+                -- override = material_icon.get_icons(),
+                override_by_extension = icons_override,
             })
         end
     },

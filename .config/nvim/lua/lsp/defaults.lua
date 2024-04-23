@@ -67,8 +67,8 @@ M.on_attach = function(client, bufnr, is_tsserver)
         elseif vim.fn.expand('%:t') == 'Cargo.toml' then
             require('crates').show_popup()
         else
-            vim.lsp.buf.hover()
-            -- require("pretty_hover").hover()
+            -- vim.lsp.buf.hover()
+            require("pretty_hover").hover()
         end
     end
 
