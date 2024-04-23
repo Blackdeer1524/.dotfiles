@@ -152,6 +152,11 @@ local M = {
                     resize_window = true,
                 },
             },
+            renderer = {
+                indent_markers = {
+                    enable = true
+                },
+            },
             -- view = {
             --     float = {
             --         enable = true,
