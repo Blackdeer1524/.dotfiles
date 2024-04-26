@@ -124,7 +124,7 @@ local M = {
                 null_ls.builtins.diagnostics.cmake_lint,
 
                 -- Python
-                null_ls.builtins.diagnostics.ruff,
+                -- null_ls.builtins.diagnostics.ruff,
                 null_ls.builtins.formatting.black,
                 -- null_ls.builtins.formatting.ruff,
 
@@ -407,24 +407,11 @@ local M = {
         }
     },
     {
-        "simrat39/symbols-outline.nvim",
-        opts = {
-            keymaps = { -- These keymaps can be a string or a table for multiple keys
-                close = { "<Esc>", "q" },
-                goto_location = "<Cr>",
-                focus_location = "o",
-                hover_symbol = "<C-space>",
-                toggle_preview = "K",
-                rename_symbol = "r",
-                code_actions = "a",
-                fold = "h",
-                unfold = "l",
-                fold_all = "W",
-                unfold_all = "E",
-                fold_reset = "R",
-            },
-
-        }
+        "hedyhli/outline.nvim",
+        config = function()
+            require("outline").setup()
+            vim.keymap.set("n", "<leader>so", "<cmd>Outline<cr>", { desc = "[s]ymbols [o]utline" })
+        end
     },
     {
         'linux-cultist/venv-selector.nvim',

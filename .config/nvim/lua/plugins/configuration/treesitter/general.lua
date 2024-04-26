@@ -11,6 +11,8 @@ require('nvim-treesitter.configs').setup {
         'c',
         'cpp',
         'go',
+        'gomod',
+        'gosum',
         'lua',
         'python',
         'rust',

@@ -1,7 +1,7 @@
 local M = {}
 
 
-M.on_attach = function(client, bufnr, is_tsserver)
+M.on_attach = function(client, bufnr)
     -- In this case, we create a function that lets us more easily define mappings specific
     -- for LSP related items. It sets the mode, buffer and description for us each time.
     local nmap = function(keys, func, desc)
@@ -67,8 +67,8 @@ M.on_attach = function(client, bufnr, is_tsserver)
         elseif vim.fn.expand('%:t') == 'Cargo.toml' then
             require('crates').show_popup()
         else
-            -- vim.lsp.buf.hover()
-            require("pretty_hover").hover()
+            vim.lsp.buf.hover()
+            -- require("pretty_hover").hover()
         end
     end
 

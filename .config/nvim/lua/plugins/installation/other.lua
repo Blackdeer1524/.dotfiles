@@ -197,6 +197,7 @@ local M = {
             bg_theme = "default",
             breadcrumbs_separator = "/",
             has_breadcrumbs = false,
+            has_line_number = true,
         }
     },
     {
@@ -205,6 +206,7 @@ local M = {
             plugin_manager = "lazy",
         },
         commit = "6ab4a52",
+        enabled = false,
     },
 }
 

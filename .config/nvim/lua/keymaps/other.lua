@@ -19,4 +19,3 @@ vim.keymap.set("n", "[c", function()
     require("treesitter-context").go_to_context()
 end, { silent = true, desc = "go to [c]ontext" })
 
-vim.keymap.set("n", "<leader>so", "<cmd>SymbolsOutline<cr>", { desc = "[s]ymbols [o]utline" })

@@ -2,12 +2,33 @@ local M = {
     {
         "zaldih/themery.nvim",
         dependencies = {
-            { "navarasu/onedark.nvim", name = "onedark",    lazy = false,   priority = 1000 },
+            { "navarasu/onedark.nvim", name = "onedark", lazy = false, priority = 1000 },
             { "Shatur/neovim-ayu", },
             { "rebelot/kanagawa.nvim", },
             { "folke/tokyonight.nvim" },
             { "EdenEast/nightfox.nvim" },
-            { "catppuccin/nvim",       name = "catppuccin", priority = 1000 },
+            {
+                "catppuccin/nvim",
+                name = "catppuccin",
+                dependencies = {
+                    "nvim-tree/nvim-tree.lua",
+                },
+                priority = 1000,
+                opts = {
+                    integrations = {
+                        cmp = true,
+                        gitsigns = true,
+                        nvimtree = false,
+                        treesitter = true,
+                        notify = false,
+                        mini = {
+                            enabled = true,
+                            indentscope_color = "",
+                        },
+                        -- For more plugins integrations please scroll down (https://github.com/catppuccin/nvim#integrations)
+                    },
+                }
+            },
         },
         lazy = false,
         priority = 1000,

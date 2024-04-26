@@ -14,13 +14,7 @@ local M = {
             terminal_mappings = false, -- whether or not the open mapping applies in the opened terminals
         }
     },
-    {
-        -- diagnostics list
-        'folke/trouble.nvim',
-        dependencies = {
-            'nvim-tree/nvim-web-devicons'
-        },
-    },
+    
     {
         -- floating notifications
         'rcarriga/nvim-notify',
@@ -96,9 +90,9 @@ local M = {
                 }
             end
             icons_override["tmpl"] = {
-                icon = "",
+                icon = "󰮲",
                 name = "Template",
-                color = "#00B1FF",
+                color = "#519ABA",
             }
             icons_override["pyw"] = {
                 icon = "󰌠",
@@ -111,6 +105,11 @@ local M = {
             icons_override["proto"] = {
                 icon = "󱁜",
                 name = "protobufs"
+            }
+            icons_override["go"] = {
+                icon = "󰟓",
+                name = "Go",
+                color = "#519ABA",
             }
 
             web_devicons.setup({
@@ -220,6 +219,32 @@ local M = {
             include_buftypes = { "", "acwrite" }, -- acwrite buftype is used in oil.nvim
         },
     },
+    {
+        "tomasky/bookmarks.nvim",
+        opts = {
+            -- sign_priority = 8,  --set bookmark sign priority to cover other sign
+            save_file = vim.fn.expand "$HOME/.bookmarks", -- bookmarks save file path
+            keywords = {
+                ["@t"] = "☑️ ", -- mark annotation startswith @t ,signs this icon as `Todo`
+                ["@w"] = "⚠️ ", -- mark annotation startswith @w ,signs this icon as `Warn`
+                ["@f"] = "⛏ ", -- mark annotation startswith @f ,signs this icon as `Fix`
+                ["@n"] = " ", -- mark annotation startswith @n ,signs this icon as `Note`
+            },
+            on_attach = function(bufnr)
+                local bm = require "bookmarks"
+                local map = vim.keymap.set
+                map("n", "mm", bm.bookmark_toggle) -- add or remove bookmark at current line
+                map("n", "mi", bm.bookmark_ann)    -- add or edit mark annotation at current line
+                map("n", "mc", bm.bookmark_clean)  -- clean all marks in local buffer
+                map("n", "mn", bm.bookmark_next)   -- jump to next mark in local buffer
+                map("n", "mp", bm.bookmark_prev)   -- jump to previous mark in local buffer
+                map("n", "ml", bm.bookmark_list)   -- show marked file list in quickfix window
+
+                map("n", "<leader>sm", require('telescope').extensions.bookmarks.list, { desc = "show marks" })
+            end
+        }
+
+    }
 }
 
 return M
