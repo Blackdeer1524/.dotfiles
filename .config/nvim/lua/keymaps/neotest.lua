@@ -10,14 +10,23 @@ vim.keymap.set("n", "<leader>nra", function() require("neotest").run.run(vim.fn.
     { desc = "[n]eotest [r]un [a]ll" })
 vim.keymap.set("n", "<leader>nrt", function() require("neotest").run.run() end,
     { desc = "[n]eotest [r]un [t]his (nearest)" })
+vim.keymap.set("n", "<leader>nrr", function() require("neotest").run.run_last() end,
+    { desc = "[n]eotest [r]e[r]un" })
 
----@diagnostic disable-next-line: missing-fields
 vim.keymap.set("n", "<leader>nda", function() require("neotest").run.run({ vim.fn.expand("%"), strategy = "dap" }) end,
     { desc = "[n]eotest [d]ebug [a]ll" })
 vim.keymap.set("n", "<leader>ndt", function() require("neotest").run.run({ strategy = "dap" }) end,
     { desc = "[n]eotest [d]ebug [t]his (neareas)" })
+vim.keymap.set("n", "<leader>ndl", function() require("neotest").run.run_last({ strategy = "dap" }) end,
+    { desc = "[n]eotest [r]e[r]un" })
 
 vim.keymap.set("n", "<leader>ns", function() require("neotest").summary.toggle() end, { desc = "[n]eotest [s]ummary" })
 
-vim.keymap.set("n", "<leader>np", function() require("neotest").output_panel.toggle() end,
+vim.keymap.set("n", "<leader>np", function()
+        require("neotest").output_panel.clear()
+        require("neotest").output_panel.toggle()
+    end,
     { desc = "[n]eotest output [p]anel" })
+
+vim.keymap.set("n", "<leader>no", function() require("neotest").output.open({ enter = true }) end,
+    { desc = "[n]eotest [o]utput" })

@@ -149,6 +149,7 @@ mason_lspconfig.setup_handlers {
     end, --- jdtls.nvim sets lsp itself
     ["gopls"] = function()
         lspconfig.gopls.setup({
+            cmd = {require("lsp.defaults").MASON_BIN .. "/gopls"},
             capabilities = capabilities,
             on_attach = on_attach,
             settings = {

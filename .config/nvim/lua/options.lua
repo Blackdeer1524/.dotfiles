@@ -54,6 +54,10 @@ vim.o.smarttab = true
 vim.o.smartindent = true
 vim.o.expandtab = true
 
+vim.cmd([[autocmd FileType html setlocal shiftwidth=2 softtabstop=2]])
+vim.cmd([[autocmd FileType javascript setlocal shiftwidth=2 softtabstop=2]])
+vim.cmd([[autocmd FileType template setlocal shiftwidth=2 softtabstop=2]])
+
 -- Enable break indent
 vim.o.breakindent = false
 

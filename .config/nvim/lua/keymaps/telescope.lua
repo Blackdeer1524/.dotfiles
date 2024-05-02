@@ -43,6 +43,4 @@ vim.keymap.set('n', '<leader>sd', require('telescope.builtin').diagnostics, { de
 vim.keymap.set('n', '<leader>st', function() require('telescope.builtin').tagstack(telescope_search_layout) end,
     { desc = '[s]earch [t]agstack' })
 
-
-vim.keymap.set('n', 'gbc', "<no-op>", { noremap=true, })
-vim.keymap.set('n', 'gb', "<C-t>", { desc = '[t]ag [b]ack' })
+vim.keymap.set('n', 'to', "<C-t>", {desc="[t]ag [o]ut"})
