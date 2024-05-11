@@ -18,7 +18,7 @@ local M = {
             vim.keymap.set('n', 'zM', require('ufo').closeAllFolds)
             -- setup is called in lsp file
         end,
-    },
+    }, 
     {
         "shellRaining/hlchunk.nvim",
         event = { "UIEnter" },
@@ -155,19 +155,29 @@ local M = {
         -- Set lualine as statusline
         'nvim-lualine/lualine.nvim',
         -- See `:help lualine.txt`
-        opts = {
-            sections = {
-                lualine_x = { "overseer" },
-                lualine_y = { { function() return require("dap").status() end, color = { fg = "white", bg = "red" } } },
-                -- lualine_c = { { "filename", file_status = false, path = 2 } }
-                lualine_c = { actived_venv },
-            },
-            options = {
-                icons_enabled = true,
-                -- component_separators = { left = '', right = '' },
-                -- section_separators = { left = '', right = '' },
-            },
-        },
+        dependencies = { "abeldekat/harpoonline", version = "*" },
+        config = function()
+            local Harpoonline = require("harpoonline")
+            Harpoonline.setup({
+                icon = '󰀱',
+                on_update = function() require("lualine").refresh() end,
+            })
+
+            require("lualine").setup({
+                sections = {
+                    lualine_c = { Harpoonline.format, "filename" },
+
+                    lualine_x = { actived_venv },
+                    lualine_y = { { function() return require("dap").status() end, color = { fg = "white", bg = "red" } } },
+                    lualine_z = { "overseer" },
+                },
+                options = {
+                    icons_enabled = true,
+                    -- component_separators = { left = '', right = '' },
+                    -- section_separators = { left = '', right = '' },
+                },
+            })
+        end,
     },
 
 }

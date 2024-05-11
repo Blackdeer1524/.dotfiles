@@ -20,105 +20,119 @@ local M = {
     },
     {
         "nvim-neotest/neotest",
+        event = "VeryLazy",
         dependencies = {
-            "nvim-neotest/nvim-nio",
-
             "nvim-lua/plenary.nvim",
             "antoinemadec/FixCursorHold.nvim",
+            "nvim-treesitter/nvim-treesitter",
 
-            "nvim-neotest/neotest-go",
+            "nvim-neotest/neotest-plenary",
+            "nvim-neotest/neotest-vim-test",
+
+            "nvim-neotest/nvim-nio",
+
+            {
+                "fredrikaverpil/neotest-golang",
+                dependencies = {
+                    {
+                        "leoluz/nvim-dap-go",
+                        opts = {},
+                    },
+                },
+                branch = "main",
+            },
             "rouge8/neotest-rust",
-            "alfaix/neotest-gtest",
             "nvim-neotest/neotest-python",
         },
-        config = function()
-            -- get neotest namespace (api call creates or returns namespace)
-            local neotest_ns = vim.api.nvim_create_namespace("neotest")
-            vim.diagnostic.config({
-                virtual_text = {
-                    format = function(diagnostic)
-                        local message =
-                            diagnostic.message:gsub("\n", " "):gsub("\t", " "):gsub("%s+", " "):gsub("^%s+", "")
-                        return message
-                    end,
-                },
-            }, neotest_ns)
-
-            local utils = require("neotest-gtest.utils")
-            local lib = require("neotest.lib")
-            ---@diagnostic disable-next-line: missing-fields
-            require("neotest").setup({
-                consumers = {
-                    overseer = require("neotest.consumers.overseer"),
-                },
-                adapters = {
-                    require("neotest-go"),
-                    require("neotest-python") {
-                        is_test_file = function(file_path)
-                            if string.find(file_path, "test") then
-                                return true
-                            else
-                                return false
-                            end
-                        end,
-                    },
-                    require("neotest-rust") {
-                        args = { "--no-capture" },
-                        dap_adapter = "codelldb",
-                    },
-                    require("neotest-gtest").setup({
-                        -- dap.adapters.<this debug_adapter> must be set for debugging to work
-                        -- see "installation" section above for installing and setting it up
-                        debug_adapter = "codelldb",
-
-                        -- Must be set to a function that takes a single string argument (full path to file)
-                        -- and returns its root. `neotest` provides a utility match_root_pattern,
-                        -- which will return the first parent directory containing one of these file names
-                        root = lib.files.match_root_pattern(
-                            "compile_commands.json",
-                            "compile_flags.txt",
-                            ".clangd",
-                            "init.lua",
-                            "init.vim",
-                            "build",
-                            ".git"
-                        ),
-
-                        -- takes full path to the file and returns true if it's a test file, false otherwise
-                        -- by default, returns true for all cpp files starting with "test_" or ending with
-                        -- "_test"
-                        is_test_file = utils.is_test_file
-                    }
-                    )
-                },
+        opts = function(_, opts)
+            opts.consumers = vim.tbl_extend("force", opts.consumers or {}, {
+                overseer = require("neotest.consumers.overseer"),
             })
-        end
-    },
-    {
-        'stevearc/overseer.nvim',
-        opts = {
-            dap = false, -- dap is turned in separate file
-            templates = { "builtin", "user.launch_delve" },
-            task_list = {
-                max_width = 0.99,
-                min_width = 0.0,
-                width = 0.3,
-                direction = "right",
 
-                bindings = {
-                    ["<C-v>"] = false,
-                    ["<C-|>"] = "OpenVsplit",
-                    ["<C-s>"] = false,
-                    ["<C-\\>"] = "OpenSplit",
-
-                    ["<C-k>"] = false,
-                    ["<C-j>"] = false,
-                    ["<C-l>"] = false,
-                    ["<C-h>"] = false,
+            opts.adapters = opts.adapters or {}
+            opts.adapters["neotest-rust"] = {
+                args = { "--no-capture" },
+                dap_adapter = "codelldb",
+            }
+            opts.adapters["neotest-python"] = {}
+            opts.adapters["neotest-golang"] = {
+                go_test_args = {
+                    "-v",
+                    "-race",
+                    "-count=1",
+                    "-timeout=60s",
+                    "-coverprofile=" .. vim.fn.getcwd() .. "/coverage.out",
                 },
+                dap_go_enabled = true,
+            }
+        end,
+        config = function(_, opts)
+            if opts.adapters then
+                local adapters = {}
+                for name, config in pairs(opts.adapters or {}) do
+                    if type(name) == "number" then
+                        if type(config) == "string" then
+                            config = require(config)
+                        end
+                        adapters[#adapters + 1] = config
+                    elseif config ~= false then
+                        local adapter = require(name)
+                        if type(config) == "table" and not vim.tbl_isempty(config) then
+                            local meta = getmetatable(adapter)
+                            if adapter.setup then
+                                adapter.setup(config)
+                            elseif meta and meta.__call then
+                                adapter(config)
+                            else
+                                error("Adapter " .. name .. " does not support setup")
+                            end
+                        end
+                        adapters[#adapters + 1] = adapter
+                    end
+                end
+                opts.adapters = adapters
+            end
+
+            require("neotest").setup(opts)
+        end,
+        keys = {
+            { "<leader>na", function() require("neotest").run.attach() end,                                     desc = "[n]eotest [a]ttach" },
+            { "<leader>nf", function() require("neotest").run.run(vim.fn.expand("%")) end,                      desc = "[n]eotest run [f]ile" },
+            { "<leader>nA", function() require("neotest").run.run(vim.uv.cwd()) end,                            desc = "[n]eotest [A]ll files" },
+            { "<leader>nS", function() require("neotest").run.run({ suite = true }) end,                        desc = "[n]eotest [S]uite" },
+            { "<leader>nn", function() require("neotest").run.run() end,                                        desc = "[n]eotest [n]earest" },
+            { "<leader>nl", function() require("neotest").run.run_last() end,                                   desc = "[n]eotest [l]ast" },
+            { "<leader>ns", function() require("neotest").summary.toggle() end,                                 desc = "[n]eotest [s]ummary" },
+            { "<leader>no", function() require("neotest").output.open({ enter = true, auto_close = true }) end, desc = "[n]eotest [o]utput" },
+            { "<leader>nO", function() require("neotest").output_panel.toggle() end,                            desc = "[n]eotest [O]utput panel" },
+            { "<leader>nt", function() require("neotest").run.stop() end,                                       desc = "[n]eotest [t]erminate" },
+            { "<leader>nd", function() require("neotest").run.run({ suite = false, strategy = "dap" }) end,     desc = "[n]eotest [d]ebug nearest test" },
+        },
+    }, {
+    'stevearc/overseer.nvim',
+    opts = {
+        dap = false, -- dap is turned in separate file
+        templates = { "builtin", "user.launch_delve" },
+        task_list = {
+            max_width = 0.99,
+            min_width = 0.0,
+            width = 0.3,
+            direction = "right",
+
+            bindings = {
+                ["<C-v>"] = false,
+                ["<C-|>"] = "OpenVsplit",
+                ["<C-s>"] = false,
+                ["<C-\\>"] = "OpenSplit",
+
+                ["<C-k>"] = false,
+                ["<C-j>"] = false,
+                ["<C-l>"] = false,
+                ["<C-h>"] = false,
             },
         },
     },
+},
     {
         -- perf annotations
         "t-troebst/perfanno.nvim",

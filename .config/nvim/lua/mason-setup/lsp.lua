@@ -228,21 +228,6 @@ mason_lspconfig.setup_handlers {
             filetypes = { "proto", "ev" },
         })
     end,
-    ["sqls"] = function()
-        lspconfig.sqls.setup {
-            root_dir = lsputil.root_pattern('.git', 'README.md'),
-            capabilities = capabilities,
-            on_attach = function(client, bufnr)
-                require('sqls').on_attach(client, bufnr)
-                on_attach(client, bufnr)
-                client.server_capabilities.documentFormattingProvider = false
-            end,
-            settings = {
-                connections = {
-                }
-            },
-        }
-    end,
     ["html"] = function()
         lspconfig["html"].setup {
             capabilities = capabilities,

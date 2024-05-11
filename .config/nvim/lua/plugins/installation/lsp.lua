@@ -59,6 +59,8 @@ local M = {
                 -- the current parameter emphasized:
                 "hrsh7th/cmp-nvim-lsp-signature-help",
             },
+            "luckasRanarison/tailwind-tools.nvim",
+            "onsails/lspkind-nvim",
         },
     },
     {
@@ -157,15 +159,21 @@ local M = {
                     command = require("lsp.defaults").MASON_BIN .. "/prettier",
                 }
                 ),
+
+                --css
+                -- null_ls.builtins.diagnostics.stylelint.with({
+                --     command = require("lsp.defaults").MASON_BIN .. "/stylelint",
+                -- })
             }
             null_ls.setup({ sources = sources })
         end
     },
-    -- {
-    --     -- Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim
-    --     "lvimuser/lsp-inlayhints.nvim",
-    --     opts = {},
-    -- },
+    {
+        -- Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim
+        "lvimuser/lsp-inlayhints.nvim",
+        opts = {},
+        enabled = false,
+    },
     {
         'p00f/clangd_extensions.nvim',
         opts = {
@@ -502,7 +510,16 @@ local M = {
     {
         "luckasRanarison/tailwind-tools.nvim",
         dependencies = { "nvim-treesitter/nvim-treesitter" },
-        opts = {} -- your configuration
+        opts = {
+            conceal = {
+                enabled = false, -- can be toggled by commands
+                min_length = nil, -- only conceal classes exceeding the provided length
+                symbol = "󱏿", -- only a single character is allowed
+                highlight = { -- extmark highlight options, see :h 'highlight'
+                    fg = "#38BDF8",
+                },
+            },
+        }
     },
     {
         "MaximilianLloyd/tw-values.nvim",
