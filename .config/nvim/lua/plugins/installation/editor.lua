@@ -168,6 +168,7 @@ local M = {
                         enable = true
                     },
                 },
+                sync_root_with_cwd = true,
             })
 
             vim.keymap.set('n', "<leader>e", "<cmd>NvimTreeFindFile<cr>", { desc = "Open nvim tree tree" })

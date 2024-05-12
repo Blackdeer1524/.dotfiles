@@ -222,13 +222,7 @@ local M = {
         },
         commit = "6ab4a52",
         enabled = false,
-    },
-    {
-        "ejrichards/baredot.nvim",
-        opts = {
-            git_dir = "~/.cfg" -- Change this path
-        }
-    },
+    }, 
 }
 
 

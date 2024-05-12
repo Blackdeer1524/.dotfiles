@@ -1,8 +1,6 @@
 local M = {
     'tpope/vim-fugitive',
-    'tpope/vim-rhubarb',
     {
-        -- Adds git releated signs to the gutter, as well as utilities for managing changes
         'lewis6991/gitsigns.nvim',
         opts = {
             on_attach = function(bufnr)
@@ -47,16 +45,28 @@ local M = {
                 -- Text object
                 map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = "Gitsigns select_hunk" })
             end
-
-            -- See `:help gitsigns.txt`
-            -- signs = {
-            --     add = { text = '+' },
-            --     change = { text = '~' },
-            --     delete = { text = '_' },
-            --     topdelete = { text = '‾' },
-            --     changedelete = { text = '~' },
-            -- },
         },
+    },
+    {
+        "moyiz/git-dev.nvim",
+        event = "VeryLazy",
+        opts = {},
+    },
+    {
+        "ejrichards/baredot.nvim",
+        config = function()
+            require("baredot").setup {
+                git_dir = "~/.cfg",
+                disable_pattern = ".",
+            }
+            vim.api.nvim_create_autocmd("VimEnter", {
+                callback = function(_)
+                    if vim.fn.getcwd():match([[.config]]) ~= nil then
+                        require("baredot").set(true)
+                    end
+                end
+            })
+        end
     },
 }
 
