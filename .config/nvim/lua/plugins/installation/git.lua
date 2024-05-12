@@ -48,38 +48,6 @@ local M = {
         },
     },
     {
-        "moyiz/git-dev.nvim",
-        dependencies = "ejrichards/baredot.nvim",
-        event = "VeryLazy",
-        config = function()
-            require("git-dev").setup()
-
-            vim.api.nvim_create_user_command("GitDevOpen", function(cmd_args)
-                if vim.env.GIT_WORK_TREE ~= nil then
-                    require("baredot").toggle()
-                end
-
-                -- original git-dev.nvim command
-                local repo, ref, cmd_opts = unpack(cmd_args.fargs)
-                if ref then
-                    ref = load("return " .. ref)()
-                end
-                if cmd_opts then
-                    cmd_opts = load("return " .. cmd_opts)()
-                end
-                require("git-dev").open(repo, ref, cmd_opts)
-                -- end
-
-                if vim.env.GIT_WORK_TREE == nil then
-                    require("baredot").toggle()
-                end
-            end, {
-                desc = "Open a git repository.",
-                nargs = "*",
-            })
-        end,
-    },
-    {
         "ejrichards/baredot.nvim",
         config = function()
             require("baredot").setup {
