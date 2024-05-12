@@ -12,6 +12,7 @@ local M = {
             run_command = {
                 cpp = { exec = "./build/main" },
                 go = { exec = "./main" },
+                python = { exec = "python main.py" }
             },
             runner_ui = {
                 interface = "split"
@@ -221,6 +222,12 @@ local M = {
         },
         commit = "6ab4a52",
         enabled = false,
+    },
+    {
+        "ejrichards/baredot.nvim",
+        opts = {
+            git_dir = "~/.cfg" -- Change this path
+        }
     },
 }
 
