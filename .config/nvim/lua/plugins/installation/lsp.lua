@@ -630,7 +630,7 @@ local M = {
 					python = { "black" },
 					javascript = { "prettier" },
 					cpp = { "clang-format" },
-					go = { "goimports-reviser", "gofmt" },
+					go = { "goimports-reviser", "golines" },
 				},
 			})
 		end,
