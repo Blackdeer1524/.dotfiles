@@ -9,6 +9,7 @@ require("nvim-treesitter.configs").setup({
 		"scala",
 		"yaml",
 		"c",
+		"sql",
 		"cpp",
 		"go",
 		"gomod",

@@ -139,7 +139,6 @@ mason_lspconfig.setup({
 		"docker_compose_language_service",
 		"dockerls",
 		"bufls",
-		"sqls",
 		"tailwindcss",
 	},
 })

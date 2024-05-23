@@ -582,7 +582,10 @@ local M = {
 			local linters_by_ft = lint.linters_by_ft
 			local linters = lint.linters
 
-			linters_by_ft.cpp = { "cppcheck", "cpplint" }
+			linters_by_ft.cpp = {
+				"cppcheck",
+				-- "cpplint"
+			}
 			linters.cppcheck.args = { "--std=c++20", "--language=c++" }
 			linters.cpplint.args = { "--filter=-legal" } -- https://github.com/clangd/coc-clangd/issues/345
 
@@ -591,6 +594,7 @@ local M = {
 			linters_by_ft.go = { "golangcilint" }
 			-- linters_by_ft.markdown = {"markdownlint"}
 			linters_by_ft.sql = { "sqlfluff" }
+			linters.sqlfluff.args = { "--dialect", "PostgreSQL" }
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
@@ -624,6 +628,13 @@ local M = {
 					["goimports-reviser"] = {
 						command = require("lsp.defaults").MASON_BIN .. "/goimports-reviser",
 					},
+					sqlfluff = {
+						command = require("lsp.defaults").MASON_BIN .. "/sqlfluff",
+						prepend_args = {
+							"--dialect",
+							"PostgreSQL",
+						},
+					},
 				},
 				formatters_by_ft = {
 					lua = { "stylua" },
@@ -631,6 +642,7 @@ local M = {
 					javascript = { "prettier" },
 					cpp = { "clang-format" },
 					go = { "goimports-reviser", "golines" },
+					sql = { "sqlfluff" },
 				},
 			})
 		end,
