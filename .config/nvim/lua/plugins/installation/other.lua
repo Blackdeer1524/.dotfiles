@@ -4,6 +4,7 @@ local M = {
 		"xeluxee/competitest.nvim",
 		dependencies = "MunifTanjim/nui.nvim",
 		opts = {
+			running_directory = ".",
 			testcases_directory = "./txt_tests",
 			compile_command = {
 				cpp = { exec = "cmake", args = { "--build", "./build", "--target", "main" } },
@@ -12,7 +13,7 @@ local M = {
 			run_command = {
 				cpp = { exec = "./build/main" },
 				go = { exec = "./main" },
-				python = { exec = "python main.py" },
+				python = { exec = "python", args = { "$(FNAME)" } },
 			},
 			runner_ui = {
 				interface = "split",

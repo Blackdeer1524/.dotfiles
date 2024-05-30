@@ -590,11 +590,11 @@ local M = {
 			linters.cpplint.args = { "--filter=-legal" } -- https://github.com/clangd/coc-clangd/issues/345
 
 			linters_by_ft.proto = { "buf_lint" }
-			linters_by_ft.cmake = { "cmakelint" }
+			-- linters_by_ft.cmake = { "cmakelint" }
 			linters_by_ft.go = { "golangcilint" }
 			-- linters_by_ft.markdown = {"markdownlint"}
 			linters_by_ft.sql = { "sqlfluff" }
-			linters.sqlfluff.args = { "--dialect", "PostgreSQL" }
+			linters.sqlfluff.args = { "--dialect", "postgres" }
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
@@ -630,9 +630,10 @@ local M = {
 					},
 					sqlfluff = {
 						command = require("lsp.defaults").MASON_BIN .. "/sqlfluff",
-						prepend_args = {
-							"--dialect",
-							"PostgreSQL",
+						args = {
+							"fix",
+							"--dialect=postgres",
+							"-",
 						},
 					},
 				},

@@ -4,6 +4,7 @@
 require("nvim-treesitter.configs").setup({
 	-- Add languages to be installed here that you want installed for treesitter
 	ensure_installed = {
+		"dockerfile",
 		"java",
 		"json5",
 		"scala",
@@ -31,6 +32,7 @@ require("nvim-treesitter.configs").setup({
 		"regex",
 		"dap_repl",
 		"vim",
+		"make",
 	},
 	auto_install = false,
 	autotag = {

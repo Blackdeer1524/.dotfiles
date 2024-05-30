@@ -11,14 +11,14 @@ M.on_attach = function(client, bufnr)
 		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
 	end
 
-	if client.server_capabilities.codeLensProvider ~= nil and client.server_capabilities.codeLensProvider ~= false then
-		vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
-			callback = function(ev)
-				vim.lsp.codelens.refresh()
-			end,
-			buffer = bufnr,
-		})
-	end
+	-- if client.server_capabilities.codeLensProvider ~= nil and client.server_capabilities.codeLensProvider ~= false then
+	-- 	vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
+	-- 		buffer = bufnr,
+	-- 		callback = function(ev)
+	-- 			vim.lsp.codelens.refresh()
+	-- 		end,
+	-- 	})
+	-- end
 
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 	nmap("<leader>cl", vim.lsp.codelens.run, "select [C]ode[L]ens")
@@ -102,7 +102,7 @@ M.on_attach = function(client, bufnr)
 	})
 
 	if client.server_capabilities.inlayHintProvider then
-		vim.lsp.inlay_hint.enable(bufnr, true)
+		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 	end
 
 	-- require("lsp-inlayhints").on_attach(client, bufnr)

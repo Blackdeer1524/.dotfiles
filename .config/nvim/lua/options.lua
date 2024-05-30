@@ -150,5 +150,13 @@ vim.api.nvim_create_autocmd({ "BufEnter" }, {
 		vim.api.nvim_set_hl(0, "PmenuSel", { fg = "NONE", bg = background_color })
 	end,
 })
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "Makefile" },
+	callback = function(ev)
+		vim.opt_local.expandtab = false
+	end,
+})
+
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et

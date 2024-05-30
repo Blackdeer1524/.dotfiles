@@ -161,7 +161,6 @@ mason_lspconfig.setup_handlers({
 					},
 					experimentalPostfixCompletions = true,
 					gofumpt = true,
-					-- staticcheck = true,
 					usePlaceholders = true,
 					codelenses = {
 						gc_details = false,

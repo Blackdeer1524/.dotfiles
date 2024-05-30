@@ -109,6 +109,11 @@ local M = {
 				name = "Go",
 				color = "#519ABA",
 			}
+			icons_override["dockerfile"] = {
+				icon = "󰡨",
+				name = "Dockerfile",
+				conor = "#0db7ed",
+			}
 
 			web_devicons.setup({
 				-- globally enable different highlight colors per icon (default to true)
@@ -127,6 +132,13 @@ local M = {
 				strict = true,
 				-- same as `override` but specifically for overrides by filename
 				-- takes effect when `strict` is true
+				override = {
+					["Makefile"] = {
+						icon = "",
+						name = "Makefile",
+						color = "#5B5B5B",
+					},
+				},
 				override_by_filename = {
 					["go.mod"] = {
 						icon = "󰟓",
@@ -168,6 +180,12 @@ local M = {
 					indent_markers = {
 						enable = true,
 					},
+				},
+				update_focused_file = {
+					enable = true,
+				},
+				filters = {
+					dotfiles = false,
 				},
 				sync_root_with_cwd = true,
 			})
