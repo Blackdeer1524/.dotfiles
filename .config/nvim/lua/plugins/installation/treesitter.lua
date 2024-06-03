@@ -43,6 +43,47 @@ local M = {
 	},
 	{
 		"windwp/nvim-ts-autotag",
+		config = function()
+			-- 	filetypes = {
+			-- 		"html",
+			-- 		"javascript",
+			-- 		"typescript",
+			-- 		"javascriptreact",
+			-- 		"typescriptreact",
+			-- 		"svelte",
+			-- 		"vue",
+			-- 		"tsx",
+			-- 		"jsx",
+			-- 		"rescript",
+			-- 		"xml",
+			-- 		"php",
+			-- 		"markdown",
+			-- 		"astro",
+			-- 		"glimmer",
+			-- 		"handlebars",
+			-- 		"hbs",
+			-- 		"gotmpl",
+			-- 		"template",
+			-- 		"tmpl",
+			-- 	},
+			---@diagnostic disable-next-line: missing-fields
+			require("nvim-ts-autotag").setup({
+				opts = {
+					enable = true,
+					enable_rename = true,
+					enable_close = true,
+					enable_close_on_slash = true,
+				},
+				-- Also override individual filetype configs, these take priority.
+				-- Empty by default, useful if one of the "opts" global settings
+				-- doesn't work well in a specific filetype
+				per_filetype = {
+					["html"] = {
+						-- enable_close = false,
+					},
+				},
+			})
+		end,
 	},
 	{
 		"folke/todo-comments.nvim",

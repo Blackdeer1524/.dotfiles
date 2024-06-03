@@ -49,6 +49,11 @@ local M = {
 	},
 	{
 		"mbbill/undotree",
+		-- keys = {
+		-- 	"<leader>u",
+		-- 	function() vim.cmd.UndotreeToggle() end,
+		-- 	desc = "UndoTree toggle",
+		-- },
 	},
 	{
 		"stevearc/oil.nvim",
@@ -199,6 +204,13 @@ local M = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		-- keys = {
+		-- 	"<leader>S",
+		-- 	-- function()
+		-- 	-- 	require("spectre").open()
+		-- 	-- end,
+		-- 	desc = "Open Spectre",
+		-- },
 	},
 	{
 		"utilyre/barbecue.nvim",

@@ -9,79 +9,31 @@ require("ufo").setup()
 
 local on_attach = require("lsp.defaults").on_attach
 
-local function init_metals()
-	local metals_config = require("metals").bare_config()
-	metals_config.settings = {
-		showImplicitArguments = true,
-		excludedPackages = { "akka.actor.typed.javadsl", "com.github.swagger.akka.javadsl" },
-	}
-	metals_config.init_options.statusBarProvider = "on"
-
-	-- Example if you are using cmp how to make sure the correct capabilities for snippets are set
-	metals_config.capabilities = capabilities
-
-	metals_config.on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
-		require("metals").setup_dap()
-	end
-
-	local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
-	vim.api.nvim_create_autocmd("FileType", {
-		pattern = { "scala", "sbt" },
-		callback = function()
-			require("metals").initialize_or_attach(metals_config)
-		end,
-		group = nvim_metals_group,
-	})
-end
-
-init_metals()
-
 local lsputil = require("lspconfig/util")
-
-require("lspconfig.configs").pb = {
-	default_config = {
-		cmd = { "pb", "lsp" },
-		filetypes = { "proto", "ev" },
-		root_dir = lsputil.root_pattern(".git", "README.md"),
-		settings = {},
-	},
-}
-
-require("lspconfig.configs").gleam = {
-	default_config = {
-		cmd = { "gleam", "lsp" },
-		filetypes = { "gleam" },
-		root_dir = lsputil.root_pattern(".git", "README.md"),
-		settings = {},
-	},
-}
-
 local lspconfig = require("lspconfig")
-lspconfig.pb.setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
-		client.server_capabilities.semanticTokensProvider = false
-	end,
-	settings = {},
-	root_dir = lsputil.root_pattern(".git", "README.md"),
-	filetypes = { "proto", "ev" },
-	cmd = { "pb", "lsp" },
-})
 
-local lspconfig = require("lspconfig")
-lspconfig.gleam.setup({
-	capabilities = capabilities,
-	on_attach = function(client, bufnr)
-		on_attach(client, bufnr)
-		-- client.server_capabilities.semanticTokensProvider = false
-	end,
-	settings = {},
-	root_dir = lsputil.root_pattern(".git", "README.md"),
-	filetypes = { "gleam" },
-	cmd = { "gleam", "lsp" },
-})
+-- require("lspconfig.configs").pb = {
+-- 	default_config = {
+-- 		cmd = { "pb", "lsp" },
+-- 		filetypes = { "proto", "ev" },
+-- 		root_dir = lsputil.root_pattern(".git", "README.md"),
+-- 		settings = {},
+-- 	},
+-- }
+--
+-- local lspconfig = require("lspconfig")
+-- lspconfig.pb.setup({
+-- 	capabilities = capabilities,
+-- 	on_attach = function(client, bufnr)
+-- 		on_attach(client, bufnr)
+-- 		client.server_capabilities.semanticTokensProvider = false
+-- 	end,
+-- 	settings = {},
+-- 	root_dir = lsputil.root_pattern(".git", "README.md"),
+-- 	filetypes = { "proto", "ev" },
+-- 	cmd = { "pb", "lsp" },
+-- })
+
 
 local servers = {
 	yamlls = {
@@ -290,7 +242,6 @@ mason_lspconfig.setup_handlers({
 		})
 	end,
 	["lua_ls"] = function()
-		require("neodev").setup()
 		lspconfig["lua_ls"].setup({
 			capabilities = capabilities,
 			on_attach = on_attach,

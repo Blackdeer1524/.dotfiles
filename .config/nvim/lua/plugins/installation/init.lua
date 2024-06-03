@@ -3,10 +3,10 @@ return vim.tbl_extend(
 	{
 		require("plugins/installation/debug"),
 	},
+	require("plugins/installation/lsp"),
 	require("plugins/installation/themes"),
 	require("plugins/installation/visuals"),
 	require("plugins/installation/editor"),
-	require("plugins/installation/lsp"),
 	require("plugins/installation/treesitter"),
 	require("plugins/installation/navigations"),
 	require("plugins/installation/git"),

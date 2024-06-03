@@ -1,5 +1,20 @@
 local M = {
 	{
+		"folke/lazydev.nvim",
+		ft = "lua", -- only load on lua files
+		opts = {
+			library = {
+				-- Library items can be absolute paths
+				-- "~/projects/my-awesome-lib",
+				-- Or relative, which means they will be resolved as a plugin
+				-- "LazyVim",
+				-- When relative, you can also provide a path to the library in the plugin dir
+				"luvit-meta/library", -- see below
+			},
+		},
+	},
+	{ "Bilal2453/luvit-meta", lazy = true }, -- optional `vim.uv` typings
+	{
 		-- LSP Configuration & Pluginsplugins
 		"neovim/nvim-lspconfig",
 		dependencies = {
@@ -8,7 +23,6 @@ local M = {
 				"j-hui/fidget.nvim",
 				opts = {},
 			},
-			"folke/neodev.nvim",
 		},
 	},
 	{
@@ -368,15 +382,17 @@ local M = {
 	},
 	{
 		"linux-cultist/venv-selector.nvim",
-		dependencies = { "neovim/nvim-lspconfig", "nvim-telescope/telescope.nvim", "mfussenegger/nvim-dap-python" },
-		opts = {
-			name = { ".venv", "venv" },
-			auto_refresh = false,
-			dap_enabled = true,
-			search = true,
-			parents = 0,
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"mfussenegger/nvim-dap",
+			"mfussenegger/nvim-dap-python",
+			{ "nvim-telescope/telescope.nvim", branch = "0.1.x", dependencies = { "nvim-lua/plenary.nvim" } },
 		},
-		event = "VeryLazy", -- Optional: needed only if you want to type `:VenvSelect` without a keymapping
+		lazy = false,
+		branch = "regexp",
+		config = function()
+			require("venv-selector").setup()
+		end,
 		keys = {
 			-- Keymap to open VenvSelector to pick a venv.
 			{ "<leader>vs", "<cmd>VenvSelect<cr>" },
@@ -389,6 +405,24 @@ local M = {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
+		ft = { "scala", "sbt", "java" },
+		opts = function()
+			local metals_config = require("metals").bare_config()
+			metals_config.on_attach = function(client, bufnr)
+				require("lsp.defaults").on_attach(client, bufnr)
+			end
+			return metals_config
+		end,
+		config = function(self, metals_config)
+			local nvim_metals_group = vim.api.nvim_create_augroup("nvim-metals", { clear = true })
+			vim.api.nvim_create_autocmd("FileType", {
+				pattern = self.ft,
+				callback = function()
+					require("metals").initialize_or_attach(metals_config)
+				end,
+				group = nvim_metals_group,
+			})
+		end,
 	},
 	{
 		"skywind3000/gutentags_plus",
@@ -606,6 +640,15 @@ local M = {
 	},
 	{
 		"stevearc/conform.nvim",
+		keys = {
+			{
+				"<leader>f",
+				function()
+					require("conform").format()
+				end,
+				{ noremap = true, silent = true },
+			},
+		},
 		config = function()
 			require("conform").setup({
 				formatters = {
