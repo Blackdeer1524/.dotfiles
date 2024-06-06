@@ -89,8 +89,8 @@ local M = {
 		},
 		config = function()
 			require("neogen").setup({ snippet_engine = "luasnip" })
-			local opts = { noremap = true, silent = true }
-			vim.api.nvim_set_keymap("n", "<Leader>nf", ":lua require('neogen').generate()<CR>", opts)
+			local opts = { noremap = true, silent = true, desc = "[n]eogen [g]enerate" }
+			vim.api.nvim_set_keymap("n", "<Leader>ng", ":lua require('neogen').generate()<CR>", opts)
 		end,
 	},
 	-- multiline diagnostics
@@ -628,7 +628,7 @@ local M = {
 			linters_by_ft.go = { "golangcilint" }
 			-- linters_by_ft.markdown = {"markdownlint"}
 			linters_by_ft.sql = { "sqlfluff" }
-			linters.sqlfluff.args = { "--dialect", "postgres" }
+			linters.sqlfluff.args = { "--dialect", "sqlite" }
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
@@ -671,11 +671,14 @@ local M = {
 					["goimports-reviser"] = {
 						command = require("lsp.defaults").MASON_BIN .. "/goimports-reviser",
 					},
+					buf = {
+						command = require("lsp.defaults").MASON_BIN .. "/buf",
+					},
 					sqlfluff = {
 						command = require("lsp.defaults").MASON_BIN .. "/sqlfluff",
 						args = {
 							"fix",
-							"--dialect=postgres",
+							"--dialect=sqlite",
 							"-",
 						},
 					},
@@ -684,9 +687,11 @@ local M = {
 					lua = { "stylua" },
 					python = { "black" },
 					javascript = { "prettier" },
+					javascriptreact = { "prettier" },
 					cpp = { "clang-format" },
 					go = { "goimports-reviser", "golines" },
 					sql = { "sqlfluff" },
+					proto = { "buf" },
 				},
 			})
 		end,

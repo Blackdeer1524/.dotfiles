@@ -267,7 +267,7 @@ mason_lspconfig.setup_handlers({
 	end,
 	["eslint"] = function()
 		lspconfig["eslint"].setup({
-			root_dir = lsputil.root_pattern(".git", ".eslintrc"),
+			root_dir = lsputil.root_pattern(".eslintrc.cjs", ".eslintrc", ".git"),
 			capabilities = capabilities,
 			on_attach = function(client, bufnr)
 				-- client.server_capabilities.document_formatting = true
