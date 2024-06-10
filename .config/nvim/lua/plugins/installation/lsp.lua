@@ -63,10 +63,11 @@ local M = {
 				version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
 				-- install jsregexp (optional!).
 				build = "make install_jsregexp",
-				dependencies = {
-					"rafamadriz/friendly-snippets",
-					exclude = { "cpp" },
-				},
+				keys = function()
+					-- Disable default tab keybinding in LuaSnip for tabout.nvim
+					return {}
+				end,
+				enable = false,
 			},
 			"saadparwaiz1/cmp_luasnip",
 			"onsails/lspkind.nvim",

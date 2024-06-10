@@ -20,9 +20,11 @@ local M = {
 	},
 	{
 		"shellRaining/hlchunk.nvim",
-		event = { "UIEnter" },
+		event = { "BufReadPre", "BufNewFile" },
 		opts = {
 			chunk = {
+				duration = 0,
+				delay = 150,
 				enable = true,
 				notify = true,
 				use_treesitter = true,
