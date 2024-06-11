@@ -10,6 +10,7 @@ require("mason").setup({
 		-- "cpplint",
 		-- protobufs
 		"buf", -- formatter, linter
+		"hadolint",
 		-- "protolint",   -- linter
 		-- markdonw
 		"markdownlint",
