@@ -451,6 +451,12 @@ local M = {
 		dependencies = "neovim/nvim-lspconfig",
 		event = "VeryLazy",
 		opts = {
+			excluded_lsp_clients = {
+				"null-ls",
+				"jdtls",
+				"marksman",
+				"gopls",
+			},
 			grace_period = 10 * 60,
 			notifications = true,
 		},
@@ -629,7 +635,7 @@ local M = {
 			linters_by_ft.go = { "golangcilint" }
 			-- linters_by_ft.markdown = {"markdownlint"}
 			linters_by_ft.sql = { "sqlfluff" }
-			linters.sqlfluff.args = { "--dialect", "sqlite" }
+			linters.sqlfluff.args = { "--dialect", "postgresql" }
 
 			vim.api.nvim_create_autocmd({ "BufWritePost" }, {
 				callback = function()
@@ -653,6 +659,9 @@ local M = {
 		config = function()
 			require("conform").setup({
 				formatters = {
+					yamlfmt = {
+						command = require("lsp.defaults").MASON_BIN .. "/yamlfmt",
+					},
 					golines = {
 						command = require("lsp.defaults").MASON_BIN .. "/golines",
 						prepend_args = {
@@ -693,6 +702,7 @@ local M = {
 					go = { "goimports-reviser", "golines" },
 					sql = { "sqlfluff" },
 					proto = { "buf" },
+					-- yaml = { "yamlfmt" },
 				},
 			})
 		end,

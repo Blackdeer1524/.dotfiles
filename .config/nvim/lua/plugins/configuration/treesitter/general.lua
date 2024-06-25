@@ -35,34 +35,6 @@ require("nvim-treesitter.configs").setup({
 		"make",
 	},
 	auto_install = false,
-	-- autotag = {
-	-- 	enable = true,
-	-- 	enable_rename = true,
-	-- 	enable_close = true,
-	-- 	enable_close_on_slash = true,
-	-- 	filetypes = {
-	-- 		"html",
-	-- 		"javascript",
-	-- 		"typescript",
-	-- 		"javascriptreact",
-	-- 		"typescriptreact",
-	-- 		"svelte",
-	-- 		"vue",
-	-- 		"tsx",
-	-- 		"jsx",
-	-- 		"rescript",
-	-- 		"xml",
-	-- 		"php",
-	-- 		"markdown",
-	-- 		"astro",
-	-- 		"glimmer",
-	-- 		"handlebars",
-	-- 		"hbs",
-	-- 		"gotmpl",
-	-- 		"template",
-	-- 		"tmpl",
-	-- 	},
-	-- },
 	highlight = {
 		enable = true,
 		disable = function(lang, bufnr)
@@ -72,7 +44,7 @@ require("nvim-treesitter.configs").setup({
 			return vim.api.nvim_buf_line_count(bufnr) > 5000
 		end,
 	},
-	indent = { enable = true, disable = { "python" } },
+	indent = { enable = false, disable = { "python" } },
 	incremental_selection = {
 		enable = true,
 		keymaps = {
