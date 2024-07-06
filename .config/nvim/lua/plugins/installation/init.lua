@@ -1,15 +1,44 @@
-return vim.tbl_extend(
-	"force",
+local plugins = {
 	{
-		require("plugins/installation/debug"),
+		"Wansmer/langmapper.nvim",
+		lazy = false,
+		priority = 1, -- High priority is needed if you will use `autoremap()`
+		config = function()
+			local function escape(str)
+				-- You need to escape these characters to work correctly
+				local escape_chars = [[;,."|\]]
+				return vim.fn.escape(str, escape_chars)
+			end
+
+			-- Recommended to use lua template string
+			local en = [[`qwertyuiop[]asdfghjkl;'zxcvbnm]]
+			local ru = [[ёйцукенгшщзхъфывапролджэячсмить]]
+			local en_shift = [[~QWERTYUIOP{}ASDFGHJKL:"ZXCVBNM<>]]
+			local ru_shift = [[ËЙЦУКЕНГШЩЗХЪФЫВАПРОЛДЖЭЯЧСМИТЬБЮ]]
+
+			vim.opt.langmap = vim.fn.join({
+				-- | `to` should be first     | `from` should be second
+				escape(ru_shift)
+					.. ";"
+					.. escape(en_shift),
+				escape(ru) .. ";" .. escape(en),
+			}, ",")
+
+			require("langmapper").setup({
+				hack_keymap = true,
+			})
+		end,
 	},
-	require("plugins/installation/lsp"),
-	require("plugins/installation/themes"),
-	require("plugins/installation/visuals"),
-	require("plugins/installation/editor"),
-	require("plugins/installation/treesitter"),
-	require("plugins/installation/navigations"),
-	require("plugins/installation/git"),
-	require("plugins/installation/other"),
-	require("plugins/installation/utils")
-)
+}
+vim.list_extend(plugins, { require("plugins/installation/debug") })
+vim.list_extend(plugins, require("plugins/installation/lsp"))
+vim.list_extend(plugins, require("plugins/installation/themes"))
+vim.list_extend(plugins, require("plugins/installation/visuals"))
+vim.list_extend(plugins, require("plugins/installation/editor"))
+vim.list_extend(plugins, require("plugins/installation/treesitter"))
+vim.list_extend(plugins, require("plugins/installation/navigations"))
+vim.list_extend(plugins, require("plugins/installation/git"))
+vim.list_extend(plugins, require("plugins/installation/other"))
+vim.list_extend(plugins, require("plugins/installation/utils"))
+
+return plugins
