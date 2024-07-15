@@ -56,6 +56,9 @@ end
 
 -- https://github.com/hrsh7th/nvim-cmp/issues/750
 cmp.setup({
+	experimental = {
+		ghost_text = false,
+	},
 	completion = {
 		autocomplete = false,
 	},
@@ -63,6 +66,7 @@ cmp.setup({
 		return vim.api.nvim_buf_get_option(0, "buftype") ~= "prompt" or require("cmp_dap").is_dap_buffer()
 	end,
 	preselect = cmp.PreselectMode.None,
+	---@diagnostic disable-next-line: missing-fields
 	formatting = {
 		format = require("lspkind").cmp_format({
 			mode = "symbol_text", -- show only symbol annotations

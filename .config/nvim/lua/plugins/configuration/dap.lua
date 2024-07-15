@@ -24,6 +24,13 @@ vim.keymap.set("n", "<F4>", dap.step_back)
 vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { desc = "[d]ebug run [t]o cursor", noremap = true })
 vim.keymap.set("n", "<leader>du", dap.up, { desc = "[d]ebug [u]p", noremap = true })
 vim.keymap.set("n", "<leader>dd", dap.down, { desc = "[d]ebug [d]own", noremap = true })
+vim.keymap.set("n", "<leader>dt", function()
+	require("dapui").toggle()
+end, { desc = "[d]apui [t]oggle window" })
+vim.keymap.set("n", "<leader>dT", function()
+	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").threads)
+end, { desc = "[d]ebug show [T]hreads" })
+
 vim.keymap.set(
 	"n",
 	"<leader>db",

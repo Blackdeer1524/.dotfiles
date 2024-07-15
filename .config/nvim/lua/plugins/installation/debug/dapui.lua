@@ -47,10 +47,6 @@ M.setup = function()
 
 	local dap = require("dap")
 
-	vim.keymap.set("n", "<leader>dt", function()
-		dapui.toggle()
-	end, { desc = "[d]apui [t]oggle window" })
-
 	dap.listeners.before.attach.dapui_config = on_open
 	dap.listeners.before.launch.dapui_config = on_open
 	dap.listeners.before.event_terminated.dapui_config = dapui.close

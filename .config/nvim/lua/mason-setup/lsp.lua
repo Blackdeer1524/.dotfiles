@@ -180,7 +180,7 @@ mason_lspconfig.setup_handlers({
 			capabilities = capabilities,
 			on_attach = on_attach,
 			settings = {},
-			root_dir = lsputil.root_pattern(".git", "README.md"),
+			root_dir = lsputil.root_pattern("buf.yaml", "buf.gen.yaml", ".git", "README.md" ),
 			filetypes = { "proto", "ev" },
 		})
 	end,
