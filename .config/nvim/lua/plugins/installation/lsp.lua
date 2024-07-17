@@ -659,33 +659,13 @@ local M = {
 		config = function()
 			require("conform").setup({
 				formatters = {
-					yamlfmt = {
-						command = require("lsp.defaults").MASON_BIN .. "/yamlfmt",
-					},
 					golines = {
-						command = require("lsp.defaults").MASON_BIN .. "/golines",
 						prepend_args = {
 							"--max-len=80",
 							"--base-formatter=gofumpt",
 						},
 					},
-					["clang-format"] = {
-						command = require("lsp.defaults").MASON_BIN .. "/clang-format",
-					},
-					black = {
-						command = require("lsp.defaults").MASON_BIN .. "/black",
-					},
-					stylua = {
-						command = require("lsp.defaults").MASON_BIN .. "/stylua",
-					},
-					["goimports-reviser"] = {
-						command = require("lsp.defaults").MASON_BIN .. "/goimports-reviser",
-					},
-					buf = {
-						command = require("lsp.defaults").MASON_BIN .. "/buf",
-					},
 					sqlfluff = {
-						command = require("lsp.defaults").MASON_BIN .. "/sqlfluff",
 						args = {
 							"fix",
 							"--dialect=sqlite",
@@ -695,7 +675,7 @@ local M = {
 				},
 				formatters_by_ft = {
 					lua = { "stylua" },
-					python = { "black" },
+					python = { "black", "isort" },
 					javascript = { "prettier" },
 					javascriptreact = { "prettier" },
 					cpp = { "clang-format" },

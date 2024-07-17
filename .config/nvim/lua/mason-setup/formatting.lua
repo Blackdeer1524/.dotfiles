@@ -3,6 +3,7 @@ require("mason-null-ls").setup({
 		"goimports",
 		"cmakelang",
 		"black",
+		"isort",
 		"yamlfmt",
 		"stylua",
 		"gofumpt",

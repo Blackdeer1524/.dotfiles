@@ -100,6 +100,10 @@ local M = {
 		"RRethy/vim-illuminate",
 		config = function()
 			require("illuminate").configure({
+				providers = {
+					"lsp",
+					"treesitter",
+				},
 				delay = 300,
 				large_file_cutoff = 30000,
 			})
