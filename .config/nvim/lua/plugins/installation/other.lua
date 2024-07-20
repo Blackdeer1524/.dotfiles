@@ -239,19 +239,10 @@ local M = {
 	},
 	{
 		"glacambre/firenvim",
-		enabled = false,
+
+		-- Lazy load firenvim
+		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
 		lazy = not vim.g.started_by_firenvim,
-		config = function()
-			if vim.g.started_by_firenvim == true then
-				vim.g.firenvim_config = {
-					localSettings = {
-						[".*"] = {
-							filename = os.getenv("HOME") .. "/tmp/{hostname}_{pathname%10}.cpp",
-						},
-					},
-				}
-			end
-		end,
 		build = function()
 			vim.fn["firenvim#install"](0)
 		end,

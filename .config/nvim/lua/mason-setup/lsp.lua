@@ -34,21 +34,20 @@ local lspconfig = require("lspconfig")
 -- 	cmd = { "pb", "lsp" },
 -- })
 
-require("lspconfig.configs").pb = {
-	default_config = {
-		cmd = { "vacuum", "language-server" },
-		filetypes = { "yaml" },
-		settings = {},
-	},
-}
-
-lspconfig.vacuum.setup({
-	cmd = { "vacuum", "language-server" },
-	capabilities = capabilities,
-	on_attach = on_attach,
-	settings = {},
-	filetypes = { "yaml" },
-})
+-- require("lspconfig.configs").pb = {
+-- 	default_config = {
+-- 		cmd = { "vacuum", "language-server" },
+-- 		filetypes = { "yaml" },
+-- 		settings = {},
+-- 	},
+-- }
+-- lspconfig.vacuum.setup({
+-- 	cmd = { "vacuum", "language-server" },
+-- 	capabilities = capabilities,
+-- 	on_attach = on_attach,
+-- 	settings = {},
+-- 	filetypes = { "yaml" },
+-- })
 
 local servers = {
 	lua_ls = {

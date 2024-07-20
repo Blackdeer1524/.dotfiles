@@ -110,4 +110,3 @@ parser_config.gotmpl = {
 	used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
 }
 vim.treesitter.language.register("html", "template")
-vim.treesitter.language.register("yaml", "openapi")
