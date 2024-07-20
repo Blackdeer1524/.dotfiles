@@ -34,19 +34,23 @@ local lspconfig = require("lspconfig")
 -- 	cmd = { "pb", "lsp" },
 -- })
 
-local servers = {
-	yamlls = {
-		yaml = {
-			schemaStore = {
-				-- You must disable built-in schemaStore support if you want to use
-				-- this plugin and its advanced options like `ignore`.
-				enable = false,
-				-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-				url = "",
-			},
-			schemas = require("schemastore").yaml.schemas(),
-		},
+require("lspconfig.configs").pb = {
+	default_config = {
+		cmd = { "vacuum", "language-server" },
+		filetypes = { "yaml" },
+		settings = {},
 	},
+}
+
+lspconfig.vacuum.setup({
+	cmd = { "vacuum", "language-server" },
+	capabilities = capabilities,
+	on_attach = on_attach,
+	settings = {},
+	filetypes = { "yaml" },
+})
+
+local servers = {
 	lua_ls = {
 		Lua = {
 			workspace = { checkThirdParty = false },
@@ -85,7 +89,7 @@ mason_lspconfig.setup({
 		"lua_ls",
 		"marksman",
 		"neocmake",
-		"pyright",
+		"basedpyright",
 		"texlab",
 		"docker_compose_language_service",
 		"dockerls",
@@ -139,8 +143,8 @@ mason_lspconfig.setup_handlers({
 			-- fillstruct = 'gopls',
 		})
 	end,
-	["pyright"] = function()
-		lspconfig.pyright.setup({
+	["basedpyright"] = function()
+		lspconfig.basedpyright.setup({
 			root_dir = lsputil.root_pattern(
 				".venv",
 				"venv",
@@ -247,9 +251,26 @@ mason_lspconfig.setup_handlers({
 			settings = servers["lua_ls"],
 		})
 	end,
+	["yamlls"] = function()
+		lspconfig.yamlls.setup({
+			capabilities = capabilities,
+			settings = {
+				yaml = {
+					schemaStore = {
+						-- You must disable built-in schemaStore support if you want to use
+						-- this plugin and its advanced options like `ignore`.
+						enable = false,
+						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+						url = "",
+					},
+					schemas = require("schemastore").yaml.schemas(),
+				},
+			},
+			on_attach = on_attach,
+		})
+	end,
 	["jsonls"] = function()
 		lspconfig["jsonls"].setup({
-			root_dir = lsputil.root_pattern(".git", "README.md"),
 			capabilities = capabilities,
 			settings = {
 				json = {
@@ -259,9 +280,7 @@ mason_lspconfig.setup_handlers({
 					validate = { enable = true },
 				},
 			},
-			on_attach = function(client, bufnr)
-				on_attach(client, bufnr)
-			end,
+			on_attach = on_attach,
 		})
 	end,
 	["eslint"] = function()

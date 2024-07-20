@@ -79,6 +79,7 @@ export PATH=$PATH:$GOPATH/bin
 export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
 export PATH=$PATH:$HOME/gpt4all/lib/libcudart.so.12
+export PATH=$PATH:$HOME/apache-maven-3.9.8/bin
 
 export PATH="$HOME/.elan/bin:$PATH"
 export PATH="$HOME/.pack/bin:$PATH"

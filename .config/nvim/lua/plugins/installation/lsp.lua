@@ -674,6 +674,7 @@ local M = {
 					},
 				},
 				formatters_by_ft = {
+					yaml = { "yamlfmt" },
 					lua = { "stylua" },
 					python = { "black", "isort" },
 					javascript = { "prettier" },

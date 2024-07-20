@@ -1,5 +1,14 @@
 local M = {
 	{
+		"oysandvik94/curl.nvim",
+		cmd = { "CurlOpen" },
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+		},
+		config = true,
+	},
+
+	{
 		-- a plugin for creating tests
 		"xeluxee/competitest.nvim",
 		dependencies = "MunifTanjim/nui.nvim",
