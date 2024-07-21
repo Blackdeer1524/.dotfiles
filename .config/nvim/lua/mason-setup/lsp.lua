@@ -266,6 +266,7 @@ mason_lspconfig.setup_handlers({
 					},
 					schemas = require("schemastore").yaml.schemas({
 						ignore = {
+							"Open API Spec",
 							"openapi.json",
 						},
 					}),
