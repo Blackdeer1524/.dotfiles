@@ -78,6 +78,7 @@ mason_lspconfig.setup({
 	ensure_installed = {
 		"yamlls",
 		"jsonls",
+		"spectral",
 		"jdtls",
 		"bashls",
 		"clangd",
@@ -252,6 +253,7 @@ mason_lspconfig.setup_handlers({
 	end,
 	["yamlls"] = function()
 		lspconfig.yamlls.setup({
+			root_dir = vim.loop.cwd,
 			capabilities = capabilities,
 			settings = {
 				yaml = {
@@ -262,14 +264,19 @@ mason_lspconfig.setup_handlers({
 						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
 						url = "",
 					},
-					schemas = require("schemastore").yaml.schemas(),
+					schemas = require("schemastore").yaml.schemas({
+						ignore = {
+							"openapi.json",
+						},
+					}),
 				},
 			},
 			on_attach = on_attach,
 		})
 	end,
 	["jsonls"] = function()
-		lspconfig["jsonls"].setup({
+		lspconfig.jsonls.setup({
+			root_dir = vim.loop.cwd,
 			capabilities = capabilities,
 			settings = {
 				json = {
@@ -279,6 +286,13 @@ mason_lspconfig.setup_handlers({
 					validate = { enable = true },
 				},
 			},
+			on_attach = on_attach,
+		})
+	end,
+	["spectral"] = function()
+		lspconfig.spectral.setup({
+			root_dir = vim.loop.cwd,
+			capabilities = capabilities,
 			on_attach = on_attach,
 		})
 	end,

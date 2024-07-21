@@ -1,5 +1,10 @@
 local M = {
 	{
+		"vinnymeller/swagger-preview.nvim",
+		build = "npm install -g swagger-ui-watcher",
+		opts = { port = 8800, host = "localhost" },
+	},
+	{
 		"oysandvik94/curl.nvim",
 		cmd = { "CurlOpen" },
 		dependencies = {
@@ -239,7 +244,6 @@ local M = {
 	},
 	{
 		"glacambre/firenvim",
-
 		-- Lazy load firenvim
 		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
 		lazy = not vim.g.started_by_firenvim,
