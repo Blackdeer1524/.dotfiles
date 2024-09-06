@@ -680,6 +680,7 @@ local M = {
 					javascript = { "prettier" },
 					javascriptreact = { "prettier" },
 					cpp = { "clang-format" },
+					-- c = { "clang-format" },
 					go = { "goimports-reviser", "golines" },
 					sql = { "sqlfluff" },
 					proto = { "buf" },

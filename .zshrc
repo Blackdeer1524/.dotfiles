@@ -10,6 +10,8 @@ export PATH="$PATH:$(go env GOPATH)/bin"
 export PATH=$PATH:$HOME/.local/share/nvim/mason/bin
 export PATH=$PATH:$HOME/gpt4all/lib/libcudart.so.12
 export PATH=$PATH:$HOME/apache-maven-3.9.8/bin
+export PATH=$PATH:/opt/riscv/bin
+export PATH=$PATH:/usr/local/i386elfgcc/bin
 
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -93,7 +95,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git branch ssh vi-mode golang docker docker-compose)
+plugins=(git ssh vi-mode golang docker docker-compose)
 
 source $ZSH/oh-my-zsh.sh
 

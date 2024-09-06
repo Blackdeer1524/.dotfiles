@@ -76,6 +76,7 @@ local mason_lspconfig = require("mason-lspconfig")
 mason_lspconfig.setup({
 	automatic_installation = true,
 	ensure_installed = {
+		"asm_lsp",
 		"yamlls",
 		"jsonls",
 		"spectral",
@@ -161,12 +162,10 @@ mason_lspconfig.setup_handlers({
 			end,
 			settings = {
 				single_file_support = true,
-				pyright = {
+				basedpyright = {
 					autoImportCompletion = true,
 					disableLanguageServices = false,
 					disableOrganizeImports = false,
-				},
-				python = {
 					analysis = {
 						autoImportCompletions = true,
 						autoSearchPaths = true,
@@ -356,6 +355,13 @@ mason_lspconfig.setup_handlers({
 					validate = true,
 				},
 			},
+		})
+	end,
+	["asm_lsp"] = function()
+		require("lspconfig").asm_lsp.setup({
+			root_dir = lsputil.root_pattern(".git", "README.md"),
+			capabilities = capabilities,
+			on_attach = on_attach,
 		})
 	end,
 	function(server_name)
