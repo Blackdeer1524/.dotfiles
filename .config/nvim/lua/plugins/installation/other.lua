@@ -20,15 +20,19 @@ local M = {
 		opts = {
 			running_directory = ".",
 			testcases_directory = "./txt_tests",
+			evaluate_template_modifiers = true,
 			compile_command = {
-				cpp = { exec = "cmake", args = { "--build", "./build", "--target", "main" } },
+				c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
+				cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
 				go = { exec = "go", args = { "build", "-o", "main", "$(FNAME)" } },
 			},
 			run_command = {
-				cpp = { exec = "./build/main" },
+				c = { exec = "./$(FNOEXT)" },
+				cpp = { exec = "./$(FNOEXT)" },
 				go = { exec = "./main" },
 				python = { exec = "python", args = { "$(FNAME)" } },
 			},
+			template_file = os.getenv("HOME") .. "/competitest_tmpls/tmpl.$(FEXT)",
 			runner_ui = {
 				interface = "split",
 			},

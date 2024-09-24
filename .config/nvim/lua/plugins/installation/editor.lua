@@ -16,7 +16,9 @@ local M = {
 		"rcarriga/nvim-notify",
 		config = function()
 			require("notify").setup({
+				max_width = 50,
 				stages = "static",
+				render = "wrapped-compact",
 				timeout = 2000,
 			})
 			local banned_messages = { "No information available" }
