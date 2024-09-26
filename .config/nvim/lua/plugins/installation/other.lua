@@ -22,8 +22,8 @@ local M = {
 			testcases_directory = "./txt_tests",
 			evaluate_template_modifiers = true,
 			compile_command = {
-				c = { exec = "gcc", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
-				cpp = { exec = "g++", args = { "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
+				c = { exec = "gcc", args = { "-g", "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
+				cpp = { exec = "g++", args = { "-g", "-Wall", "$(FNAME)", "-o", "$(FNOEXT)" } },
 				go = { exec = "go", args = { "build", "-o", "main", "$(FNAME)" } },
 			},
 			run_command = {
