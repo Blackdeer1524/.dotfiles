@@ -1,5 +1,13 @@
 local M = {
 	{
+		"nvim-zh/colorful-winsep.nvim",
+		config = true,
+		event = { "WinLeave" },
+		opts = {
+			smooth = false,
+		},
+	},
+	{
 		-- terminal emulator
 		"akinsho/toggleterm.nvim",
 		version = "*",
