@@ -95,8 +95,62 @@ vim.api.nvim_create_autocmd("TextYankPost", {
 	pattern = "*",
 })
 
+vim.fn.sign_define(
+	"LspDiagnosticsSignError",
+	{ texthl = "LspDiagnosticsSignError", text = "", numhl = "LspDiagnosticsSignError" }
+)
+vim.fn.sign_define(
+	"LspDiagnosticsSignWarning",
+	{ texthl = "LspDiagnosticsSignWarning", text = "", numhl = "LspDiagnosticsSignWarning" }
+)
+vim.fn.sign_define(
+	"LspDiagnosticsSignHint",
+	{ texthl = "LspDiagnosticsSignHint", text = "", numhl = "LspDiagnosticsSignHint" }
+)
+vim.fn.sign_define(
+	"LspDiagnosticsSignInformation",
+	{ texthl = "LspDiagnosticsSignInformation", text = "", numhl = "LspDiagnosticsSignInformation" }
+)
+
+vim.api.nvim_create_autocmd({ "BufEnter" }, {
+	callback = function(ev)
+		local normal_hl = vim.api.nvim_get_hl_by_name("PmenuSel", true)
+
+		local get_color_part = function(c, shift)
+			return math.fmod(math.floor(c / shift), 0x100)
+		end
+
+		local r = math.floor(get_color_part(normal_hl.background, 0x10000) / 2)
+		local g = math.floor(get_color_part(normal_hl.background, 0x00100) / 2)
+		local b = math.floor(get_color_part(normal_hl.background, 0x00001) / 2)
+
+		local background_color = r * 0x10000 + b * 0x100 + g * 0x1
+		vim.api.nvim_set_hl(0, "PmenuSel", { fg = "NONE", bg = background_color })
+	end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+	pattern = { "Makefile" },
+	callback = function(ev)
+		vim.opt_local.expandtab = false
+	end,
+})
+
 vim.diagnostic.config({
-	signs = true,
+	signs = {
+		text = {
+			[vim.diagnostic.severity.ERROR] = "",
+			[vim.diagnostic.severity.WARN] = "",
+			[vim.diagnostic.severity.HINT] = "",
+			[vim.diagnostic.severity.INFO] = "",
+		},
+		linehl = {},
+		numhl = {
+			[vim.diagnostic.severity.WARN] = "WarningMsg",
+			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
+		},
+	},
+	severity_sort = true,
 	update_in_insert = false,
 	virtual_text = true,
 	virtual_lines = false,
@@ -132,30 +186,6 @@ vim.diagnostic.config({
 			return message
 		end,
 	},
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter" }, {
-	callback = function(ev)
-		local normal_hl = vim.api.nvim_get_hl_by_name("PmenuSel", true)
-
-		local get_color_part = function(c, shift)
-			return math.fmod(math.floor(c / shift), 0x100)
-		end
-
-		local r = math.floor(get_color_part(normal_hl.background, 0x10000) / 2)
-		local g = math.floor(get_color_part(normal_hl.background, 0x00100) / 2)
-		local b = math.floor(get_color_part(normal_hl.background, 0x00001) / 2)
-
-		local background_color = r * 0x10000 + b * 0x100 + g * 0x1
-		vim.api.nvim_set_hl(0, "PmenuSel", { fg = "NONE", bg = background_color })
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "Makefile" },
-	callback = function(ev)
-		vim.opt_local.expandtab = false
-	end,
 })
 
 -- The line beneath this is called `modeline`. See `:help modeline`
