@@ -199,7 +199,7 @@ local M = {
 		},
 	},
 	{
-		-- Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim
+		-- WARN: Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim
 		"lvimuser/lsp-inlayhints.nvim",
 		opts = {},
 		enabled = false,
@@ -276,23 +276,33 @@ local M = {
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 				pattern = { "*.c", "*.cc", "*.cpp", "*.h", ".hpp" },
-				callback = function(ev)
-					require("which-key").register({
-						["<leader>c"] = {
-							name = "+cmake",
-							b = { "<cmd>CMakeBuild<cr>", "[c]make [b]uild" },
-							d = { "<cmd>CMakeDebug<cr>", "[c]make [d]ebug" },
-							r = { "<cmd>CMakeRun<cr>", "[c]make [r]un" },
-							g = { "<cmd>CMakeGenerate<cr>", "[c]make [g]enerate" },
-							l = { "<cmd>CMakeLaunchArgs<cr>", "[c]make [l]aunch args" },
-							s = {
-								name = "+select",
-								k = { "<cmd>CMakeSelectKit<cr>", "[c]make [s]elect [k]it" },
-								l = { "<cmd>CMakeSelectLaunchTarget<cr>", "[c]make [s]elect [l]aunch target" },
-								b = { "<cmd>CMakeSelectBuildTarget<cr>", "[c]make [s]elect [b]uild target" },
-								t = { "<cmd>CMakeSelectBuildType<cr>", "[c]make [s]elect build [t]ype" },
+				callback = function(_)
+					require("which-key").add({
+						{
+							mode = { "n" },
+							{ "<leader>c", group = "cmake" },
+							{ "<leader>cb", "<cmd>CMakeBuild<cr>", desc = "[c]make [b]uild" },
+							{ "<leader>cd", "<cmd>CMakeDebug<cr>", desc = "[c]make [d]ebug" },
+							{ "<leader>cr", "<cmd>CMakeRun<cr>", desc = "[c]make [r]un" },
+							{ "<leader>cg", "<cmd>CMakeGenerate<cr>", desc = "[c]make [g]enerate" },
+							{ "<leader>cl", "<cmd>CMakeLaunchArgs<cr>", desc = "[c]make [l]aunch args" },
+							{ "<leader>cs", group = "select" },
+							{ "<leader>csk", "<cmd>CMakeSelectKit<cr>", desc = "[c]make [s]elect [k]it" },
+							{
+								"<leader>csl",
+								"<cmd>CMakeSelectLaunchTarget<cr>",
+								desc = "[c]make [s]elect [l]aunch target",
 							},
+							{
+								"<leader>csb",
+								"<cmd>CMakeSelectBuildTarget<cr>",
+								desc = "[c]make [s]elect [b]uild target",
+							},
+							{ "<leader>cst", "<cmd>CMakeSelectBuildType<cr>", desc = "[c]make [s]elect build [t]ype" },
 						},
+						-- s = {
+						-- 	name = "+select",
+						-- }
 					})
 				end,
 			})
@@ -393,58 +403,49 @@ local M = {
 					vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPre" }, {
 						buffer = bufnr,
 						callback = function(ev)
-							require("which-key").register({
-								buffer = bufnr,
-								["<leader>"] = {
-									i = {
-										name = "+idris",
-										m = {
-											name = "+make",
-											c = { idris2_ca.make_case, "make case" },
-											w = { idris2_ca.make_with, "make with" },
-											l = { idris2_ca.make_lemma, "make lemma" },
-										},
-										rh = { idris2_ca.refine_hole, "refine hole" },
-										re = { require("idris2.repl").evaluate, "repl evaluate" },
-										e = {
-											name = "+expression",
-											s = { idris2_ca.expr_search, "expression search" },
-											h = { idris2_ca.expr_search_hints, "expression search hint" },
-										},
-										i = { idris2_ca.intro, "intro" },
-										a = { idris2_ca.add_clause, "add clause" },
-										g = { idris2_ca.generate_def, "generate definition" },
-
-										sc = { idris2_ca.case_split, "split case" },
-										si = { idris.show_implicits, "Show implicits in hovers" },
-										sm = { idris.show_machine_names, "Show machine names in hovers" },
-										sr = {
-											function()
-												require("idris2.semantic").request(0)
-											end,
-											"Requests semantic groups",
-										},
-
-										h = {
-											name = "+hide",
-											i = { idris.hide_implicits, "Hide implicits in hovers" },
-											m = { idris.hide_machine_names, "Hide machine names in hovers" },
-											n = { idris.hide_namespace, "Hide namespaces in hovers" },
-										},
-
-										f = { idris.full_namespace, "Show full namespaces in hovers" },
-
-										b = { require("idris2.browse").browse, "browse" },
-
-										os = {
-											function()
-												require("idris2.hover").open_split()
-											end,
-											"open split",
-										},
-										cs = { require("idris2.hover").close_split, "close split" },
+							require("which-key").add({
+								{
+									mode = "n",
+									{ "<leader>i", group = "idris" },
+									{ "<leader>im", group = "make" },
+									{ "<leader>imc", idris2_ca.make_case, desc = "make case" },
+									{ "<leader>imw", idris2_ca.make_with, desc = "make with" },
+									{ "<leader>iml", idris2_ca.make_lemma, desc = "make lemma" },
+									{ "<leader>irh", idris2_ca.refine_hole, desc = "refine hole" },
+									{ "<leader>ire", require("idris2.repl").evaluate, desc = "repl evaluate" },
+									{ "<leader>ie", group = "expression" },
+									{ "<leader>ies", idris2_ca.expr_search, desc = "expression search" },
+									{ "<leader>ieh", idris2_ca.expr_search_hints, desc = "expression search hint" },
+									{ "<leader>ii", idris2_ca.intro, desc = "intro" },
+									{ "<leader>ia", idris2_ca.add_clause, desc = "add clause" },
+									{ "<leader>ig", idris2_ca.generate_def, desc = "generate definition" },
+									{ "<leader>isc", idris2_ca.case_split, desc = "split case" },
+									{ "<leader>isi", idris.show_implicits, desc = "Show implicits in hovers" },
+									{ "<leader>ism", idris.show_machine_names, desc = "Show machine names in hovers" },
+									{
+										"<leader>isr",
+										function()
+											require("idris2.semantic").request(0)
+										end,
+										desc = "Requests semantic groups",
 									},
+									{ "<leader>ih", group = "hide" },
+									{ "<leader>ihi", idris.hide_implicits, desc = "Hide implicits in hovers" },
+									{ "<leader>ihm", idris.hide_machine_names, desc = "Hide machine names in hovers" },
+									{ "<leader>ihn", idris.hide_namespace, desc = "Hide namespaces in hovers" },
+									{ "<leader>if", idris.full_namespace, desc = "Show full namespaces in hovers" },
+									{ "<leader>ib", require("idris2.browse").browse, desc = "browse" },
+
+									{
+										"<leader>ios",
+										function()
+											require("idris2.hover").open_split()
+										end,
+										desc = "open split",
+									},
+									{ "<leader>ics", require("idris2.hover").close_split, desc = "close split" },
 								},
+								buffer = bufnr,
 							})
 						end,
 					})
