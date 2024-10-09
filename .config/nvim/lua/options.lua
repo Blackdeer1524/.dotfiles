@@ -114,18 +114,33 @@ vim.fn.sign_define(
 
 vim.api.nvim_create_autocmd({ "BufEnter" }, {
 	callback = function(ev)
-		local normal_hl = vim.api.nvim_get_hl_by_name("PmenuSel", true)
+		local blend = function(d, a, c1, c2)
+			local a2 = d - a
 
-		local get_color_part = function(c, shift)
-			return math.fmod(math.floor(c / shift), 0x100)
+			local get_color_part = function(c, shift)
+				return bit.rshift(c, shift) % 0x100
+			end
+
+			local r = math.floor((a * get_color_part(c1, 16) + a2 * get_color_part(c2, 16)) / d)
+			local g = math.floor((a * get_color_part(c1, 8) + a2 * get_color_part(c2, 8)) / d)
+			local b = math.floor((a * get_color_part(c1, 0) + a2 * get_color_part(c2, 0)) / d)
+			return r * 0x10000 + g * 0x100 + b * 0x1
 		end
 
-		local r = math.floor(get_color_part(normal_hl.background, 0x10000) / 2)
-		local g = math.floor(get_color_part(normal_hl.background, 0x00100) / 2)
-		local b = math.floor(get_color_part(normal_hl.background, 0x00001) / 2)
-
-		local background_color = r * 0x10000 + b * 0x100 + g * 0x1
+		local pmenu_hl = vim.api.nvim_get_hl(0, { name = "PmenuSel" })
+		local background_color = blend(2, 1, pmenu_hl.bg, 0)
 		vim.api.nvim_set_hl(0, "PmenuSel", { fg = "NONE", bg = background_color })
+
+		local normal_hl = vim.api.nvim_get_hl(0, { name = "Normal" })
+		local err_background_color = blend(30, 23, normal_hl.bg, 0xE86671)
+		local warning_background_color = blend(30, 23, normal_hl.bg, 0xFA973A)
+		local hint_background_color = blend(30, 23, normal_hl.bg, 0x17BE3B)
+		local info_background_color = blend(30, 23, normal_hl.bg, 0x3770E0)
+
+		vim.api.nvim_set_hl(0, "ErrorMsgLine", { bg = err_background_color, bold = true })
+		vim.api.nvim_set_hl(0, "WarningMsgLine", { bg = warning_background_color, bold = true })
+		vim.api.nvim_set_hl(0, "HintMsgLine", { bg = hint_background_color, bold = true })
+		vim.api.nvim_set_hl(0, "InfoMsgLine", { bg = info_background_color, bold = true })
 	end,
 })
 
@@ -144,7 +159,12 @@ vim.diagnostic.config({
 			[vim.diagnostic.severity.HINT] = "",
 			[vim.diagnostic.severity.INFO] = "",
 		},
-		linehl = {},
+		linehl = {
+			[vim.diagnostic.severity.ERROR] = "ErrorMsgLine",
+			[vim.diagnostic.severity.WARN] = "WarningMsgLine",
+			[vim.diagnostic.severity.HINT] = "HintMsgLine",
+			[vim.diagnostic.severity.INFO] = "InfoMsgLine",
+		},
 		numhl = {
 			[vim.diagnostic.severity.WARN] = "WarningMsg",
 			[vim.diagnostic.severity.ERROR] = "ErrorMsg",
