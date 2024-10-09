@@ -1,4 +1,4 @@
-require("plugins.configuration.completion")
+require("plugins.configuration.cmp")
 require("plugins.configuration.telescope")
 require("plugins.configuration.treesitter")
 require("plugins.configuration.vimtex")

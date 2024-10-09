@@ -9,17 +9,6 @@ return {
 		},
 		{ "Weissle/persistent-breakpoints.nvim", opts = { load_breakpoints_event = { "BufReadPost" } } },
 		"nvim-telescope/telescope-dap.nvim",
-		{
-			"rcarriga/cmp-dap",
-			dependencies = { "nvim-cmp" },
-			config = function()
-				require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
-					sources = {
-						{ name = "dap" },
-					},
-				})
-			end,
-		},
 		{ "LiadOz/nvim-dap-repl-highlights", opts = {} },
 
 		-- Installs the debug adapters for you

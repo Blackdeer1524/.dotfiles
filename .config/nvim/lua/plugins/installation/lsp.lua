@@ -55,7 +55,9 @@ local M = {
 	},
 	{
 		-- Autocompletion
-		"hrsh7th/nvim-cmp",
+		"iguanacucumber/magazine.nvim",
+		name = "nvim-cmp", -- Otherwise highlighting gets messed up
+		enabled = true,
 		dependencies = {
 			"hrsh7th/cmp-nvim-lsp",
 			{
@@ -80,6 +82,82 @@ local M = {
 			},
 			"luckasRanarison/tailwind-tools.nvim",
 			"onsails/lspkind-nvim",
+			{
+				"rcarriga/cmp-dap",
+				config = function()
+					require("cmp").setup.filetype({ "dap-repl", "dapui_watches", "dapui_hover" }, {
+						sources = {
+							{ name = "dap" },
+						},
+					})
+				end,
+			},
+		},
+	},
+	{
+		"saghen/blink.cmp",
+		enabled = false,
+		lazy = false, -- lazy loading handled internally
+		-- optional: provides snippets for the snippet source
+		dependencies = "rafamadriz/friendly-snippets",
+
+		-- use a release tag to download pre-built binaries
+		version = "v0.*",
+		-- OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
+		-- build = 'cargo build --release',
+
+		opts = {
+			keymap = {
+				accept = "<CR>",
+				select_prev = { "<Up>", "<S-Tab>" },
+				select_next = { "<Down>", "<Tab>" },
+
+				scroll_documentation_up = "<C-f>",
+				scroll_documentation_down = "<C-d>",
+			},
+			highlight = {
+				-- sets the fallback highlight groups to nvim-cmp's highlight groups
+				-- useful for when your theme doesn't support blink.cmp
+				-- will be removed in a future release, assuming themes add support
+				use_nvim_cmp_as_default = true,
+			},
+			-- set to 'mono' for 'Nerd Font Mono' or 'normal' for 'Nerd Font'
+			-- adjusts spacing to ensure icons are aligned
+			nerd_font_variant = "mono",
+
+			-- experimental auto-brackets support
+			accept = { auto_brackets = { enabled = true } },
+
+			-- experimental signature help support
+			trigger = { signature_help = { enabled = true } },
+
+			windows = {
+				autocomplete = {
+					min_width = 30,
+					max_width = 60,
+					max_height = 10,
+					border = "single",
+					-- keep the cursor X lines away from the top/bottom of the window
+					scrolloff = 2,
+					-- Controls how the completion items are rendered on the popup window
+					-- 'simple' will render the item's kind icon the left alongside the label
+					-- 'reversed' will render the label on the left and the kind icon + name on the right
+					-- 'function(blink.cmp.CompletionRenderContext): blink.cmp.Component[]' for custom rendering
+					draw = "reversed",
+				},
+				documentation = {
+					border = "single",
+					auto_show = true,
+					auto_show_delay_ms = 500,
+					update_delay_ms = 100,
+				},
+				signature_help = {
+					min_width = 1,
+					max_width = 100,
+					max_height = 10,
+					border = "single",
+				},
+			},
 		},
 	},
 	{

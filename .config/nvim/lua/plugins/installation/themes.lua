@@ -45,16 +45,10 @@ local M = {
 				{
 					name = "Nightfox",
 					colorscheme = "nightfox",
-					after = [[
-                        vim.cmd("highlight WinSeparator guifg=orange")
-                    ]],
 				},
 				{
 					name = "Duskfox",
 					colorscheme = "duskfox",
-					after = [[
-                        vim.cmd("highlight WinSeparator guifg=orange")
-                    ]],
 				},
 				{
 					name = "onedark",
@@ -63,9 +57,6 @@ local M = {
 				{
 					name = "ayu-mirage",
 					colorscheme = "ayu-mirage",
-					after = [[
-                        vim.api.nvim_set_hl(0, "LineNr", { fg = '#D6AD5C' })
-                    ]],
 				},
 				-- kanagawa
 				{
@@ -78,7 +69,6 @@ local M = {
 					after = [[
                         vim.api.nvim_set_hl(0, "LineNr", { fg = '#D6AD5C' })
                         vim.api.nvim_set_hl(0, "CursorLineNr", { fg = '#56F3FF', bold=true })
-                        vim.cmd("highlight WinSeparator guifg=#D6AD5C")
                     ]],
 				},
 				-- tokyonight

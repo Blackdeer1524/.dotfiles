@@ -33,6 +33,7 @@ require("nvim-treesitter.configs").setup({
 		"dap_repl",
 		"vim",
 		"make",
+		"doxygen",
 	},
 	auto_install = false,
 	highlight = {
