@@ -63,6 +63,7 @@ local M = {
 	},
 	{
 		"ejrichards/baredot.nvim",
+		enabled=false,
 		config = function()
 			require("baredot").setup({
 				git_dir = "~/.cfg",

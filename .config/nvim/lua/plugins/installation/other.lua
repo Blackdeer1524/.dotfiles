@@ -1,21 +1,23 @@
 local M = {
 	{
 		"vinnymeller/swagger-preview.nvim",
+		event = "VeryLazy",
 		build = "npm install -g swagger-ui-watcher",
 		opts = { port = 8800, host = "localhost" },
 	},
 	{
 		"oysandvik94/curl.nvim",
+		event = "VeryLazy",
 		cmd = { "CurlOpen" },
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 		},
 		config = true,
 	},
-
 	{
 		-- a plugin for creating tests
 		"xeluxee/competitest.nvim",
+		lazy = true,
 		dependencies = "MunifTanjim/nui.nvim",
 		opts = {
 			running_directory = ".",
@@ -223,6 +225,7 @@ local M = {
 	{
 		-- perf annotations
 		"t-troebst/perfanno.nvim",
+		event = "VeryLazy",
 		config = function()
 			local perfanno = require("perfanno")
 			local util = require("perfanno.util")

@@ -550,7 +550,7 @@ local M = {
 				on_attach = function(client, bufnr)
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
-					require("lsp.defaults").on_attach(client, bufnr, true)
+					require("lsp.defaults").on_attach(client, bufnr)
 					vim.keymap.set("n", "gs", "<cmd>TSToolsGoToSourceDefinition<cr>", { buffer = bufnr })
 				end,
 				settings = {
@@ -574,6 +574,7 @@ local M = {
 	},
 	{
 		"luckasRanarison/tailwind-tools.nvim",
+		lazy = true,
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		opts = {
 			conceal = {
