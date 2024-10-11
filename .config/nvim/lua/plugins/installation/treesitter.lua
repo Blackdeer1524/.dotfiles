@@ -13,6 +13,16 @@ local M = {
 	},
 	{
 		"nvim-treesitter/nvim-treesitter-context",
+		enabled = vim.g.vscode == nil,
+		keys = {
+			{
+				"[c",
+				function()
+					require("treesitter-context").go_to_context()
+				end,
+				{ desc = "go to [c]ontext" },
+			},
+		},
 		opts = {
 			separator = "─",
 			max_lines = 3, -- How many lines the window should span. Values <= 0 mean no limit.
@@ -21,6 +31,7 @@ local M = {
 	},
 	{
 		"andersevenrud/nvim_context_vt",
+		enabled = vim.g.vscode == nil,
 		opts = {
 			disable_virtual_lines = true,
 			min_rows = 10,
@@ -87,6 +98,7 @@ local M = {
 	},
 	{
 		"folke/todo-comments.nvim",
+		enabled = vim.g.vscode == nil,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		opts = {
 			-- your configuration comes here
@@ -98,6 +110,7 @@ local M = {
 		-- Vim plugin for automatically highlighting other uses of the word
 		-- under the cursor using either LSP, Tree-sitter, or regex matching.
 		"RRethy/vim-illuminate",
+		enabled = vim.g.vscode == nil,
 		config = function()
 			require("illuminate").configure({
 				providers = {

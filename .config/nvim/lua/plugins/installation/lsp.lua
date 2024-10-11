@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return {}
+end
+
 local M = {
 	{
 		"folke/lazydev.nvim",
@@ -201,8 +205,8 @@ local M = {
 	{
 		-- WARN: Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim
 		"lvimuser/lsp-inlayhints.nvim",
-		opts = {},
 		enabled = false,
+		opts = {},
 	},
 	{
 		"p00f/clangd_extensions.nvim",

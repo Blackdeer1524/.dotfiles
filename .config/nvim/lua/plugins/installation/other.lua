@@ -1,12 +1,14 @@
 local M = {
 	{
 		"vinnymeller/swagger-preview.nvim",
+		enabled = vim.g.vscode == nil,
 		event = "VeryLazy",
 		build = "npm install -g swagger-ui-watcher",
 		opts = { port = 8800, host = "localhost" },
 	},
 	{
 		"oysandvik94/curl.nvim",
+		enabled = vim.g.vscode == nil,
 		event = "VeryLazy",
 		cmd = { "CurlOpen" },
 		dependencies = {
@@ -17,6 +19,7 @@ local M = {
 	{
 		-- a plugin for creating tests
 		"xeluxee/competitest.nvim",
+		enabled = vim.g.vscode == nil,
 		lazy = true,
 		dependencies = "MunifTanjim/nui.nvim",
 		opts = {
@@ -42,6 +45,7 @@ local M = {
 	},
 	{
 		"nvim-neotest/neotest",
+		enabled = vim.g.vscode == nil,
 		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -199,6 +203,12 @@ local M = {
 	},
 	{
 		"stevearc/overseer.nvim",
+		enabled = vim.g.vscode == nil,
+		keys = {
+			{ "<leader>or", "<cmd>OverseerRun<cr>", desc = "[o]verseer [r]un" },
+			{ "<leader>ot", "<cmd>OverseerToggle<cr>", desc = "[o]verseer [t]oggle" },
+			{ "<leader>oa", "<cmd>OverseerTaskAction<cr>", desc = "[o]verseer task [a]ction" },
+		},
 		opts = {
 			dap = false, -- dap is turned in separate file
 			templates = { "builtin", "user.launch_delve" },
@@ -225,6 +235,7 @@ local M = {
 	{
 		-- perf annotations
 		"t-troebst/perfanno.nvim",
+		enabled = vim.g.vscode == nil,
 		event = "VeryLazy",
 		config = function()
 			local perfanno = require("perfanno")
@@ -236,9 +247,24 @@ local M = {
 				vt_highlight = util.make_fg_highlight("#504ECD"),
 			})
 		end,
+		keys = {
+			{ "<leader>plf", ":PerfLoadFlat<CR>", noremap = true, silent = true },
+			{ "<leader>plg", ":PerfLoadCallGraph<CR>", noremap = true, silent = true },
+			{ "<leader>plo", ":PerfLoadFlameGraph<CR>", noremap = true, silent = true },
+			{ "<leader>pe", ":PerfPickEvent<CR>", noremap = true, silent = true },
+			{ "<leader>pa", ":PerfAnnotate<CR>", noremap = true, silent = true },
+			{ "<leader>pf", ":PerfAnnotateFunction<CR>", noremap = true, silent = true },
+			{ "<leader>pa", ":PerfAnnotateSelection<CR>", noremap = true, silent = true },
+			{ "<leader>pt", ":PerfToggleAnnotations<CR>", noremap = true, silent = true },
+			{ "<leader>ph", ":PerfHottestLines<CR>", noremap = true, silent = true },
+			{ "<leader>ps", ":PerfHottestSymbols<CR>", noremap = true, silent = true },
+			{ "<leader>pc", ":PerfHottestCallersFunction<CR>", noremap = true, silent = true },
+			{ "<leader>pc", ":PerfHottestCallersSelection<CR>", noremap = true, silent = true },
+		},
 	},
 	{
 		"stevearc/dressing.nvim",
+		enabled = vim.g.vscode == nil,
 		opts = {
 			select = {
 				get_config = function()
@@ -254,6 +280,7 @@ local M = {
 		-- Lazy load firenvim
 		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
 		lazy = not vim.g.started_by_firenvim,
+		enabled = vim.g.vscode == nil,
 		build = function()
 			vim.fn["firenvim#install"](0)
 		end,
@@ -281,6 +308,7 @@ local M = {
 	},
 	{
 		"mistricky/codesnap.nvim",
+		enabled = vim.g.vscode == nil,
 		build = "make",
 		opts = {
 			mac_window_bar = false,
@@ -300,10 +328,12 @@ local M = {
 			plugin_manager = "lazy",
 		},
 		commit = "6ab4a52",
+		-- enabled = vim.g.vscode == nil,
 		enabled = false,
 	},
 	{
 		"OXY2DEV/helpview.nvim",
+		enabled = vim.g.vscode == nil,
 		lazy = false, -- Recommended
 
 		-- In case you still want to lazy load

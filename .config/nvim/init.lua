@@ -15,4 +15,7 @@ require("vim-keymaps")
 require("plugins")
 require("mason-setup")
 require("options")
-require("keymaps")
+
+if vim.g.vscode ~= nil then
+	require("vscode-options")
+end

@@ -1,3 +1,4 @@
+require("plugins.configuration.lsp")
 require("plugins.configuration.cmp")
 require("plugins.configuration.telescope")
 require("plugins.configuration.treesitter")

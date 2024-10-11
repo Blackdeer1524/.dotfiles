@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return
+end
+
 -- nvim-cmp setup
 local cmp = require("cmp")
 local luasnip = require("luasnip")

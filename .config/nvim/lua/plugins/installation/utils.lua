@@ -2,6 +2,7 @@ local M = {
 	{
 		-- autosave events
 		"Pocco81/auto-save.nvim",
+		enabled = vim.g.vscode == nil,
 		config = function()
 			require("auto-save").setup({
 				trigger_events = { "InsertLeave", "BufLeave" },
@@ -51,17 +52,20 @@ local M = {
 	-- Useful plugin to show you pending keybinds.
 	{
 		"folke/which-key.nvim",
+		enabled = vim.g.vscode == nil,
 		opts = {},
 	},
 	-- quick test suits
 	{
 		"iamcco/markdown-preview.nvim",
+		enabled = vim.g.vscode == nil,
 		build = function()
 			vim.fn["mkdp#util#install"]()
 		end,
 	},
 	{
 		"dfendr/clipboard-image.nvim",
+		enabled = vim.g.vscode == nil,
 		opts = {},
 	},
 }

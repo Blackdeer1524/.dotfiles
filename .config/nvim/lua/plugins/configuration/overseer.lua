@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return
+end
+
 local overseer = require("overseer")
 
 vim.api.nvim_create_user_command("JsonSort", function(_)

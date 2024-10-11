@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return
+end
+
 require("dap.ext.vscode").json_decode = require("overseer.json").decode
 require("overseer").patch_dap(true)
 

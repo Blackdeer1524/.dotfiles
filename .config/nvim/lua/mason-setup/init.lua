@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return
+end
+
 -- Setup mason so it can manage external tooling
 require("mason").setup({
 	ui = {

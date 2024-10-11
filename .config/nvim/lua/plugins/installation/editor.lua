@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return {}
+end
+
 local M = {
 	{
 		"nvim-zh/colorful-winsep.nvim",
@@ -44,6 +48,7 @@ local M = {
 	{
 		-- buffers line
 		"romgrk/barbar.nvim",
+		enabled = false,
 		dependencies = "nvim-tree/nvim-web-devicons",
 		init = function()
 			vim.g.barbar_auto_setup = false
@@ -55,7 +60,6 @@ local M = {
 			-- …etc.
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
-		enabled = false,
 	},
 	{
 		"mbbill/undotree",
@@ -69,6 +73,9 @@ local M = {
 		"stevearc/oil.nvim",
 		-- Optional dependencies
 		dependencies = { "nvim-tree/nvim-web-devicons" },
+		keys = {
+			{ "-", "<CMD>Oil<CR>", desc = "Open parent directory" },
+		},
 		opts = {
 			buf_options = {
 				buflisted = true,

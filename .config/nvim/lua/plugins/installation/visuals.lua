@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return {}
+end
+
 local actived_venv = function()
 	local venv_name = require("venv-selector").get_active_venv()
 	if venv_name ~= nil then

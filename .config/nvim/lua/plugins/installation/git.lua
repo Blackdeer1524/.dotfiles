@@ -1,7 +1,11 @@
 local M = {
-	"tpope/vim-fugitive",
+	{
+		"tpope/vim-fugitive",
+		enabled = vim.g.vscode == nil,
+	},
 	{
 		"lewis6991/gitsigns.nvim",
+		enabled = vim.g.vscode == nil,
 		opts = {
 			on_attach = function(bufnr)
 				local gs = package.loaded.gitsigns
@@ -63,7 +67,7 @@ local M = {
 	},
 	{
 		"ejrichards/baredot.nvim",
-		enabled=false,
+		enabled = vim.g.vscode == nil,
 		config = function()
 			require("baredot").setup({
 				git_dir = "~/.cfg",

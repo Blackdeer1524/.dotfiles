@@ -1,3 +1,7 @@
+if vim.g.vscode ~= nil then
+	return
+end
+
 -- PDF Viewer:
 -- http://manpages.ubuntu.com/manpages/trusty/man5/zathurarc.5.html
 vim.g["vimtex_view_method"] = "zathura"
