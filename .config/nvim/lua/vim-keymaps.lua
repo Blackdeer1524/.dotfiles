@@ -51,4 +51,4 @@ vim.keymap.set("n", "]q", "<cmd>cn<cr>", { desc = "next quickfix list item" })
 --     vim.o.hlsearch = hlstate
 -- end, { desc = "Toggle hlsearch" })
 
--- vim.keymap.set({ "n", "v" }, "<C-q>", vim.cmd.nohlsearch, { desc = "Toggle hlsearch" })
+vim.keymap.set({ "n", "v" }, "<C-q>", vim.cmd.nohlsearch, { desc = "Toggle hlsearch" })
