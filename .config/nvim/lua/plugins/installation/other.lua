@@ -20,7 +20,6 @@ local M = {
 		-- a plugin for creating tests
 		"xeluxee/competitest.nvim",
 		enabled = vim.g.vscode == nil,
-		lazy = true,
 		dependencies = "MunifTanjim/nui.nvim",
 		opts = {
 			running_directory = ".",

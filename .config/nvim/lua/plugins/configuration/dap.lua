@@ -17,89 +17,99 @@ vim.api.nvim_create_autocmd({ "VimEnter" }, {
 local dap = require("dap")
 local persisten_breakpoints = require("persistent-breakpoints.api")
 
-vim.keymap.set("n", "<leader>dr", dap.run_last, { desc = "[d]ap [r]erun", noremap = true })
-vim.keymap.set("n", "<leader>df", dap.focus_frame, { desc = "[d]ap [f]ocus frame", noremap = true })
-
 vim.keymap.set("n", "<F5>", dap.continue)
 vim.keymap.set("n", "<F1>", dap.step_into)
 vim.keymap.set("n", "<F2>", dap.step_over)
 vim.keymap.set("n", "<F3>", dap.step_out)
 vim.keymap.set("n", "<F4>", dap.step_back)
-vim.keymap.set("n", "<leader>dc", dap.run_to_cursor, { desc = "[d]ebug run [t]o cursor", noremap = true })
-vim.keymap.set("n", "<leader>du", dap.up, { desc = "[d]ebug [u]p", noremap = true })
-vim.keymap.set("n", "<leader>dd", dap.down, { desc = "[d]ebug [d]own", noremap = true })
-vim.keymap.set("n", "<leader>dt", function()
-	require("dapui").toggle()
-end, { desc = "[d]apui [t]oggle window" })
-vim.keymap.set("n", "<leader>dT", function()
-	require("dap.ui.widgets").centered_float(require("dap.ui.widgets").threads)
-end, { desc = "[d]ebug show [T]hreads" })
 
-vim.keymap.set(
-	"n",
-	"<leader>db",
-	persisten_breakpoints.toggle_breakpoint,
-	{ desc = "[d]ebug [b]reak point", noremap = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>dB",
-	persisten_breakpoints.set_conditional_breakpoint,
-	{ desc = "[d]ebug conditional [b]reakpoint", noremap = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>dC",
-	require("persistent-breakpoints.api").clear_all_breakpoints,
-	{ desc = "[d]ebug [C]lear all breakpoints", noremap = true }
-)
-vim.keymap.set(
-	"n",
-	"<leader>dl",
-	"<cmd>Telescope dap list_breakpoints<cr>",
-	{ desc = "[d]ebug [l]ist breakpoints", noremap = true }
-)
-vim.keymap.set("n", "<leader>dK", "<cmd>DapTerminate<cr>", { desc = "[d]ebug [K]ill", noremap = true })
-vim.keymap.set("n", "<leader>dh", require("dap.ui.widgets").hover, { desc = "[d]ap [h]over", noremap = true })
+require("which-key").add({
+	{
+		mode = "n",
+		{ "<leader>d", group = "[d]ap" },
+		{ "<leader>db", persisten_breakpoints.toggle_breakpoint, desc = "[b]reak point", noremap = true },
+		{
+			"<leader>dB",
+			persisten_breakpoints.set_conditional_breakpoint,
+			desc = "conditional [b]reakpoint",
+			noremap = true,
+		},
+		{
+			"<leader>dl",
+			persisten_breakpoints.set_log_point,
+			desc = "[l]og point",
+			noremap = true,
+		},
+		{ "<leader>dr", dap.run_last, desc = "[r]erun", noremap = true },
+		{ "<leader>df", dap.focus_frame, desc = "[f]ocus frame", noremap = true },
+		{ "<leader>dc", dap.run_to_cursor, desc = "run [t]o cursor", noremap = true },
+		{ "<leader>du", dap.up, desc = "[u]p", noremap = true },
+		{ "<leader>dd", dap.down, desc = "[d]own", noremap = true },
+		{ "<leader>dt", require("dapui").toggle, desc = "[t]oggle ui" },
+		{
+			"<leader>dT",
+			function()
+				require("dap.ui.widgets").centered_float(require("dap.ui.widgets").threads)
+			end,
+			desc = "show [T]hreads",
+		},
+		{
+			"<leader>dC",
+			require("persistent-breakpoints.api").clear_all_breakpoints,
+			desc = "[C]lear all breakpoints",
+			noremap = true,
+		},
+		{ "<leader>dL", "<cmd>Telescope dap list_breakpoints<cr>", desc = "[l]ist breakpoints", noremap = true },
+		{ "<leader>dK", "<cmd>DapTerminate<cr>", desc = "[K]ill", noremap = true },
+		{ "<leader>dh", require("dap.ui.widgets").hover, desc = "[h]over", noremap = true },
+	},
+})
 
 -- https://github.com/mfussenegger/nvim-dap/discussions/355
-vim.api.nvim_set_hl(0, "DapBreakpoint", { ctermbg = 0, fg = "#993939", bg = "#31353f" })
-vim.api.nvim_set_hl(0, "DapLogPoint", { ctermbg = 0, fg = "#61afef", bg = "#31353f" })
-vim.api.nvim_set_hl(0, "DapStopped", { ctermbg = 0, fg = "#98c379", bg = "#31353f" })
+
+vim.api.nvim_create_autocmd({ "ColorScheme" }, {
+	pattern = "*",
+	desc = "Prevent colorscheme clearing self-defined DAP marker colors",
+	callback = function()
+		-- Reuse current SignColumn background (except for DapStoppedLine)
+		local sign_column_hl = vim.api.nvim_get_hl(0, { name = "SignColumn" })
+		-- if bg or ctermbg aren't found, use bg = 'bg' (which means current Normal) and ctermbg = 'Black'
+		-- convert to 6 digit hex value starting with #
+		local sign_column_bg = (sign_column_hl.bg ~= nil) and ("#%06x"):format(sign_column_hl.bg) or "bg"
+
+		vim.api.nvim_set_hl(0, "DapStopped", { fg = "#98c379", bg = sign_column_bg })
+		vim.api.nvim_set_hl(0, "DapStoppedLine", { bg = "#2e4d3d" })
+		vim.api.nvim_set_hl(0, "DapBreakpoint", { fg = "#993939", bg = sign_column_bg })
+		vim.api.nvim_set_hl(0, "DapBreakpointRejected", { fg = "#888ca6", bg = sign_column_bg })
+		vim.api.nvim_set_hl(0, "DapLogPoint", { fg = "#61afef", bg = sign_column_bg })
+	end,
+})
+
+-- reload current color scheme to pick up colors override if it was set up in a lazy plugin definition fashion
+vim.cmd.colorscheme(vim.g.colors_name)
 
 vim.fn.sign_define("DapBreakpoint", {
 	text = "",
-	texthl = "DapBreakpoint", --[[ linehl = 'DapBreakpoint', ]]
+	texthl = "DapBreakpoint",
 	numhl = "DapBreakpoint",
 })
 vim.fn.sign_define("DapBreakpointCondition", {
 	text = "",
-	texthl = "DapBreakpoint", --[[ linehl = 'DapBreakpoint', ]]
+	texthl = "DapBreakpoint",
 	numhl = "DapBreakpoint",
 })
 vim.fn.sign_define("DapBreakpointRejected", {
 	text = "",
-	texthl = "DapBreakpoint", --[[ linehl = 'DapBreakpoint', ]]
-	numhl = "DapBreakpoint",
+	texthl = "DapBreakpointRejected",
+	numhl = "DapBreakpointRejected",
 })
 vim.fn.sign_define("DapLogPoint", {
 	text = "",
 	texthl = "DapLogPoint",
-	--[[ linehl = 'DapLogPoint', ]]
 	numhl = "DapLogPoint",
 })
-
--- local dap = require('dap')
--- dap.listeners.before.event_initialized["debug-indicate-start"] = function(session, body)
---     vim.notify('Session started', 4)
--- end
---
--- dap.listeners.before.event_exited["debug-indicate-exit"] = function(session, body)
---     vim.notify('Session terminated', 2)
--- end
-
 vim.fn.sign_define("DapStopped", {
 	text = "",
-	texthl = "DapStopped", --[[ linehl = 'DapStopped', ]]
+	texthl = "DapStopped",
 	numhl = "DapStopped",
 })

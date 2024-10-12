@@ -439,7 +439,6 @@ local M = {
 									{ "<leader>ihn", idris.hide_namespace, desc = "Hide namespaces in hovers" },
 									{ "<leader>if", idris.full_namespace, desc = "Show full namespaces in hovers" },
 									{ "<leader>ib", require("idris2.browse").browse, desc = "browse" },
-
 									{
 										"<leader>ios",
 										function()
