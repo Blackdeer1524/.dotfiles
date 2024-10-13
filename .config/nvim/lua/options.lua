@@ -102,19 +102,5 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	end,
 })
 
-local function set_beacon_hl()
-	-- beacon.nvim highlight group
-	local bg = vim.api.nvim_get_hl(0, { name = "Normal" }).bg
-	vim.api.nvim_set_hl(0, "Beacon", { bg = 0xFFFFFF - bg })
-end
-
-vim.api.nvim_create_autocmd({ "ColorScheme" }, {
-	callback = function(_)
-		set_beacon_hl()
-	end,
-})
-
-set_beacon_hl()
-
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
