@@ -16,6 +16,7 @@ require("plugins")
 require("mason-setup")
 require("options")
 
+
 if vim.g.vscode ~= nil then
 	require("vscode-options")
 end

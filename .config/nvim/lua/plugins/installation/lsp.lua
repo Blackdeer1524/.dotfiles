@@ -164,18 +164,6 @@ local M = {
 			},
 		},
 	},
-	{
-		"danymat/neogen",
-		version = "*",
-		dependencies = {
-			"L3MON4D3/LuaSnip",
-		},
-		config = function()
-			require("neogen").setup({ snippet_engine = "luasnip" })
-			local opts = { noremap = true, silent = true, desc = "[n]eogen [g]enerate" }
-			vim.api.nvim_set_keymap("n", "<Leader>ng", ":lua require('neogen').generate()<CR>", opts)
-		end,
-	},
 	-- multiline diagnostics
 	{
 		-- "https://git.sr.ht/~whynothugo/lsp_lines.nvim",

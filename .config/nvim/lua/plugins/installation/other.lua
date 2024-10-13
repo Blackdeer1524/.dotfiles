@@ -1,5 +1,17 @@
 local M = {
 	{
+		"danymat/neogen",
+		version = "*",
+		dependencies = {
+			"L3MON4D3/LuaSnip",
+		},
+		config = function()
+			require("neogen").setup({ snippet_engine = "luasnip" })
+			local opts = { noremap = true, silent = true, desc = "[n]eogen [g]enerate" }
+			vim.api.nvim_set_keymap("n", "<Leader>ng", ":lua require('neogen').generate()<CR>", opts)
+		end,
+	},
+	{
 		"vinnymeller/swagger-preview.nvim",
 		enabled = vim.g.vscode == nil,
 		event = "VeryLazy",

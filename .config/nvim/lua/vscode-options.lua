@@ -53,7 +53,7 @@ vim.keymap.set("n", "<C-l>", "<cmd>lua require('vscode').action('workbench.actio
 
 vim.keymap.set({ "n" }, "<leader>q", "<cmd>lua require('vscode').action('workbench.action.closeEditorsAndGroup')<CR>")
 
-vim.keymap.set("n", "<leader>|",  "<cmd>lua require('vscode').action('workbench.action.splitEditor')<CR>")
-vim.keymap.set("n", "<leader>\\",  "<cmd>lua require('vscode').action('workbench.action.splitEditorDown')<CR>")
+vim.keymap.set("n", "<leader>|", "<cmd>lua require('vscode').action('workbench.action.splitEditor')<CR>")
+vim.keymap.set("n", "<leader>\\", "<cmd>lua require('vscode').action('workbench.action.splitEditorDown')<CR>")
 
-vim.keymap.set("n", "<leader>tt",  "<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>")
+vim.keymap.set("n", "<leader>tt", "<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>")
