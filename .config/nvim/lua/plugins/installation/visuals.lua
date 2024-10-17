@@ -173,7 +173,6 @@ local M = {
 			require("lualine").setup({
 				sections = {
 					lualine_c = { Harpoonline.format, "filename" },
-
 					lualine_x = { actived_venv },
 					lualine_y = {
 						{

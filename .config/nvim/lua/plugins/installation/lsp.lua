@@ -4,6 +4,14 @@ end
 
 local M = {
 	{
+		"someone-stole-my-name/yaml-companion.nvim",
+		requires = {
+			{ "neovim/nvim-lspconfig" },
+			{ "nvim-lua/plenary.nvim" },
+			{ "nvim-telescope/telescope.nvim" },
+		},
+	},
+	{
 		"folke/lazydev.nvim",
 		ft = "lua", -- only load on lua files
 		opts = {

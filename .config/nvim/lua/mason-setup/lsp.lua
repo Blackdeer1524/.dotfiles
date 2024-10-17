@@ -251,28 +251,13 @@ mason_lspconfig.setup_handlers({
 		})
 	end,
 	["yamlls"] = function()
-		lspconfig.yamlls.setup({
-			root_dir = vim.loop.cwd,
-			capabilities = capabilities,
-			settings = {
-				yaml = {
-					schemaStore = {
-						-- You must disable built-in schemaStore support if you want to use
-						-- this plugin and its advanced options like `ignore`.
-						enable = false,
-						-- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-						url = "",
-					},
-					schemas = require("schemastore").yaml.schemas({
-						ignore = {
-							"gRPC API Gateway & OpenAPI Config",
-							"openapi.json",
-						},
-					}),
-				},
+		local cfg = require("yaml-companion").setup({
+			lspconfig = {
+				on_attach = require("lsp.defaults").on_attach,
+				capabilities = capabilities,
 			},
-			on_attach = on_attach,
 		})
+		require("lspconfig")["yamlls"].setup(cfg)
 	end,
 	["jsonls"] = function()
 		lspconfig.jsonls.setup({
