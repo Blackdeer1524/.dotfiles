@@ -51,9 +51,17 @@ vim.keymap.set("n", "<C-h>", "<cmd>lua require('vscode').action('workbench.actio
 -- vim.keymap.set("n", "<C-k>", "<cmd>lua require('vscode').action('workbench.action.focusAboveGroup')<CR>", opts)
 vim.keymap.set("n", "<C-l>", "<cmd>lua require('vscode').action('workbench.action.focusRightGroup')<CR>", opts)
 
-vim.keymap.set({ "n" }, "<leader>q", "<cmd>lua require('vscode').action('workbench.action.closeEditorsAndGroup')<CR>")
+vim.keymap.set({ "n" }, "<A-q>", "<cmd>lua require('vscode').action('workbench.action.closeEditorsAndGroup')<CR>")
+vim.keymap.set({ "n" }, "<leader>q", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")
 
 vim.keymap.set("n", "<leader>|", "<cmd>lua require('vscode').action('workbench.action.splitEditor')<CR>")
 -- vim.keymap.set("n", "<leader>\\", "<cmd>lua require('vscode').action('workbench.action.splitEditorDown')<CR>")
 
 vim.keymap.set("n", "<leader>tt", "<cmd>lua require('vscode').action('workbench.action.toggleSidebarVisibility')<CR>")
+
+vim.keymap.set(
+	"n",
+	"<leader>sg",
+	"<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>",
+	{ desc = "[s]earch by [g]rep" }
+)
