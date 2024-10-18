@@ -83,3 +83,4 @@ vim.keymap.set(
 vim.keymap.set("n", "<leader>dd", "<cmd>lua require('vscode').action('workbench.action.debug.callStackDown')<cr>")
 vim.keymap.set("n", "<leader>du", "<cmd>lua require('vscode').action('workbench.action.debug.callStackUp')<cr>")
 vim.keymap.set("n", "<leader>ds", "<cmd>lua require('vscode').action('debug.jumpToCursor')<cr>")
+vim.keymap.set("n", "<leader>df", "<cmd>lua require('vscode').action('workbench.action.debug.callStackTop')<cr>")

@@ -71,8 +71,6 @@ vim.keymap.set("n", "<leader>st", function()
 	require("telescope.builtin").tagstack(telescope_search_layout)
 end, { desc = "[s]earch [t]agstack" })
 
-vim.keymap.set("n", "to", "<C-t>", { desc = "[t]ag [o]ut" })
-
 -- that fixes nvim-ufo (folding plugin)
 vim.cmd("autocmd User TelescopePreviewerLoaded setlocal number")
 
