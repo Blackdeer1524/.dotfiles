@@ -4,11 +4,6 @@ vim.keymap.set({ "n", "v" }, "<leader>sf", "<cmd>lua require('vscode').action('w
 
 -- LSP
 
-vim.keymap.set(
-	{ "n", "v" },
-	"<leader>db",
-	"<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>"
-)
 vim.keymap.set({ "n", "v" }, "<leader>ca", "<cmd>lua require('vscode').action('editor.action.quickFix')<CR>")
 
 local nmap = function(keys, func, desc)
@@ -37,6 +32,11 @@ nmap("<leader>K", vim.lsp.buf.signature_help, "Signature Documentation")
 nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
 nmap("<leader>wa", vim.lsp.buf.add_workspace_folder, "[W]orkspace [A]dd Folder")
 nmap("<leader>wr", vim.lsp.buf.remove_workspace_folder, "[W]orkspace [R]emove Folder")
+nmap(
+	"<leader>cl",
+	"<cmd>lua require('vscode').action('codelens.showLensesInCurrentLine')<CR>",
+	"[W]orkspace [R]emove Folder"
+)
 
 --- LSP END
 
@@ -65,3 +65,21 @@ vim.keymap.set(
 	"<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>",
 	{ desc = "[s]earch by [g]rep" }
 )
+
+-- DAP
+
+vim.keymap.set("n", "<leader>db", "<cmd>lua require('vscode').action('editor.debug.action.toggleBreakpoint')<CR>")
+vim.keymap.set("n", "<leader>dB", "<cmd>lua require('vscode').action('editor.debug.action.conditionalBreakpoint')<cr>")
+vim.keymap.set("n", "<leader>dl", "<cmd>lua require('vscode').action('editor.debug.action.addLogPoint')<cr>")
+vim.keymap.set("n", "<leader>dr", "<cmd>lua require('vscode').action('workbench.action.debug.restart')<cr>")
+vim.keymap.set("n", "<leader>dh", "<cmd>lua require('vscode').action('editor.debug.action.showDebugHover')<cr>")
+vim.keymap.set("n", "<leader>dK", "<cmd>lua require('vscode').action('workbench.action.debug.stop')<cr>")
+vim.keymap.set("n", "<leader>dc", "<cmd>lua require('vscode').action('editor.debug.action.runToCursor')<cr>")
+vim.keymap.set(
+	"n",
+	"<leader>dC",
+	"<cmd>lua require('vscode').action('workbench.debug.viewlet.action.removeAllBreakpoints')<cr>"
+)
+vim.keymap.set("n", "<leader>dd", "<cmd>lua require('vscode').action('workbench.action.debug.callStackDown')<cr>")
+vim.keymap.set("n", "<leader>du", "<cmd>lua require('vscode').action('workbench.action.debug.callStackUp')<cr>")
+vim.keymap.set("n", "<leader>ds", "<cmd>lua require('vscode').action('debug.jumpToCursor')<cr>")
