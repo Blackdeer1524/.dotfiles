@@ -188,7 +188,31 @@
   "breadcrumbs.showTypeParameters": false,
   "breadcrumbs.showVariables": false,
   "terminal.external.linuxExec": "alacritty",
-  "terminal.integrated.defaultProfile.linux": "tmux-shell",
+  // "terminal.integrated.defaultProfile.linux": "tmux-shell",
+  // "terminal.integrated.profiles.linux": {
+  //   //...existing profiles...
+  //   "tmux-shell": {
+  //     "path": "tmux",
+  //     "args": [
+  //       "new-session",
+  //       "-A",
+  //       "-s",
+  //       "vscode:${workspaceFolder}"
+  //     ]
+  //   }
+  // },
+  "bracketLens.line": "none",
+  "bracketLens.minBracketScopeLines": 10,
+  "bracketLens.prefix": " --> ",
+  "cmake.showOptionsMovedNotification": false,
+  "clangd.arguments": [
+    "--background-index",
+    "--header-insertion=iwyu",
+    "--all-scopes-completion",
+    "--completion-style=detailed",
+    "--pch-storage=memory"
+  ],
+  "editor.autoClosingBrackets": "always",
   "terminal.integrated.profiles.linux": {
     //...existing profiles...
     "tmux-shell": {
@@ -197,8 +221,19 @@
         "new-session",
         "-A",
         "-s",
-        "vscode:${workspaceFolder}"
+        "vscode:${workspaceFolderBasename}"
       ]
     }
-  }
+  },
+  "terminal.integrated.defaultProfile.linux": "tmux-shell",
+  "terminal.integrated.tabs.enabled": true,
+  "terminal.integrated.tabs.hideCondition": "never",
+  "terminal.integrated.automationProfile.linux": {
+    "path": "/usr/bin/zsh",
+    "args": [
+      // "-c",
+      // "/usr/bin/tmux attach \\; select-window -t auto"
+    ],
+  },
+  "python.analysis.completeFunctionParens": true,
 }

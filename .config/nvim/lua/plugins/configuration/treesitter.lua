@@ -37,7 +37,7 @@ require("nvim-treesitter.configs").setup({
 	},
 	auto_install = false,
 	highlight = {
-		enable = true,
+		enable = vim.g.vscode == nil,
 		disable = function(lang, bufnr)
 			if lang == "go" then
 				return vim.api.nvim_buf_line_count(bufnr) > 3000

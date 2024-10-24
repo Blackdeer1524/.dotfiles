@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>tt", "<cmd>lua require('vscode').action('workbench.
 vim.keymap.set(
 	"n",
 	"<leader>sg",
-	"<cmd>lua require('vscode').action('workbench.action.findInFiles')<CR>",
+	"<cmd>lua require('vscode').action('periscope.search')<CR>",
 	{ desc = "[s]earch by [g]rep" }
 )
 
@@ -84,3 +84,30 @@ vim.keymap.set("n", "<leader>dd", "<cmd>lua require('vscode').action('workbench.
 vim.keymap.set("n", "<leader>du", "<cmd>lua require('vscode').action('workbench.action.debug.callStackUp')<cr>")
 vim.keymap.set("n", "<leader>ds", "<cmd>lua require('vscode').action('debug.jumpToCursor')<cr>")
 vim.keymap.set("n", "<leader>df", "<cmd>lua require('vscode').action('workbench.action.debug.callStackTop')<cr>")
+
+--
+
+local function moveCursor(direction)
+	if vim.fn.reg_recording() == "" and vim.fn.reg_executing() == "" then
+		return ("g" .. direction)
+	else
+		return direction
+	end
+end
+
+vim.keymap.set("n", "k", function()
+	return moveCursor("k")
+end, { expr = true, remap = true })
+vim.keymap.set("n", "j", function()
+	return moveCursor("j")
+end, { expr = true, remap = true })
+
+vim.cmd([[
+nnoremap zM :call VSCodeNotify('editor.foldAll')<CR>
+nnoremap zR :call VSCodeNotify('editor.unfoldAll')<CR>
+nnoremap zc :call VSCodeNotify('editor.fold')<CR>
+nnoremap zC :call VSCodeNotify('editor.foldRecursively')<CR>
+nnoremap zo :call VSCodeNotify('editor.unfold')<CR>
+nnoremap zO :call VSCodeNotify('editor.unfoldRecursively')<CR>
+nnoremap za :call VSCodeNotify('editor.toggleFold')<CR>
+]])
