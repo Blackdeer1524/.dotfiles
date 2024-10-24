@@ -297,16 +297,6 @@
         "when": "editorTextFocus && foldingEnabled"
     },
     {
-        "key": "tab",
-        "command": "workbench.action.quickOpenNavigateNext",
-        "when": "inQuickOpen"
-    },
-    {
-        "key": "shift+tab",
-        "command": "outdent",
-        "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
-    },
-    {
         "key": "shift+tab",
         "command": "-outdent",
         "when": "editorTextFocus && !editorReadonly && !editorTabMovesFocus"
@@ -323,36 +313,6 @@
     },
     {
         "key": "shift+tab",
-        "command": "insertPrevSuggestion",
-        "when": "hasOtherSuggestions && textInputFocus && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
-    },
-    {
-        "key": "shift+tab",
-        "command": "-insertPrevSuggestion",
-        "when": "hasOtherSuggestions && textInputFocus && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
-    },
-    {
-        "key": "shift+tab",
-        "command": "acceptAlternativeSelectedSuggestion",
-        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
-    },
-    {
-        "key": "shift+tab",
-        "command": "-acceptAlternativeSelectedSuggestion",
-        "when": "suggestWidgetHasFocusedSuggestion && suggestWidgetVisible && textInputFocus"
-    },
-    {
-        "key": "shift+tab",
-        "command": "vscode-neovim.send",
-        "when": "neovim.init && neovim.recording || editorTextFocus && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-    },
-    {
-        "key": "shift+tab",
-        "command": "-vscode-neovim.send",
-        "when": "neovim.init && neovim.recording || editorTextFocus && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-    },
-    {
-        "key": "shift+tab",
         "command": "vscode-neovim.send-cmdline",
         "when": "neovim.init && neovim.mode == 'cmdline'"
     },
@@ -360,5 +320,10 @@
         "key": "shift+tab",
         "command": "-vscode-neovim.send-cmdline",
         "when": "neovim.init && neovim.mode == 'cmdline'"
+    },
+    {
+        "key": "shift+tab",
+        "command": "-insertPrevSuggestion",
+        "when": "hasOtherSuggestions && textInputFocus && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
     }
 ]
