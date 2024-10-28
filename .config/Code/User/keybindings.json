@@ -355,5 +355,20 @@
         "key": "ctrl+h",
         "command": "-editor.action.startFindReplaceAction",
         "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-actions.find",
+        "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+u",
+        "command": "editor.action.pageUpHover",
+        "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+b",
+        "command": "-editor.action.pageUpHover",
+        "when": "editorHoverFocused"
     }
 ]
