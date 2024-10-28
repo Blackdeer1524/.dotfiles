@@ -48,7 +48,7 @@
     "jupyter-notebook": "left"
   },
   "window.zoomLevel": 2,
-  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.colorTheme": "Eva Light",
   "workbench.tree.indent": 18,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -241,5 +241,4 @@
   "python.analysis.typeEvaluation.strictListInference": true,
   "python.analysis.typeEvaluation.strictDictionaryInference": true,
   "python.analysis.typeEvaluation.strictSetInference": true,
-  "terminal.integrated.tabs.location": "left",
 }
