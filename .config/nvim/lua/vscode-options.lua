@@ -46,10 +46,10 @@ vim.keymap.set({ "n" }, "<leader>e", "<cmd>lua require('vscode').action('workben
 
 local opts = { noremap = true, silent = true }
 
-vim.keymap.set("n", "<C-h>", "<cmd>lua require('vscode').action('workbench.action.focusLeftGroup')<CR>", opts)
+-- vim.keymap.set("n", "<C-h>", "<cmd>lua require('vscode').action('workbench.action.focusLeftGroup')<CR>", opts)
 -- vim.keymap.set("n", "<C-j>", "<cmd>lua require('vscode').action('workbench.action.focusBelowGroup')<CR>", opts)
 -- vim.keymap.set("n", "<C-k>", "<cmd>lua require('vscode').action('workbench.action.focusAboveGroup')<CR>", opts)
-vim.keymap.set("n", "<C-l>", "<cmd>lua require('vscode').action('workbench.action.focusRightGroup')<CR>", opts)
+-- vim.keymap.set("n", "<C-l>", "<cmd>lua require('vscode').action('workbench.action.focusRightGroup')<CR>", opts)
 
 vim.keymap.set({ "n" }, "<A-q>", "<cmd>lua require('vscode').action('workbench.action.closeEditorsAndGroup')<CR>")
 vim.keymap.set({ "n" }, "<leader>q", "<cmd>lua require('vscode').action('editor.action.showHover')<CR>")

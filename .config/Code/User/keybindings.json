@@ -160,7 +160,7 @@
     {
         "key": "ctrl+h",
         "command": "workbench.view.explorer",
-        "when": "neovim.init && activeEditorGroupIndex == '1' && neovim.mode == 'normal' && explorerViewletVisible"
+        "when": "explorerViewletVisible && activeEditorGroupIndex == '1'"
     },
     {
         "key": "ctrl+o",
@@ -190,17 +190,12 @@
     {
         "key": "ctrl+h",
         "command": "workbench.view.search",
-        "when": "searchViewletVisible && neovim.init && activeEditorGroupIndex == '1' && neovim.mode == 'normal'"
+        "when": "searchViewletVisible && activeEditorGroupIndex == '1'"
     },
     {
         "key": "ctrl+shift+f",
         "command": "-workbench.view.search",
         "when": "workbench.view.search.active && neverMatch =~ /doesNotMatch/"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.view.search",
-        "when": "neovim.init && searchViewletVisible && activeEditorGroupIndex == '1' && neovim.mode == 'normal'"
     },
     {
         "key": "ctrl+l",
@@ -354,6 +349,11 @@
     {
         "key": "ctrl+h",
         "command": "workbench.action.focusLeftGroup",
-        "when": "editorFocus || keybindingFocus"
+        "when": "(editorFocus || keybindingFocus) && activeEditorGroupIndex != '1'"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "-editor.action.startFindReplaceAction",
+        "when": "editorFocus || editorIsOpen"
     }
 ]
