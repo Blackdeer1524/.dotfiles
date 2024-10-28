@@ -329,7 +329,7 @@
     {
         "key": "ctrl+j",
         "command": "workbench.action.focusPanel",
-        "when": "editorFocus || keybindingFocus"
+        "when": "panelVisible && (editorFocus || keybindingFocus)"
     },
     {
         "key": "ctrl+shift+h",
