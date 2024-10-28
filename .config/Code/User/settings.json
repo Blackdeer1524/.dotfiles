@@ -48,7 +48,7 @@
     "jupyter-notebook": "left"
   },
   "window.zoomLevel": 2,
-  "workbench.colorTheme": "Eva Dark",
+  "workbench.colorTheme": "Catppuccin Latte",
   "workbench.tree.indent": 18,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -71,7 +71,7 @@
     "Revioletd"
   ],
   "python.analysis.autoImportCompletions": true,
-  "python.analysis.typeCheckingMode": "basic",
+  "python.analysis.typeCheckingMode": "strict",
   "python.analysis.inlayHints.callArgumentNames": "partial",
   "python.analysis.inlayHints.functionReturnTypes": true,
   "python.analysis.inlayHints.variableTypes": true,
@@ -236,4 +236,10 @@
     ],
   },
   "python.analysis.completeFunctionParens": true,
+  "python.languageServer": "Pylance",
+  "python.analysis.typeEvaluation.enableReachabilityAnalysis": true,
+  "python.analysis.typeEvaluation.strictListInference": true,
+  "python.analysis.typeEvaluation.strictDictionaryInference": true,
+  "python.analysis.typeEvaluation.strictSetInference": true,
+  "terminal.integrated.tabs.location": "left",
 }

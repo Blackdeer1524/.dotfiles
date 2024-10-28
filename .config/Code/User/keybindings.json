@@ -173,11 +173,6 @@
         "when": "editorHoverFocused"
     },
     {
-        "key": "ctrl+j",
-        "command": "workbench.action.terminal.focus",
-        "when": "editorFocus && !terminalFocus"
-    },
-    {
         "key": "ctrl+down",
         "command": "-workbench.action.terminal.focus",
         "when": "accessibilityModeEnabled && accessibleViewOnLastLine && terminalHasBeenCreated && accessibleViewCurrentProviderId == 'terminal' || accessibilityModeEnabled && accessibleViewOnLastLine && terminalProcessSupported && accessibleViewCurrentProviderId == 'terminal'"
@@ -185,7 +180,7 @@
     {
         "key": "ctrl+k",
         "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus"
+        "when": "terminalFocus || inDebugRepl"
     },
     {
         "key": "ctrl+f",
@@ -325,5 +320,40 @@
         "key": "shift+tab",
         "command": "-insertPrevSuggestion",
         "when": "hasOtherSuggestions && textInputFocus && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
+    },
+    {
+        "key": "] d",
+        "command": "editor.action.marker.next",
+        "when": "editorFocus && neovim.init && neovim.mode == 'normal'"
+    },
+    {
+        "key": "[ d",
+        "command": "editor.action.marker.prev",
+        "when": "editorFocus&& neovim.init && neovim.mode == 'normal'"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.focusPanel",
+        "when": "editorFocus"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command": "workbench.action.previousPanelView",
+        "when": "panelFocus"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.nextPanelView",
+        "when": "panelFocus"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusRightGroup",
+        "when": "editorFocus || keybindingFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusLeftGroup",
+        "when": "editorFocus || keybindingFocus"
     }
 ]
