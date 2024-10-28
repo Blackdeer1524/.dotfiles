@@ -329,7 +329,7 @@
     {
         "key": "ctrl+j",
         "command": "workbench.action.focusPanel",
-        "when": "editorFocus"
+        "when": "editorFocus || keybindingFocus"
     },
     {
         "key": "ctrl+shift+h",
@@ -370,5 +370,25 @@
         "key": "ctrl+b",
         "command": "-editor.action.pageUpHover",
         "when": "editorHoverFocused"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "keybindings.editor.searchKeybindings",
+        "when": "inKeybindings"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-keybindings.editor.searchKeybindings",
+        "when": "inKeybindings"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "keybindings.editor.focusKeybindings",
+        "when": "inKeybindings && inKeybindingsSearch"
+    },
+    {
+        "key": "ctrl+down",
+        "command": "-keybindings.editor.focusKeybindings",
+        "when": "inKeybindings && inKeybindingsSearch"
     }
 ]
