@@ -48,7 +48,7 @@
     "jupyter-notebook": "left"
   },
   "window.zoomLevel": 2,
-  "workbench.colorTheme": "Eva Light",
+  "workbench.colorTheme": "Eva Dark",
   "workbench.tree.indent": 18,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -247,4 +247,6 @@
   "outline-map.region.highlight": false,
   "workbench.activityBar.location": "bottom",
   "window.customTitleBarVisibility": "auto",
+  "editor.gotoLocation.alternativeDefinitionCommand": "",
+  "editor.gotoLocation.alternativeTypeDefinitionCommand": "",
 }
