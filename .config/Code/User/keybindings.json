@@ -163,11 +163,6 @@
         "when": "explorerViewletVisible && activeEditorGroupIndex == '1'"
     },
     {
-        "key": "ctrl+o",
-        "command": "open-to-other-editor-group.openToOtherEditorGroup",
-        "when": "explorerViewletVisible && filesExplorerFocus && !explorerResourceIsFolder && !inputFocus"
-    },
-    {
         "key": "ctrl+u",
         "command": "-editor.action.pageUpHover",
         "when": "editorHoverFocused"
@@ -180,7 +175,7 @@
     {
         "key": "ctrl+k",
         "command": "workbench.action.focusActiveEditorGroup",
-        "when": "terminalFocus || inDebugRepl"
+        "when": "panelFocus"
     },
     {
         "key": "ctrl+f",
@@ -349,16 +344,11 @@
     {
         "key": "ctrl+h",
         "command": "workbench.action.focusLeftGroup",
-        "when": "editorFocus && activeEditorGroupIndex != '1' || inKeybindings && activeEditorGroupIndex != '1'"
+        "when": "(editorFocus  || inKeybindings)  && activeEditorGroupIndex != '1'"
     },
     {
         "key": "ctrl+h",
         "command": "-editor.action.startFindReplaceAction",
-        "when": "editorFocus || editorIsOpen"
-    },
-    {
-        "key": "ctrl+f",
-        "command": "-actions.find",
         "when": "editorFocus || editorIsOpen"
     },
     {
@@ -399,5 +389,15 @@
         "key": "ctrl+`",
         "command": "-workbench.action.terminal.toggleTerminal",
         "when": "terminal.active"
+    },
+    {
+        "key": "ctrl+alt+m",
+        "command": "workbench.action.toggleMaximizedPanel",
+        "when": "panelFocus"
+    },
+    {
+        "key": "ctrl+f",
+        "command": "-actions.find",
+        "when": "editorFocus || editorIsOpen"
     }
 ]
