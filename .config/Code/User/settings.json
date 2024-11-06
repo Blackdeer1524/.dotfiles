@@ -249,4 +249,5 @@
   "window.customTitleBarVisibility": "auto",
   "editor.gotoLocation.alternativeDefinitionCommand": "",
   "editor.gotoLocation.alternativeTypeDefinitionCommand": "",
+  "editor.cursorSurroundingLines": 7,
 }
