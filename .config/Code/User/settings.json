@@ -245,4 +245,6 @@
   "outline-map.expand": "manual",
   "outline-map.workspace.enabled": false,
   "outline-map.region.highlight": false,
+  "workbench.activityBar.location": "bottom",
+  "window.customTitleBarVisibility": "auto",
 }
