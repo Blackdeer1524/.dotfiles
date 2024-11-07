@@ -240,7 +240,7 @@
   "workbench.layoutControl.enabled": false,
   "editor.cursorBlinking": "solid",
   "window.menuBarVisibility": "toggle",
-  "debug.toolBarLocation": "hidden",
+  "debug.toolBarLocation": "docked",
   "outline-map.follow": "manual",
   "outline-map.expand": "manual",
   "outline-map.workspace.enabled": false,
@@ -250,4 +250,7 @@
   "editor.gotoLocation.alternativeDefinitionCommand": "",
   "editor.gotoLocation.alternativeTypeDefinitionCommand": "",
   "editor.cursorSurroundingLines": 7,
+  "debug.inlineValues": "on",
+  "debug.showVariableTypes": true,
+  "debugpy.showPythonInlineValues": true,
 }
