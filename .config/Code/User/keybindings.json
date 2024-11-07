@@ -388,7 +388,7 @@
     {
         "key": "ctrl+l",
         "command": "workbench.action.focusAuxiliaryBar",
-        "when": "editorFocus && activeEditorGroupLast && auxiliaryBarVisible"
+        "when": "auxiliaryBarVisible && (activeEditorGroupLast  && editorFocus || panelFocus)"
     },
     {
         "key": "ctrl+h",
