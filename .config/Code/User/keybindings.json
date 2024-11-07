@@ -155,12 +155,7 @@
     {
         "key": "ctrl+l",
         "command": "workbench.action.focusFirstEditorGroup",
-        "when": "inSearchEditor || searchViewletFocus"
-    },
-    {
-        "key": "ctrl+h",
-        "command": "workbench.view.explorer",
-        "when": "explorerViewletVisible && panelFocus || explorerViewletVisible && activeEditorGroupIndex == '1' && editorFocus"
+        "when": "sideBarFocus"
     },
     {
         "key": "ctrl+u",
@@ -183,19 +178,9 @@
         "when": "editorHoverFocused"
     },
     {
-        "key": "ctrl+h",
-        "command": "workbench.view.search",
-        "when": "searchViewletVisible && (activeEditorGroupIndex == '1' || panelFocus )"
-    },
-    {
         "key": "ctrl+shift+f",
         "command": "-workbench.view.search",
         "when": "workbench.view.search.active && neverMatch =~ /doesNotMatch/"
-    },
-    {
-        "key": "ctrl+l",
-        "command": "workbench.action.focusFirstEditorGroup",
-        "when": "explorerViewletFocus || searchViewletFocus"
     },
     {
         "key": "ctrl+k",
@@ -409,5 +394,14 @@
         "key": "ctrl+h",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "auxiliaryBarFocus"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusSideBar",
+        "when": "sideBarVisible && (activeEditorGroupIndex == '1' && editorFocus || panelFocus)"
+    },
+    {
+        "key": "ctrl+0",
+        "command": "-workbench.action.focusSideBar"
     }
 ]
