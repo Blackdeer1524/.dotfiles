@@ -160,7 +160,7 @@
     {
         "key": "ctrl+h",
         "command": "workbench.view.explorer",
-        "when": "explorerViewletVisible && (activeEditorGroupIndex == '1' || panelFocus)"
+        "when": "explorerViewletVisible && panelFocus || explorerViewletVisible && activeEditorGroupIndex == '1' && editorFocus"
     },
     {
         "key": "ctrl+u",
@@ -195,7 +195,7 @@
     {
         "key": "ctrl+l",
         "command": "workbench.action.focusFirstEditorGroup",
-        "when": "explorerViewletFocus && neovim.init && neovim.mode == 'normal' || neovim.init && searchViewletFocus && neovim.mode == 'normal'"
+        "when": "explorerViewletFocus || searchViewletFocus"
     },
     {
         "key": "ctrl+k",
@@ -399,5 +399,15 @@
         "key": "ctrl+f",
         "command": "-actions.find",
         "when": "editorFocus || editorIsOpen"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusAuxiliaryBar",
+        "when": "editorFocus && activeEditorGroupLast && auxiliaryBarVisible"
+    },
+    {
+        "key": "ctrl+h",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "auxiliaryBarFocus"
     }
 ]
