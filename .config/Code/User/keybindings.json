@@ -155,7 +155,7 @@
     {
         "key": "ctrl+l",
         "command": "workbench.action.focusFirstEditorGroup",
-        "when": "sideBarFocus"
+        "when": "sideBarFocus && !panelMaximized"
     },
     {
         "key": "ctrl+u",
@@ -307,9 +307,9 @@
         "when": "editorFocus&& neovim.init && neovim.mode == 'normal'"
     },
     {
-        "key": "ctrl+j",
+        "key": "ctrl+l",
         "command": "workbench.action.focusPanel",
-        "when": "panelVisible && (editorFocus || keybindingFocus)"
+        "when": "panelMaximized && sideBarFocus"
     },
     {
         "key": "ctrl+shift+h",
@@ -403,5 +403,14 @@
     {
         "key": "ctrl+0",
         "command": "-workbench.action.focusSideBar"
+    },
+    {
+        "key": "ctrl+j",
+        "command": "workbench.action.focusPanel",
+        "when": "editorFocus && panelVisible || keybindingFocus && panelVisible"
+    },
+    {
+        "key": "numpad_divide",
+        "command": "search.action.openNewEditor"
     }
 ]

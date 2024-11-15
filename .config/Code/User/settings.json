@@ -30,7 +30,7 @@
   "editor.inlayHints.enabled": "on",
   "editor.lightbulb.enabled": "onCode",
   "editor.lineNumbers": "relative",
-  "files.autoSave": "afterDelay",
+  "files.autoSave": "onFocusChange",
   "go.inlayHints.assignVariableTypes": true,
   "go.inlayHints.compositeLiteralFields": true,
   "go.inlayHints.compositeLiteralTypes": true,
@@ -48,7 +48,7 @@
     "jupyter-notebook": "left"
   },
   "window.zoomLevel": 2,
-  "workbench.colorTheme": "Eva Dark",
+  "workbench.colorTheme": "Eva Light",
   "workbench.tree.indent": 18,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -246,11 +246,56 @@
   "outline-map.workspace.enabled": false,
   "outline-map.region.highlight": false,
   "workbench.activityBar.location": "bottom",
-  "window.customTitleBarVisibility": "auto",
   "editor.gotoLocation.alternativeDefinitionCommand": "",
   "editor.gotoLocation.alternativeTypeDefinitionCommand": "",
   "editor.cursorSurroundingLines": 7,
   "debug.inlineValues": "on",
   "debug.showVariableTypes": true,
   "debugpy.showPythonInlineValues": true,
+  "window.customTitleBarVisibility": "auto",
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "none",
+  "better-comments.tags": [
+    {
+      "tag": "bug:",
+      "color": "#D20F39",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "info:",
+      "color": "#3498DB",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "todo:",
+      "color": "#04A5E5",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    },
+    {
+      "tag": "warn:",
+      "color": "#DF8E1D",
+      "strikethrough": false,
+      "underline": false,
+      "backgroundColor": "transparent",
+      "bold": true,
+      "italic": false
+    }
+  ],
+  "workbench.editor.enablePreviewFromQuickOpen": true,
+  "workbench.quickOpen.preserveInput": true,
+  "search.quickAccess.preserveInput": true,
+  "workbench.commandPalette.preserveInput": true,
+  "editor.suggest.preview": true,
 }
