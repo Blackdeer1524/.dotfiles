@@ -26,7 +26,6 @@
   "clangd.path": "/home/blackdeer/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd",
   "editor.fontSize": 13,
   "editor.guides.bracketPairs": true,
-  "editor.guides.highlightActiveIndentation": false,
   "editor.inlayHints.enabled": "on",
   "editor.lightbulb.enabled": "onCode",
   "editor.lineNumbers": "relative",
@@ -48,7 +47,6 @@
     "jupyter-notebook": "left"
   },
   "window.zoomLevel": 2,
-  "workbench.colorTheme": "Eva Light",
   "workbench.tree.indent": 18,
   "[jsonc]": {
     "editor.defaultFormatter": "vscode.json-language-features"
@@ -249,7 +247,6 @@
   "editor.gotoLocation.alternativeDefinitionCommand": "",
   "editor.gotoLocation.alternativeTypeDefinitionCommand": "",
   "editor.cursorSurroundingLines": 7,
-  "debug.inlineValues": "on",
   "debug.showVariableTypes": true,
   "debugpy.showPythonInlineValues": true,
   "window.customTitleBarVisibility": "auto",
@@ -297,5 +294,35 @@
   "workbench.quickOpen.preserveInput": true,
   "search.quickAccess.preserveInput": true,
   "workbench.commandPalette.preserveInput": true,
-  "editor.suggest.preview": true,
+  "editor.scrollbar.verticalScrollbarSize": 7,
+  "workbench.list.fastScrollSensitivity": 1,
+  "debug.inlineValues": "off",
+  "[javascript]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[html]": {
+    "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+  },
+  "[yaml]": {
+    "editor.defaultFormatter": "redhat.vscode-yaml"
+  },
+  "customLocalFormatters.formatters": [
+    {
+      "command": "coqfmt",
+      "languages": ["coq"]
+    }
+  ],
+  "vscoq.proof.delegation": "Delegate",
+  "vscoq.proof.mode": 1,
+  "vscoq.diagnostics.full": true,
+  "vscoq.args": [
+    
+  ],
+  "workbench.preferredHighContrastColorTheme": "Eva Light",
+  "vscoq.proof.workers": 10,
+  "coq-lsp.show_notices_as_diagnostics": true,
+  "coq-lsp.send_diags_extra_data": true,
+  "editor.wordBasedSuggestions": "allDocuments",
+  "workbench.colorTheme": "Eva Light",
+  "docsView.documentationView.updateMode": "sticky",
 }

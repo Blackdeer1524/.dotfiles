@@ -13,6 +13,8 @@ export PATH=$PATH:$HOME/gpt4all/lib/libcudart.so.12
 export PATH=$PATH:$HOME/apache-maven-3.9.8/bin
 export PATH=$PATH:/opt/riscv/bin
 export PATH=$PATH:/usr/local/i386elfgcc/bin
+export PATH=$PATH:$HOME/.opam/default/bin
+export PATH=$PATH:$HOME/.elan/bin
 
 export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
@@ -67,7 +69,7 @@ zstyle ':omz:update' mode reminder  # just remind me to update when it's time
 # DISABLE_AUTO_TITLE="true"
 
 # Uncomment the following line to enable command auto-correction.
-ENABLE_CORRECTION="true"
+# ENABLE_CORRECTION="true"
 
 # Uncomment the following line to display red dots whilst waiting for completion.
 # You can also set it to another string to have that shown instead of the default red dots.
@@ -96,7 +98,7 @@ HIST_STAMPS="dd/mm/yyyy"
 # Custom plugins may be added to $ZSH_CUSTOM/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git ssh vi-mode golang docker docker-compose kubectl minikube)
+plugins=(git ssh vi-mode golang docker docker-compose kubectl minikube helm)
 
 source $ZSH/oh-my-zsh.sh
 

@@ -297,16 +297,6 @@
         "when": "hasOtherSuggestions && textInputFocus && !inSnippetMode && !suggestWidgetVisible && config.editor.tabCompletion == 'on'"
     },
     {
-        "key": "] d",
-        "command": "editor.action.marker.next",
-        "when": "editorFocus && neovim.init && neovim.mode == 'normal'"
-    },
-    {
-        "key": "[ d",
-        "command": "editor.action.marker.prev",
-        "when": "editorFocus&& neovim.init && neovim.mode == 'normal'"
-    },
-    {
         "key": "ctrl+l",
         "command": "workbench.action.focusPanel",
         "when": "panelMaximized && sideBarFocus"
@@ -314,12 +304,12 @@
     {
         "key": "ctrl+shift+h",
         "command": "workbench.action.previousPanelView",
-        "when": "panelFocus"
+        "when": "panelFocus || coqPerfView.active"
     },
     {
         "key": "ctrl+shift+l",
         "command": "workbench.action.nextPanelView",
-        "when": "panelFocus"
+        "when": "panelFocus || coqPerfView.active"
     },
     {
         "key": "ctrl+l",
@@ -412,5 +402,10 @@
     {
         "key": "numpad_divide",
         "command": "search.action.openNewEditor"
+    },
+    {
+        "key": "ctrl+shift+x",
+        "command": "-lean4.restartFile",
+        "when": "lean4.isLeanFeatureSetActive"
     }
 ]
