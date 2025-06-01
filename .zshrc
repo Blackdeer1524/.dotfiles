@@ -1,5 +1,9 @@
+export XDG_CONFIG_HOME=$HOME/.config
+
 # If you come from bash you might have to change your $PATH.
 export PATH=$HOME/bin:$HOME/.local/bin:/usr/local/bin:$PATH
+
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/cuda/lib64
 
 export PATH=$PATH:$HOME/scripts
 
@@ -20,6 +24,8 @@ export DENO_INSTALL="$HOME/.deno"
 export PATH="$DENO_INSTALL/bin:$PATH"
 
 . "$HOME/.cargo/env"
+
+export PATH=$PATH:/$HOME/.pack/bin
 
 export EDITOR='nvim'
 

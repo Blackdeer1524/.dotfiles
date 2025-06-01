@@ -18,5 +18,5 @@ require("options")
 
 
 if vim.g.vscode ~= nil then
-	require("vscode-options")
+	require("vscode-conf")
 end

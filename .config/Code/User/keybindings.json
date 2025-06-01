@@ -153,11 +153,6 @@
         "when": "codeActionMenuVisible"
     },
     {
-        "key": "ctrl+l",
-        "command": "workbench.action.focusFirstEditorGroup",
-        "when": "sideBarFocus && !panelMaximized"
-    },
-    {
         "key": "ctrl+u",
         "command": "-editor.action.pageUpHover",
         "when": "editorHoverFocused"
@@ -381,14 +376,14 @@
         "when": "auxiliaryBarVisible && (activeEditorGroupLast  && editorFocus || panelFocus)"
     },
     {
-        "key": "ctrl+h",
+        "key": "ctrl+l",
         "command": "workbench.action.focusActiveEditorGroup",
-        "when": "auxiliaryBarFocus"
+        "when": "sideBarFocus && !panelMaximized"
     },
     {
         "key": "ctrl+h",
         "command": "workbench.action.focusSideBar",
-        "when": "sideBarVisible && (activeEditorGroupIndex == '1' && editorFocus || panelFocus)"
+        "when": "panelFocus && sideBarVisible || (editorFocus || keybindingFocus) && sideBarVisible && activeEditorGroupIndex == '1'"
     },
     {
         "key": "ctrl+0",
@@ -407,5 +402,81 @@
         "key": "ctrl+shift+x",
         "command": "-lean4.restartFile",
         "when": "lean4.isLeanFeatureSetActive"
+    },
+    {
+        "key": "ctrl+shift+v",
+        "command": "-markdown.showPreview",
+        "when": "!notebookEditorFocused && editorLangId == 'markdown'"
+    },
+    {
+        "key": "ctrl+shift+v",
+        "command": "-notebook.cell.pasteAbove",
+        "when": "notebookEditorFocused && !inputFocus"
+    },
+    {
+        "key": "ctrl+; f",
+        "command": "-testing.runCurrentFile",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+; c",
+        "command": "-testing.runAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+; a",
+        "command": "-testing.runAll"
+    },
+    {
+        "key": "ctrl+; l",
+        "command": "-testing.reRunLastRun"
+    },
+    {
+        "key": "ctrl+; ctrl+a",
+        "command": "-testing.debugAll"
+    },
+    {
+        "key": "ctrl+; ctrl+l",
+        "command": "-testing.debugLastRun"
+    },
+    {
+        "key": "ctrl+; ctrl+c",
+        "command": "-testing.debugAtCursor",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+; ctrl+f",
+        "command": "-testing.debugCurrentFile",
+        "when": "editorTextFocus"
+    },
+    {
+        "key": "ctrl+; ctrl+o",
+        "command": "-testing.showMostRecentOutput",
+        "when": "testing.hasAnyResults"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "search.focus.previousInputBox",
+        "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus"
+    },
+    {
+        "key": "ctrl+up",
+        "command": "-search.focus.previousInputBox",
+        "when": "inSearchEditor && inputBoxFocus || inputBoxFocus && searchViewletVisible && !searchInputBoxFocus"
+    },
+    {
+        "key": "ctrl+k",
+        "command": "search.action.focusQueryEditorWidget",
+        "when": "inSearchEditor"
+    },
+    {
+      "key": "escape",
+      "command": "workbench.action.closeActiveEditor",
+      "when": "inSearchEditor"
+    },
+    {
+        "key": "ctrl+l",
+        "command": "workbench.action.focusActiveEditorGroup",
+        "when": "auxiliaryBarFocus"
     }
 ]

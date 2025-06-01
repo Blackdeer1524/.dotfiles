@@ -80,7 +80,6 @@ mason_lspconfig.setup({
 		"yamlls",
 		"jsonls",
 		"spectral",
-		"jdtls",
 		"bashls",
 		"clangd",
 		"cssls",
@@ -100,7 +99,6 @@ mason_lspconfig.setup({
 })
 
 mason_lspconfig.setup_handlers({
-	["jdtls"] = function() end, --- jdtls.nvim sets lsp itself
 	["gopls"] = function()
 		lspconfig.gopls.setup({
 			cmd = { require("lsp.defaults").MASON_BIN .. "/gopls" },

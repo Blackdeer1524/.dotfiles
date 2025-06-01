@@ -23,9 +23,10 @@
   "C_Cpp.intelliSenseMemoryLimit": 8192,
   "C_Cpp.intelliSenseUpdateDelay": 1000,
   "clangd.checkUpdates": true,
-  "clangd.path": "/home/blackdeer/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/18.1.3/clangd_18.1.3/bin/clangd",
+  "clangd.path": "/home/blackdeer/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/19.1.2/clangd_19.1.2/bin/clangd",
   "editor.fontSize": 13,
   "editor.guides.bracketPairs": true,
+  "editor.bracketPairColorization.enabled": true,
   "editor.inlayHints.enabled": "on",
   "editor.lightbulb.enabled": "onCode",
   "editor.lineNumbers": "relative",
@@ -134,11 +135,10 @@
   "workbench.editor.navigationScope": "editorGroup",
   "workbench.editor.showTabs": "none",
   "workbench.editor.centeredLayoutAutoResize": false,
-  "C_Cpp.intelliSenseEngine": "disabled",
   "cph.general.defaultLanguage": "cpp",
   "cph.general.defaultLanguageTemplateFileLocation": "/home/blackdeer/competitest_tmpls/tmpl.cpp",
   "cph.general.menuChoices": "cpp python",
-  "editor.fontFamily": "'UbuntuMono Nerd Font', 'Droid Sans Mono', 'monospace', monospace",
+  "editor.fontFamily": "'Hasklug Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
   "vscode-neovim.ctrlKeysForInsertMode": [
     "a",
     "c",
@@ -154,7 +154,8 @@
     "e"
   ],
   "vs-kubernetes": {
-    "vscode-kubernetes.helm-path-linux": "/home/blackdeer/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm"
+    "vscode-kubernetes.helm-path-linux": "/home/blackdeer/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm",
+    "vs-kubernetes.minikube-show-information-expiration": "2025-03-31T10:38:27.487Z"
   },
   "workbench.panel.opensMaximized": "never",
   "workbench.tree.stickyScrollMaxItemCount": 3,
@@ -201,9 +202,10 @@
     "--header-insertion=iwyu",
     "--all-scopes-completion",
     "--completion-style=detailed",
-    "--pch-storage=memory"
+    "--pch-storage=memory",
+    "--enable-config"
   ],
-  "editor.autoClosingBrackets": "always",
+  "editor.autoClosingBrackets": "beforeWhitespace",
   "terminal.integrated.profiles.linux": {
     //...existing profiles...
     "tmux-shell": {
@@ -250,7 +252,6 @@
   "debug.showVariableTypes": true,
   "debugpy.showPythonInlineValues": true,
   "window.customTitleBarVisibility": "auto",
-  "editor.wordWrap": "on",
   "editor.wrappingIndent": "none",
   "better-comments.tags": [
     {
@@ -320,9 +321,32 @@
   ],
   "workbench.preferredHighContrastColorTheme": "Eva Light",
   "vscoq.proof.workers": 10,
-  "coq-lsp.show_notices_as_diagnostics": true,
   "coq-lsp.send_diags_extra_data": true,
   "editor.wordBasedSuggestions": "allDocuments",
-  "workbench.colorTheme": "Eva Light",
+  "workbench.colorTheme": "Catppuccin Latte",
   "docsView.documentationView.updateMode": "sticky",
+  "coq-lsp.unicode_completion": "extended",
+  "workbench.colorCustomizations": {
+    
+  },
+  "lean4.infoview.allErrorsOnLine": false,
+  "lean4.infoview.showExpectedType": false,
+  "evenBetterToml.formatter.columnWidth": 80,
+  "terminal.integrated.suggest.quickSuggestions": false,
+  "editor.suggestOnTriggerCharacters": false,
+  "C_Cpp.workspaceSymbols": "All",
+  "C_Cpp.intelliSenseEngine": "disabled",
+  "[go]": {
+  
+    "editor.formatOnSave": false
+  },
+  "workbench.reduceMotion": "on",
+  "dev.containers.defaultExtensions": [
+    "JoshMu.periscope",
+    "tobias-z.vscode-harpoon"
+  ],
+  "githubPullRequests.fileListLayout": "tree",
+  "zenMode.hideLineNumbers": false,
+  "zenMode.showTabs": "none",
+  "workbench.editor.empty.hint": "hidden",
 }

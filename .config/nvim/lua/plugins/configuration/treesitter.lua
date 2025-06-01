@@ -34,6 +34,7 @@ require("nvim-treesitter.configs").setup({
 		"vim",
 		"make",
 		"doxygen",
+		"cmake",
 	},
 	auto_install = false,
 	highlight = {

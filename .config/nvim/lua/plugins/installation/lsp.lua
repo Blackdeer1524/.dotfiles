@@ -4,8 +4,26 @@ end
 
 local M = {
 	{
+		"tomtomjhj/coq-lsp.nvim",
+		dependencies = {
+			"neovim/nvim-lspconfig",
+			"whonore/Coqtail",
+		},
+		opts = {
+			lsp = {
+				on_attach = require("lsp.defaults").on_attach,
+			},
+			init_options = {
+				eager_diagnostics = true,
+				show_notices_as_diagnostics = true,
+				goal_after_tactic = false,
+			},
+			autostart = true, -- use this if you want to manually launch coq-lsp with :LspStart.
+		},
+	},
+	{
 		"someone-stole-my-name/yaml-companion.nvim",
-		requires = {
+		dependencies = {
 			{ "neovim/nvim-lspconfig" },
 			{ "nvim-lua/plenary.nvim" },
 			{ "nvim-telescope/telescope.nvim" },
@@ -275,7 +293,7 @@ local M = {
 			})
 
 			vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-				pattern = { "*.c", "*.cc", "*.cpp", "*.h", ".hpp" },
+				pattern = { "*.c", "*.cc", "*.cpp", "*.h", ".hpp", "CMakeLists" },
 				callback = function(_)
 					require("which-key").add({
 						{
@@ -315,9 +333,6 @@ local M = {
 		config = function()
 			require("crates").setup()
 		end,
-	},
-	{
-		"mfussenegger/nvim-jdtls",
 	},
 	{
 		"aznhe21/actions-preview.nvim",
