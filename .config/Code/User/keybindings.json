@@ -470,13 +470,18 @@
         "when": "inSearchEditor"
     },
     {
-      "key": "escape",
-      "command": "workbench.action.previousEditorInGroup",
-      "when": "inSearchEditor"
+        "key": "escape",
+        "command": "workbench.action.previousEditorInGroup",
+        "when": "inSearchEditor"
     },
     {
         "key": "ctrl+l",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "auxiliaryBarFocus"
-    }
+    },
+    {
+        "key": "escape",
+        "command": "workbench.action.closeActiveEditor",
+        "when": "keybindingFocus"
+    },
 ]
