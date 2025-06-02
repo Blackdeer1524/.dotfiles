@@ -323,7 +323,7 @@
   "vscoq.proof.workers": 10,
   "coq-lsp.send_diags_extra_data": true,
   "editor.wordBasedSuggestions": "allDocuments",
-  "workbench.colorTheme": "Catppuccin Latte",
+  "workbench.colorTheme": "Atom One Light",
   "docsView.documentationView.updateMode": "sticky",
   "coq-lsp.unicode_completion": "extended",
   "workbench.colorCustomizations": {
