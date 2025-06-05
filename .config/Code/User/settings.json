@@ -89,7 +89,7 @@
         [
           "local code = require('vscode')",
           "code.action('vscode-neovim.escape')",
-          "code.action('workbench.action.files.save')",
+          // "code.action('workbench.action.files.save')",
         ],
       ],
     },
@@ -155,7 +155,7 @@
   ],
   "vs-kubernetes": {
     "vscode-kubernetes.helm-path-linux": "/home/blackdeer/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm",
-    "vs-kubernetes.minikube-show-information-expiration": "2025-03-31T10:38:27.487Z"
+    "vs-kubernetes.minikube-show-information-expiration": "2025-12-01T17:32:18.691Z"
   },
   "workbench.panel.opensMaximized": "never",
   "workbench.tree.stickyScrollMaxItemCount": 3,
@@ -349,4 +349,8 @@
   "zenMode.hideLineNumbers": false,
   "zenMode.showTabs": "none",
   "workbench.editor.empty.hint": "hidden",
+  "go.lintFlags": [
+    ""
+  ],
+  "go.lintTool": "golangci-lint",
 }
