@@ -16,11 +16,14 @@ sudo apt install -y gnome-control-center npm ripgrep clang-tools \
 # pip install mypy
 
 # zhs
-sudo apt install zsh
-sudo apt install zsh-syntax-highlighting
+sudo apt install -y zsh
+sudo apt install -y zsh-syntax-highlighting
 
 # clipboard for vim
-sudo apt install xclip
+sudo apt install -y xclip
+
+# Anki fix
+sudo apt install -y libxcb-cursor0
 
 # Nerd Font
 sudo apt install -y unzip
@@ -122,5 +125,5 @@ sudo apt install cscope
 # AppImage
 
 sudo add-apt-repository universe
-sudo apt install libfuse2t64
+sudo apt install -y libfuse2t64
 
