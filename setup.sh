@@ -4,34 +4,61 @@ cd $HOME
 
 if [ ! -d "$HOME/nvim-linux64" ]
 then
-    wget https://github.com/neovim/neovim/releases/download/v0.9.1/nvim-linux64.tar.gz -O nvim-linux64.tar.gz
+    wget https://github.com/neovim/neovim/releases/download/v0.10.1/nvim-linux64.tar.gz -O nvim-linux64.tar.gz
     tar -xf nvim-linux64.tar.gz
 fi
 
-sudo apt install -y gnome-control-center
+sudo apt install -y gnome-control-center npm ripgrep clang-tools \
+    cppcheck curl gdebi python-is-python3 python3-pip python3.12-venv graphviz
 
-sudo apt install -y npm
-sudo apt install -y ripgrep
-sudo apt install -y clang-tools
-sudo apt install -y cppcheck
-sudo apt install -y curl
-sudo apt install -y gdebi
+# pip install cpplint
+# pip install ruff
+# pip install mypy
 
-sudo apt install -y python-is-python3
-sudo apt install -y python3-pip
-sudo apt install -y python3.10-venv
+# zhs
+sudo apt install zsh
+sudo apt install zsh-syntax-highlighting
 
-sudo apt install -y graphviz
+# clipboard for vim
+sudo apt install xclip
 
-pip install cpplint
-pip install ruff
-pip install mypy
+# Nerd Font
+sudo apt install -y unzip
+wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.4.0/Hasklig.zip -O Hasklig.zip
+sudo unzip Hasklig.zip -d /usr/share/fonts
+fc-cache -fv /usr/share/fonts
 
 # Rust
+# WARN: INSTALL HIDDIFY FIRST
 curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh
 
+## Rust test runner
+curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
+
+# alacritty
+sudo apt -y install cmake g++ pkg-config libfontconfig1-dev libxcb-xfixes0-dev libxkbcommon-dev python3
+
+if [ ! -d "$HOME/alacritty" ]
+then
+    git clone https://github.com/alacritty/alacritty.git
+fi
+cd alacritty
+git pull
+cargo build --release
+
+infocmp alacritty && sudo tic -xe alacritty,alacritty-direct extra/alacritty.info
+sudo cp extra/logo/alacritty-term.svg /usr/share/pixmaps/Alacritty.svg
+sudo desktop-file-install extra/linux/Alacritty.desktop
+sudo update-desktop-database
+
+sudo update-alternatives --install /usr/bin/x-terminal-emulator x-terminal-emulator $(which alacritty) 50
+
+# tmux
+sudo apt install tmux
+git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+
 # Go
-wget https://go.dev/dl/go1.21.0.linux-amd64.tar.gz -O go.tar.gz
+wget https://go.dev/dl/go1.24.0.linux-amd64.tar.gz -O go.tar.gz
 if [ -d "/usr/local/go" ]
 then
     sudo rm -rf /usr/local/go
@@ -42,17 +69,15 @@ sudo mv go /usr/local
 ## golang linter
 go install github.com/mgechev/revive@latest
 
+# Syncthing
+sudo mkdir -p /etc/apt/keyrings
+sudo curl -L -o /etc/apt/keyrings/syncthing-archive-keyring.gpg https://syncthing.net/release-key.gpg
+echo "deb [signed-by=/etc/apt/keyrings/syncthing-archive-keyring.gpg] https://apt.syncthing.net/ syncthing stable" | sudo tee /etc/apt/sources.list.d/syncthing.list
+sudo apt-get update
+sudo apt-get install -y syncthing
+
 # Java
 sudo apt install -y openjdk-17-jdk openjdk-17-jre
-
-# Nerd Font
-sudo apt install -y unzip
-wget https://github.com/ryanoasis/nerd-fonts/releases/download/v3.0.2/UbuntuMono.zip -O UbuntuMono.zip
-sudo unzip UbuntuMono.zip -d /usr/share/fonts
-fc-cache -fv /usr/share/fonts
-
-# Rust test runner
-curl -LsSf https://get.nexte.st/latest/linux | tar zxf - -C ${CARGO_HOME:-~/.cargo}/bin
 
 # Idris2
 sudo apt install libgmp3-dev chezscheme
@@ -66,19 +91,12 @@ bash -c "$(curl -fsSL https://raw.githubusercontent.com/stefan-hoeck/idris2-pack
 
 pack install-app idris2-lsp
 
-# tmux
-sudo apt install tmux
-git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
-
 # nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.1/install.sh | bash
 
 # deno
 curl -fsSL https://deno.land/x/install/install.sh | sh
 source ~/.bashrc
-
-# tree-sitter-cli
-cargo install tree-sitter-cli
 
 # protobufs
 sudo apt install protobuf-compiler
@@ -87,14 +105,10 @@ sudo apt install protobuf-compiler
 git clone git@github.com:pbkit/pbkit.git
 deno install -n pb -A --unstable pbkit/cli/pb/entrypoint.ts
 
-# zhs
-sudo apt install zsh
-sudo apt install zsh-syntax-highlighting
-
-# clipboard for vim
-sudo apt install xclip
-
 # [nvim] 
+# tree-sitter-cli
+cargo install tree-sitter-cli
+
 ## venv-selector
 sudo apt install fd-find
 
@@ -104,4 +118,9 @@ sudo apt install luarocks
 cargo install ast-grep
 
 sudo apt install cscope
+
+# AppImage
+
+sudo add-apt-repository universe
+sudo apt install libfuse2t64
 
