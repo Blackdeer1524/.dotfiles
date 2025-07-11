@@ -22,6 +22,9 @@ sudo apt install -y zsh-syntax-highlighting
 # clipboard for vim
 sudo apt install -y xclip
 
+# OCR
+sudo apt install -y yad scrot imagemagick xsel sox tesseract-ocr tesseract-ocr-rus 
+
 # Anki fix
 sudo apt install -y libxcb-cursor0
 
