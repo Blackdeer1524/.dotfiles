@@ -1,0 +1,50 @@
+#!/bin/bash
+# DEPENDENCIES: tesseract-ocr imagemagick yad scrot xsel
+# AUTHOR:       Glutanimate 2013 (http://askubuntu.com/users/81372/)
+# NAME:         ScreenOCR
+# LICENSE:      GNU GPLv3
+#
+# BASED ON:     OCR script by Salem (http://askubuntu.com/a/280713/81372)
+
+TITLE=ScreenOCR # set yad variables
+ICON=gnome-screenshot
+
+# - tesseract won't work if LC_ALL is unset so we set it here
+# - you might want to delete or modify this line if you 
+#   have a different locale:
+
+export LC_ALL=en_US.UTF-8
+
+# language selection dialog
+LANG=$(yad \
+    --width 300 --entry --title "$TITLE" \
+    --image=$ICON \
+    --window-icon=$ICON \
+    --button="ok:0" --button="cancel:1" \
+    --text "Select language:" \
+    --entry-text \
+    "eng" "rus" "jpn")
+
+# - You can modify the list of available languages by editing the line above
+# - Make sure to use the same ISO codes tesseract does (man tesseract for details)
+# - Languages will of course only work if you have installed their respective
+#   language packs (https://code.google.com/p/tesseract-ocr/downloads/list)
+
+RET=$? # check return status
+
+if [ "$RET" = 252 ] || [ "$RET" = 1 ]  # WM-Close or "cancel"
+  then
+      exit
+fi
+
+SCR_IMG="temp_ocr" # create tempfile
+trap "rm $SCR_IMG*" EXIT # make sure tempfiles get deleted afterwards
+
+scrot -s "$SCR_IMG".png -q 100
+# gnome-screenshot -a -f "$SCR_IMG".png   #take screenshot of area
+mogrify -modulate 100,0 -resize 400% "$SCR_IMG".png # postprocess to prepare for OCR
+tesseract -l "$LANG" "$SCR_IMG".png "$SCR_IMG" # OCR in given language
+xsel -bi < "$SCR_IMG".txt # pass to clipboard
+play /usr/share/sounds/freedesktop/stereo/window-attention.oga
+exit
+
