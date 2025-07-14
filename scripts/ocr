@@ -23,7 +23,7 @@ LANG=$(yad \
     --button="ok:0" --button="cancel:1" \
     --text "Select language:" \
     --entry-text \
-    "eng" "rus" "jpn")
+    "eng+rus" "eng" "rus")
 
 # - You can modify the list of available languages by editing the line above
 # - Make sure to use the same ISO codes tesseract does (man tesseract for details)
@@ -36,6 +36,7 @@ if [ "$RET" = 252 ] || [ "$RET" = 1 ]  # WM-Close or "cancel"
   then
       exit
 fi
+
 
 SCR_IMG="temp_ocr" # create tempfile
 trap "rm $SCR_IMG*" EXIT # make sure tempfiles get deleted afterwards
