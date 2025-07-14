@@ -2,21 +2,19 @@ import re
 import pyperclip
 from PIL import ImageGrab
 from pix2text import Pix2Text
-import io
 import sys
 from PIL import Image
-from pix2text import Pix2Text
 
 
 def replace_double_dollars(text):
     pattern = r"\$\$(.*?)\$\$"
-    replaced_text = re.sub(pattern, r"\\[\1\\]", text)
+    replaced_text = re.sub(pattern, r"\\[\1\\]", text, flags=re.MULTILINE | re.DOTALL)
     return replaced_text
 
 
 def replace_singular_dollars(text):
     pattern = r"\$(.*?)\$"
-    replaced_text = re.sub(pattern, r"\\(\1\\)", text)
+    replaced_text = re.sub(pattern, r"\\(\1\\)", text, flags=re.MULTILINE | re.DOTALL)
     return replaced_text
 
 
@@ -60,7 +58,9 @@ def main():
             print("No text detected in the image.")
             sys.exit(1)
 
-        extracted_text = replace_singular_dollars(replace_double_dollars( extracted_text))
+        extracted_text = replace_singular_dollars(
+            replace_double_dollars(extracted_text)
+        )
         # Copy extracted text to clipboard
         pyperclip.copy(extracted_text)
         print("Text successfully extracted and copied to clipboard.")

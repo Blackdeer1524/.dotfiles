@@ -106,7 +106,5 @@ def main():
             ["play", "/usr/share/sounds/freedesktop/stereo/window-attention.oga"]
         )
 
-
 if __name__ == "__main__":
-
     main()
