@@ -23,7 +23,7 @@
   "C_Cpp.intelliSenseMemoryLimit": 8192,
   "C_Cpp.intelliSenseUpdateDelay": 1000,
   "clangd.checkUpdates": true,
-  "clangd.path": "/home/blackdeer/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/19.1.2/clangd_19.1.2/bin/clangd",
+  "clangd.path": "/home/blackdeer/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/20.1.8/clangd_20.1.8/bin/clangd",
   "editor.fontSize": 13,
   "editor.guides.bracketPairs": true,
   "editor.bracketPairColorization.enabled": true,
@@ -358,4 +358,7 @@
   "github.copilot.chat.edits.temporalContext.enabled": true,
   "github.copilot.chat.followUps": "always",
   "security.workspace.trust.untrustedFiles": "open",
+  "docker.extension.enableComposeLanguageServer": false,
+  "asm-code-lens.enableCodeLenses": false,
+  "settingsSync.keybindingsPerPlatform": false,
 }

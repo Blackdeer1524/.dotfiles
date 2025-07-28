@@ -475,7 +475,7 @@
         "when": "inSearchEditor"
     },
     {
-        "key": "ctrl+l",
+        "key": "ctrl+h",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "auxiliaryBarFocus"
     },
@@ -483,5 +483,20 @@
         "key": "escape",
         "command": "workbench.action.closeActiveEditor",
         "when": "keybindingFocus"
+    },
+    {
+        "key": "ctrl+shift+l",
+        "command": "workbench.action.nextSideBarView",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "ctrl+shift+h",
+        "command": "workbench.action.previousSideBarView",
+        "when": "sideBarFocus"
+    },
+    {
+        "key": "ctrl+q",
+        "command": "list.closeFind",
+        "when": "listFocus && treeFindOpen"
     },
 ]
