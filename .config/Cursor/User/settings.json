@@ -1,0 +1,406 @@
+{
+    "[cpp]": {
+        "editor.defaultFormatter": "llvm-vs-code-extensions.vscode-clangd"
+    },
+    "[python]": {
+        "editor.formatOnType": true
+    },
+    "c-cpp-flylint.cppcheck.standard": [
+        "c++20"
+    ],
+    "c-cpp-flylint.standard": [
+        "c++20"
+    ],
+    "C_Cpp.autocompleteAddParentheses": true,
+    "C_Cpp.codeAnalysis.clangTidy.enabled": true,
+    "C_Cpp.default.compilerPath": "/usr/bin/clang++",
+    "C_Cpp.default.cppStandard": "c++20",
+    "C_Cpp.default.cStandard": "c17",
+    "C_Cpp.default.intelliSenseMode": "linux-clang-x64",
+    "C_Cpp.inlayHints.autoDeclarationTypes.enabled": true,
+    "C_Cpp.inlayHints.parameterNames.enabled": true,
+    "C_Cpp.inlayHints.referenceOperator.enabled": true,
+    "C_Cpp.intelliSenseMemoryLimit": 8192,
+    "C_Cpp.intelliSenseUpdateDelay": 1000,
+    "clangd.checkUpdates": true,
+    "clangd.path": "/home/blackdeer/.config/Code/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/20.1.8/clangd_20.1.8/bin/clangd",
+    "editor.fontSize": 13,
+    "editor.guides.bracketPairs": true,
+    "editor.bracketPairColorization.enabled": true,
+    "editor.inlayHints.enabled": "on",
+    "editor.lightbulb.enabled": "onCode",
+    "editor.lineNumbers": "relative",
+    "files.autoSave": "onFocusChange",
+    "go.inlayHints.assignVariableTypes": true,
+    "go.inlayHints.compositeLiteralFields": true,
+    "go.inlayHints.compositeLiteralTypes": true,
+    "go.inlayHints.constantValues": true,
+    "go.inlayHints.functionTypeParameters": true,
+    "go.inlayHints.parameterNames": true,
+    "go.inlayHints.rangeVariableTypes": true,
+    "hexeditor.columnWidth": 8,
+    "hexeditor.defaultEndianness": "little",
+    "hexeditor.inspectorType": "aside",
+    "hexeditor.showDecodedText": true,
+    "markdown.extension.print.theme": "dark",
+    "notebook.cellToolbarLocation": {
+        "default": "right",
+        "jupyter-notebook": "left"
+    },
+    "window.zoomLevel": 2,
+    "workbench.tree.indent": 18,
+    "[jsonc]": {
+        "editor.defaultFormatter": "vscode.json-language-features"
+    },
+    "editor.minimap.enabled": false,
+    "RainbowBrackets.depreciation-notice": false,
+    "RainbowBrackets.consecutivePairColors": [
+        "()",
+        "[]",
+        "{}",
+        [
+            "teal",
+            "red",
+            "orange",
+            "yellow",
+            "green",
+            "blue",
+            "purple"
+        ],
+        "Revioletd"
+    ],
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.inlayHints.callArgumentNames": "partial",
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "extensions.experimental.affinity": {
+        "asvetliakov.vscode-neovim": 1
+    },
+    "cmake.pinnedCommands": [
+        "workbench.action.tasks.configureTaskRunner",
+        "workbench.action.tasks.runTask"
+    ],
+    "vscode-neovim.compositeKeys": {
+        "jk": {
+            "command": "vscode-neovim.lua",
+            "args": [
+                [
+                    "local code = require('vscode')",
+                    "code.action('vscode-neovim.escape')"
+                ]
+            ]
+        }
+    },
+    "editor.quickSuggestions": {
+        "other": "off"
+    },
+    "editor.semanticHighlighting.enabled": true,
+    "vscode-neovim.ctrlKeysForNormalMode": [
+        "a",
+        "b",
+        "c",
+        "d",
+        "e",
+        "f",
+        "h",
+        "i",
+        "j",
+        "k",
+        "l",
+        "m",
+        "o",
+        "r",
+        "t",
+        "u",
+        "v",
+        "w",
+        "x",
+        "y",
+        "z",
+        "/",
+        "]",
+        "right",
+        "left",
+        "up",
+        "down",
+        "backspace",
+        "delete",
+        "q"
+    ],
+    "workbench.tree.renderIndentGuides": "always",
+    "workbench.editor.tabSizing": "fixed",
+    "workbench.editor.navigationScope": "editorGroup",
+    "workbench.editor.showTabs": "none",
+    "workbench.editor.centeredLayoutAutoResize": false,
+    "cph.general.defaultLanguage": "cpp",
+    "cph.general.defaultLanguageTemplateFileLocation": "/home/blackdeer/competitest_tmpls/tmpl.cpp",
+    "cph.general.menuChoices": "cpp python",
+    "editor.fontFamily": "'Hasklug Nerd Font Mono', 'Droid Sans Mono', 'monospace', monospace",
+    "vscode-neovim.ctrlKeysForInsertMode": [
+        "a",
+        "c",
+        "d",
+        "h",
+        "j",
+        "m",
+        "o",
+        "r",
+        "t",
+        "u",
+        "w",
+        "e"
+    ],
+    "vs-kubernetes": {
+        "vscode-kubernetes.helm-path-linux": "/home/blackdeer/.local/state/vs-kubernetes/tools/helm/linux-amd64/helm",
+        "vs-kubernetes.minikube-show-information-expiration": "2025-12-01T17:32:18.691Z"
+    },
+    "workbench.panel.opensMaximized": "never",
+    "workbench.tree.stickyScrollMaxItemCount": 3,
+    "editor.stickyScroll.maxLineCount": 3,
+    "terminal.integrated.stickyScroll.maxLineCount": 3,
+    "breadcrumbs.showArrays": false,
+    "breadcrumbs.showBooleans": false,
+    "breadcrumbs.showConstants": false,
+    "breadcrumbs.showConstructors": false,
+    "breadcrumbs.showEnumMembers": false,
+    "breadcrumbs.showEnums": false,
+    "breadcrumbs.showEvents": false,
+    "breadcrumbs.showFields": false,
+    "breadcrumbs.showFiles": false,
+    "breadcrumbs.showKeys": false,
+    "breadcrumbs.showNull": false,
+    "breadcrumbs.showNumbers": false,
+    "breadcrumbs.showObjects": false,
+    "breadcrumbs.showOperators": false,
+    "breadcrumbs.showStrings": false,
+    "breadcrumbs.showProperties": false,
+    "breadcrumbs.showTypeParameters": false,
+    "breadcrumbs.showVariables": false,
+    "terminal.external.linuxExec": "alacritty",
+    "bracketLens.line": "none",
+    "bracketLens.minBracketScopeLines": 10,
+    "bracketLens.prefix": " --> ",
+    "cmake.showOptionsMovedNotification": false,
+    "clangd.arguments": [
+        "--background-index",
+        "--header-insertion=iwyu",
+        "--all-scopes-completion",
+        "--completion-style=detailed",
+        "--pch-storage=memory",
+        "--enable-config"
+    ],
+    "editor.autoClosingBrackets": "beforeWhitespace",
+    "terminal.integrated.profiles.linux": {
+        "tmux-shell": {
+            "path": "tmux",
+            "args": [
+                "new-session",
+                "-A",
+                "-s",
+                "vscode:${workspaceFolderBasename}"
+            ]
+        }
+    },
+    "terminal.integrated.defaultProfile.linux": "tmux-shell",
+    "terminal.integrated.tabs.enabled": true,
+    "terminal.integrated.tabs.hideCondition": "never",
+    "terminal.integrated.automationProfile.linux": {
+        "path": "/usr/bin/zsh",
+        "args": []
+    },
+    "python.analysis.completeFunctionParens": true,
+    "python.languageServer": "Pylance",
+    "python.analysis.typeEvaluation.enableReachabilityAnalysis": true,
+    "python.analysis.typeEvaluation.strictListInference": true,
+    "python.analysis.typeEvaluation.strictDictionaryInference": true,
+    "python.analysis.typeEvaluation.strictSetInference": true,
+    "window.titleBarStyle": "custom",
+    "window.commandCenter": false,
+    "workbench.editor.editorActionsLocation": "hidden",
+    "editor.cursorBlinking": "solid",
+    "window.menuBarVisibility": "toggle",
+    "debug.toolBarLocation": "docked",
+    "outline-map.follow": "manual",
+    "outline-map.expand": "manual",
+    "outline-map.workspace.enabled": false,
+    "outline-map.region.highlight": false,
+    "workbench.activityBar.location": "bottom",
+    "editor.gotoLocation.alternativeDefinitionCommand": "",
+    "editor.gotoLocation.alternativeTypeDefinitionCommand": "",
+    "editor.cursorSurroundingLines": 7,
+    "debug.showVariableTypes": true,
+    "debugpy.showPythonInlineValues": true,
+    "window.customTitleBarVisibility": "auto",
+    "editor.wrappingIndent": "none",
+    "better-comments.tags": [
+        {
+            "tag": "bug:",
+            "color": "#D20F39",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "info:",
+            "color": "#3498DB",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "todo:",
+            "color": "#04A5E5",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        },
+        {
+            "tag": "warn:",
+            "color": "#DF8E1D",
+            "strikethrough": false,
+            "underline": false,
+            "backgroundColor": "transparent",
+            "bold": true,
+            "italic": false
+        }
+    ],
+    "workbench.editor.enablePreviewFromQuickOpen": true,
+    "workbench.quickOpen.preserveInput": true,
+    "search.quickAccess.preserveInput": true,
+    "workbench.commandPalette.preserveInput": true,
+    "editor.scrollbar.verticalScrollbarSize": 7,
+    "workbench.list.fastScrollSensitivity": 1,
+    "debug.inlineValues": "off",
+    "[javascript]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "[html]": {
+        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+    },
+    "[yaml]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "customLocalFormatters.formatters": [
+        {
+            "command": "coqfmt",
+            "languages": [
+                "coq"
+            ]
+        }
+    ],
+    "vscoq.proof.delegation": "Delegate",
+    "vscoq.proof.mode": 1,
+    "vscoq.diagnostics.full": true,
+    "vscoq.args": [],
+    "workbench.preferredHighContrastColorTheme": "Eva Light",
+    "vscoq.proof.workers": 10,
+    "coq-lsp.send_diags_extra_data": true,
+    "editor.wordBasedSuggestions": "allDocuments",
+    "workbench.colorTheme": "Atom One Light",
+    "docsView.documentationView.updateMode": "sticky",
+    "coq-lsp.unicode_completion": "extended",
+    "workbench.colorCustomizations": {},
+    "lean4.infoview.allErrorsOnLine": false,
+    "lean4.infoview.showExpectedType": false,
+    "evenBetterToml.formatter.columnWidth": 80,
+    "terminal.integrated.suggest.quickSuggestions": false,
+    "editor.suggestOnTriggerCharacters": false,
+    "C_Cpp.workspaceSymbols": "All",
+    "C_Cpp.intelliSenseEngine": "disabled",
+    "[go]": {
+        "editor.formatOnSave": false
+    },
+    "workbench.reduceMotion": "on",
+    "dev.containers.defaultExtensions": [
+        "JoshMu.periscope",
+        "tobias-z.vscode-harpoon"
+    ],
+    "githubPullRequests.fileListLayout": "tree",
+    "zenMode.hideLineNumbers": false,
+    "zenMode.showTabs": "none",
+    "workbench.editor.empty.hint": "hidden",
+    "go.lintFlags": [
+        ""
+    ],
+    "go.lintTool": "golangci-lint",
+    "github.copilot.chat.agent.thinkingTool": true,
+    "github.copilot.chat.editor.temporalContext.enabled": true,
+    "github.copilot.chat.edits.temporalContext.enabled": true,
+    "github.copilot.chat.followUps": "always",
+    "security.workspace.trust.untrustedFiles": "open",
+    "docker.extension.enableComposeLanguageServer": false,
+    "asm-code-lens.enableCodeLenses": false,
+    "settingsSync.keybindingsPerPlatform": false,
+    "vscode-dosbox.command.dosboxX": "flatpak run com.dosbox_x.DOSBox-X",
+    "vscode-dosbox.dosbox.config": {
+        "SDL.output": "overlay"
+    },
+    "vscode-dosbox.dosboxX.config": {
+        "SDL.output": "overlay"
+    },
+    "masmtasm.ASM.actions": {
+        "TASM": {
+            "baseBundle": "<built-in>/TASM.jsdos",
+            "before": [
+                "set PATH=C:\\TASM"
+            ],
+            "run": [
+                "TASM ${file}",
+                "TLINK ${filename}",
+                ">${filename}"
+            ],
+            "debug": [
+                "TASM /zi ${file}",
+                "TLINK /v/3 ${filename}.obj",
+                "copy C:\\TASM\\TDC2.TD TDCONFIG.TD",
+                "TD -cTDCONFIG.TD ${filename}.exe"
+            ]
+        },
+        "MASM-v6.11": {
+            "baseBundle": "<built-in>/MASM-v6.11.jsdos",
+            "before": [
+                "set PATH=C:\\MASM"
+            ],
+            "run": [
+                "masm ${file};",
+                "link ${filename};",
+                ">${filename}"
+            ],
+            "debug": [
+                "masm ${file};",
+                "link ${filename}.OBJ;",
+                ">debug ${filename}.exe"
+            ]
+        },
+        "MASM-v5.00": {
+            "baseBundle": "<built-in>/MASM-v5.00.jsdos",
+            "before": [
+                "set PATH=C:\\MASM"
+            ],
+            "run": [
+                "masm ${file};",
+                "link ${filename};",
+                ">${filename}"
+            ],
+            "debug": [
+                "masm ${file};",
+                "link ${filename}.OBJ;",
+                ">debug ${filename}.exe"
+            ],
+            "support": [
+                "jsdos",
+                "dosbox",
+                "dosbox-x",
+                "msdos player"
+            ]
+        }
+    },
+    "github.copilot.nextEditSuggestions.enabled": true
+}
