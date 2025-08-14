@@ -82,6 +82,7 @@
     "workbench.action.tasks.runTask"
   ],
   "vscode-neovim.compositeKeys": {
+  
     "jk": {
       // Use lua to execute any logic
       "command": "vscode-neovim.lua",
@@ -361,4 +362,70 @@
   "docker.extension.enableComposeLanguageServer": false,
   "asm-code-lens.enableCodeLenses": false,
   "settingsSync.keybindingsPerPlatform": false,
+  "vscode-dosbox.command.dosboxX": "flatpak run com.dosbox_x.DOSBox-X",
+  "vscode-dosbox.dosbox.config": {
+    "SDL.output": "overlay"
+  },
+  "vscode-dosbox.dosboxX.config": {
+    "SDL.output": "overlay"
+  },
+  "masmtasm.ASM.actions": {
+    
+    "TASM": {
+      "baseBundle": "<built-in>/TASM.jsdos",
+      "before": [
+        "set PATH=C:\\TASM"
+      ],
+      "run": [
+        "TASM ${file}",
+        "TLINK ${filename}",
+        ">${filename}"
+      ],
+      "debug": [
+        "TASM /zi ${file}",
+        "TLINK /v/3 ${filename}.obj",
+        "copy C:\\TASM\\TDC2.TD TDCONFIG.TD",
+        "TD -cTDCONFIG.TD ${filename}.exe"
+      ]
+    },
+    "MASM-v6.11": {
+      "baseBundle": "<built-in>/MASM-v6.11.jsdos",
+      "before": [
+        "set PATH=C:\\MASM"
+      ],
+      "run": [
+        "masm ${file};",
+        "link ${filename};",
+        ">${filename}"
+      ],
+      "debug": [
+        "masm ${file};",
+        "link ${filename}.OBJ;",
+        ">debug ${filename}.exe"
+      ]
+    },
+    "MASM-v5.00": {
+      "baseBundle": "<built-in>/MASM-v5.00.jsdos",
+      "before": [
+        "set PATH=C:\\MASM"
+      ],
+      "run": [
+        "masm ${file};",
+        "link ${filename};",
+        ">${filename}"
+      ],
+      "debug": [
+        "masm ${file};",
+        "link ${filename}.OBJ;",
+        ">debug ${filename}.exe"
+      ],
+      "support": [
+        "jsdos",
+        "dosbox",
+        "dosbox-x",
+        "msdos player"
+      ]
+    }
+  },
+  "github.copilot.nextEditSuggestions.enabled": true,
 }

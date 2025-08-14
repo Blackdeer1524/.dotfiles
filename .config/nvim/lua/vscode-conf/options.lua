@@ -35,7 +35,7 @@ vim.keymap.set(
 vim.keymap.set(
 	"n",
 	"<leader>so",
-	"<cmd>lua require('vscode').action('workbench.action.toggleAuxiliaryBar')<CR>",
+	"<cmd>lua require('vscode').action('outline.focus')<CR>",
 	{ desc = "[s]ymbol [o]utlin" }
 )
 
