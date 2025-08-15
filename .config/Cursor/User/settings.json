@@ -210,7 +210,7 @@
         "args": []
     },
     "python.analysis.completeFunctionParens": true,
-    "python.languageServer": "Pylance",
+    "python.languageServer": "None",
     "python.analysis.typeEvaluation.enableReachabilityAnalysis": true,
     "python.analysis.typeEvaluation.strictListInference": true,
     "python.analysis.typeEvaluation.strictDictionaryInference": true,
