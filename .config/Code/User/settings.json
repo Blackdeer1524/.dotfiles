@@ -428,4 +428,5 @@
     }
   },
   "github.copilot.nextEditSuggestions.enabled": true,
+  "githubPullRequests.pullBranch": "never",
 }

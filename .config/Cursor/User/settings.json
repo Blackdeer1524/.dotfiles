@@ -402,5 +402,11 @@
             ]
         }
     },
-    "github.copilot.nextEditSuggestions.enabled": true
+    "github.copilot.nextEditSuggestions.enabled": true,
+    "cursorpyright.analysis.autoImportCompletions": true,
+    "cursorpyright.analysis.inlayHints.callArgumentNames": "partial",
+    "cursorpyright.analysis.inlayHints.functionReturnTypes": true,
+    "cursorpyright.analysis.inlayHints.variableTypes": true,
+    "cursorpyright.analysis.typeCheckingMode": "strict",
+    "githubPullRequests.pullBranch": "never"
 }

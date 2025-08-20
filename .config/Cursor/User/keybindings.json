@@ -485,16 +485,6 @@
         "when": "listFocus && treeFindOpen"
     },
     {
-        "key": "tab",
-        "command": "vscode-neovim.send",
-        "when": "neovim.init && neovim.recording || editorTextFocus && neovim.init && neovim.mode != 'insert' && !inlineEditIsVisible && editorLangId not in 'neovim.editorLangIdExclusions'"
-    },
-    {
-        "key": "tab",
-        "command": "-vscode-neovim.send",
-        "when": "neovim.init && neovim.recording || editorTextFocus && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
-    },
-    {
         "key": "escape",
         "command": "vscode-neovim.escape",
         "when": "editorTextFocus && neovim.init && !dirtyDiffVisible && !findWidgetVisible && !inReferenceSearchEditor && !markersNavigationVisible && !notebookCellFocused && !notificationCenterVisible && !parameterHintsVisible && !referenceSearchVisible && neovim.mode == 'normal' && editorLangId not in 'neovim.editorLangIdExclusions' && !inlineEditIsVisible"
@@ -527,5 +517,9 @@
         "key": "ctrl+k",
         "command": "workbench.action.focusActiveEditorGroup",
         "when": "auxiliaryBarFocus"
+    },
+    {
+        "key": "ctrl+i",
+        "command": "-composer.startComposerPrompt"
     },
 ]

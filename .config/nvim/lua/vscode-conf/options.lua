@@ -1,3 +1,6 @@
+vim.api.nvim_set_keymap('n', '<Tab>', '', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<S-Tab>', '', { noremap = true, silent = true })
+
 vim.keymap.set({ "n", "v" }, "<leader>sf", "<cmd>lua require('vscode').action('workbench.action.quickOpen')<CR>")
 vim.keymap.set({ "n" }, "<leader>e", "<cmd>lua require('vscode').action('workbench.view.explorer')<CR>")
 
