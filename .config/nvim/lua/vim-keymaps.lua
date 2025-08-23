@@ -30,8 +30,8 @@ vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
 
 -- Not moving cursor
-vim.cmd("nnoremap <expr> <C-d> (winheight(0) * 2 / 5) . '<C-d>zz'")
-vim.cmd("nnoremap <expr> <C-u> (winheight(0) * 2 / 5) . '<C-u>zz'")
+-- vim.cmd("nnoremap <expr> <C-d> (winheight(0) * 2 / 5) . '<C-d>zz'")
+-- vim.cmd("nnoremap <expr> <C-u> (winheight(0) * 2 / 5) . '<C-u>zz'")
 vim.keymap.set("n", "n", "nzzzv")
 vim.keymap.set("n", "N", "Nzzzv")
 
