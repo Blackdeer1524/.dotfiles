@@ -1,16 +1,27 @@
+local getLinesScript = [[
+const editor = vscode.window.activeTextEditor;
+if (editor) {
+  const visibleRange = editor.visibleRanges[0]; // Usually one range per visible editor
+  const visibleLines = visibleRange.end.line - visibleRange.start.line + 1;
+  console.log(`Visible lines in editor: ${visibleLines}`);
+  return visibleLines
+}
+return 0
+]]
+
 vim.keymap.set({ "n", "v" }, "<C-d>", function()
 	local code = require("vscode")
-	local a = math.max(1, math.floor(vim.api.nvim_win_get_height(0) * 2 / 5))
+	local a = math.max(1, math.floor(code.eval(getLinesScript) * 2 / 5))
 	code.action("editorScroll", { args = { to = "down", by = "wrappedLine", value = a } })
-	local jmp =  string.format("normal! %dj", a)
+	local jmp = string.format("normal! %dj", a)
 	vim.cmd(jmp)
 end, { noremap = true, silent = true })
 
 vim.keymap.set({ "n", "v" }, "<C-u>", function()
 	local code = require("vscode")
-	local a = math.max(1, math.floor(vim.api.nvim_win_get_height(0) * 2 / 5))
+	local a = math.max(1, math.floor(code.eval(getLinesScript) * 2 / 5))
 	code.action("editorScroll", { args = { to = "up", by = "wrappedLine", value = a } })
-	local jmp =  string.format("normal! %dk", a)
+	local jmp = string.format("normal! %dk", a)
 	vim.cmd(jmp)
 	-- code.action("cursorMove", { args = { to = "viewportCenter" } })
 end, { noremap = true, silent = true })
