@@ -1,3 +1,16 @@
+local code = require('vscode-neovim')
+vim.keymap.set('n', '<C-o>', function()
+  code.action('workbench.action.navigateBack', {
+    callback = function()
+      vim.defer_fn(function()
+        code.action('cancelSelection', {
+          callback = function() vim.api.nvim_input('<ESC><ESC>') end,
+        })
+      end, 100)
+    end,
+  })
+end)
+
 local getLinesScript = [[
 const editor = vscode.window.activeTextEditor;
 if (editor) {

@@ -376,7 +376,7 @@
     {
         "key": "ctrl+j",
         "command": "workbench.action.focusPanel",
-        "when": "editorFocus && panelVisible || keybindingFocus && panelVisible"
+        "when": "(editorFocus || inKeybindings) && (panelVisible || workbench.panel.testResults.view.visible )"
     },
     {
         "key": "numpad_divide",
@@ -421,7 +421,7 @@
     },
     {
         "key": "ctrl+; ctrl+l",
-        "command": "-testing.debugLastRun"
+        "command": "-testing.djjjjjjjjjjjjjebugLastRun"
     },
     {
         "key": "ctrl+; ctrl+c",
@@ -500,7 +500,7 @@
     {
         "key": "ctrl+l",
         "command": "composer.startComposerPrompt",
-        "when": "activeEditorGroupLast && (editorFocus || inKeybindings)"
+        "when": "(activeEditorGroupLast && editorFocus || activeEditorGroupLast && inKeybindings) && sideBarVisible"
     },
     {
         "key": "ctrl+shift+k",
@@ -551,5 +551,17 @@
         "args": "<C-u>",
         "command": "vscode-neovim.send",
         "when": "editorTextFocus && neovim.ctrlKeysNormal.u && neovim.init && neovim.mode != 'insert' && editorLangId not in 'neovim.editorLangIdExclusions'"
+    },
+    {
+        "key": "alt+/",
+        "command": "editor.action.inlineSuggest.trigger"
+    },
+    {
+        "key": "alt+.",
+        "command": "editor.action.inlineSuggest.triggerInlineEditExplicit"
+    },
+    {
+        "key": "alt+,",
+        "command": "cursorAuth.triggerTokenRefresh"
     },
 ]

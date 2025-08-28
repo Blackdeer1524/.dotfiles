@@ -2,6 +2,7 @@ local M = {
 	{
 		"danymat/neogen",
 		version = "*",
+		enabled = vim.g.vscode == nil,
 		dependencies = {
 			"L3MON4D3/LuaSnip",
 		},
@@ -315,6 +316,7 @@ local M = {
 	},
 	{
 		"NMAC427/guess-indent.nvim",
+		enabled = vim.g.vscode == nil,
 		opts = {},
 	},
 	{
