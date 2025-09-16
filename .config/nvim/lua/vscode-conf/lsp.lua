@@ -19,7 +19,7 @@ nmap("gI", "<cmd>lua require('vscode').action('editor.action.goToImplementation'
 nmap("<leader>oc", "<cmd>lua require('vscode').action('references-view.showOutgoingCalls')<CR>", "[o]utgoing [c]alls")
 nmap("<leader>ic", "<cmd>lua require('vscode').action('references-view.showIncomingCalls')<CR>", "[i]ncoming [c]alls")
 
-nmap("<leader>D", "<cmd>lua require('vscode').action('editor.action.goToTypeDefinition')<CR>", "Type [D]efinition")
+nmap("<leader>td", "<cmd>lua require('vscode').action('editor.action.goToTypeDefinition')<CR>", "[T]ype [D]efinition")
 
 nmap("<leader>K", vim.lsp.buf.signature_help, "Signature Documentation")
 

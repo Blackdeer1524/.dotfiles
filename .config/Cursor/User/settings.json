@@ -31,9 +31,6 @@
     "editor.lightbulb.enabled": "onCode",
     "editor.lineNumbers": "relative",
     "files.autoSave": "onFocusChange",
-    "go.inlayHints.assignVariableTypes": true,
-    "go.inlayHints.compositeLiteralFields": true,
-    "go.inlayHints.compositeLiteralTypes": true,
     "go.inlayHints.constantValues": true,
     "go.inlayHints.functionTypeParameters": true,
     "go.inlayHints.parameterNames": true,
@@ -74,9 +71,6 @@
     "python.analysis.inlayHints.callArgumentNames": "partial",
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.variableTypes": true,
-    "extensions.experimental.affinity": {
-        "asvetliakov.vscode-neovim": 1
-    },
     "cmake.pinnedCommands": [
         "workbench.action.tasks.configureTaskRunner",
         "workbench.action.tasks.runTask"
@@ -412,4 +406,9 @@
     "githubPullRequests.pullBranch": "never",
     "workbench.colorTheme": "Catppuccin Mocha",
     "cursor.cpp.enablePartialAccepts": true,
+    "terminal.integrated.commandsToSkipShell": [
+        "language-julia.interrupt"
+    ],
+    "julia.symbolCacheDownload": true,
+    "julia.enableTelemetry": true,
 }

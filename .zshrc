@@ -155,3 +155,12 @@ export NVM_DIR="$HOME/.nvm"
 function cursor() {
     "$HOME/.local/bin/cursor.appimage" --no-sandbox "$@" > /dev/null 2>&1 & disown
 }
+
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+path=('/home/blackdeer/.juliaup/bin' $path)
+export PATH
+
+# <<< juliaup initialize <<<
