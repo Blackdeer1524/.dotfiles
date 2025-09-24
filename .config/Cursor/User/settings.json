@@ -404,7 +404,7 @@
     "cursorpyright.analysis.inlayHints.variableTypes": true,
     "cursorpyright.analysis.typeCheckingMode": "strict",
     "githubPullRequests.pullBranch": "never",
-    "workbench.colorTheme": "Catppuccin Mocha",
+    "workbench.colorTheme": "Catppuccin Latte",
     "cursor.cpp.enablePartialAccepts": true,
     "terminal.integrated.commandsToSkipShell": [
         "language-julia.interrupt"
@@ -415,4 +415,5 @@
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
+    "notebook.lineNumbers": "on",
 }

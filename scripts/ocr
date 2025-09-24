@@ -23,7 +23,7 @@ LANG=$(yad \
     --button="ok:0" --button="cancel:1" \
     --text "Select language:" \
     --entry-text \
-    "eng+rus" "eng" "rus")
+    "eng+rus" "eng" "deu" "rus")
 
 # - You can modify the list of available languages by editing the line above
 # - Make sure to use the same ISO codes tesseract does (man tesseract for details)

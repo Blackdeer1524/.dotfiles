@@ -7,7 +7,7 @@ TITLE = "ScreenOCR"
 ICON = "gnome-screenshot"
 
 LATEX_OPT = "latex"
-LANGUAGES = ["eng+rus", LATEX_OPT, "eng", "rus"]
+LANGUAGES = ["eng+rus", LATEX_OPT, "eng", "rus", "deu"]
 
 SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
 CONFIG_PATH = os.path.expanduser(f"{SCRIPT_DIR}/.screenocr_lang")
