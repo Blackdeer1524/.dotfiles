@@ -563,5 +563,5 @@
     {
         "key": "alt+,",
         "command": "cursorAuth.triggerTokenRefresh"
-    },
+    }
 ]

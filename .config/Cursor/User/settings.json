@@ -402,7 +402,7 @@
     "cursorpyright.analysis.inlayHints.callArgumentNames": "partial",
     "cursorpyright.analysis.inlayHints.functionReturnTypes": true,
     "cursorpyright.analysis.inlayHints.variableTypes": true,
-    "cursorpyright.analysis.typeCheckingMode": "strict",
+    "cursorpyright.analysis.typeCheckingMode": "basic",
     "githubPullRequests.pullBranch": "never",
     "workbench.colorTheme": "Catppuccin Latte",
     "cursor.cpp.enablePartialAccepts": true,
@@ -415,5 +415,32 @@
     "extensions.experimental.affinity": {
         "asvetliakov.vscode-neovim": 1
     },
-    "notebook.lineNumbers": "on",
+    "[dockercompose]": {
+        "editor.insertSpaces": true,
+        "editor.tabSize": 2,
+        "editor.autoIndent": "advanced",
+        "editor.quickSuggestions": {
+            "other": true,
+            "comments": false,
+            "strings": true
+        },
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "[github-actions-workflow]": {
+        "editor.defaultFormatter": "redhat.vscode-yaml"
+    },
+    "cursor.cpp.disabledLanguages": [
+        "markdown",
+        "plaintext",
+        "julia",
+        "python"
+    ],
+    "markdown-pdf.headerTemplate": "\"<span style='display:none;'></span>\" e",
+    "markdown-pdf.margin.bottom": "2cm",
+    "launch": {
+        "configurations": [
+            
+
+        ]
+    },
 }

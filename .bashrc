@@ -143,6 +143,21 @@ export EDITOR='nvim'
 export VISUAL='nvim'
 eval "$(~/.rbenv/bin/rbenv init - bash)"
 
+# >>> juliaup initialize >>>
+
+# !! Contents within this block are managed by juliaup !!
+
+case ":$PATH:" in
+    *:/home/blackdeer/.juliaup/bin:*)
+        ;;
+
+    *)
+        export PATH=/home/blackdeer/.juliaup/bin${PATH:+:${PATH}}
+        ;;
+esac
+
+# <<< juliaup initialize <<<
+
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/home/blackdeer/anaconda3/bin/conda' 'shell.bash' 'hook' 2> /dev/null)"
@@ -158,18 +173,3 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-
-# >>> juliaup initialize >>>
-
-# !! Contents within this block are managed by juliaup !!
-
-case ":$PATH:" in
-    *:/home/blackdeer/.juliaup/bin:*)
-        ;;
-
-    *)
-        export PATH=/home/blackdeer/.juliaup/bin${PATH:+:${PATH}}
-        ;;
-esac
-
-# <<< juliaup initialize <<<
