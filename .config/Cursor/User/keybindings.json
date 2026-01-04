@@ -563,5 +563,14 @@
     {
         "key": "alt+,",
         "command": "cursorAuth.triggerTokenRefresh"
+    },
+    {
+        "key": "ctrl+f1",
+        "command": "vscode-neovim.restart"
+    },
+    {
+        "key": "ctrl+alt+b",
+        "command": "-latex-workshop.build",
+        "when": "!config.latex-workshop.bind.altKeymap.enabled && !virtualWorkspace && editorLangId =~ /^build$|^latex$|^latex-class$|^latex-package$|^context$|^latex-expl3$|^doctex$|^rsweave$|^jlweave$|^pweave$/"
     }
 ]
