@@ -152,10 +152,10 @@ export NVM_DIR="$HOME/.nvm"
 
 
 # Cursor alias
-function cursor() {
-    "$HOME/.local/bin/cursor.appimage" --no-sandbox "$@" > /dev/null 2>&1 & disown
-}
-
+# function cursor() {
+#     "$HOME/.local/bin/cursor.appimage" --no-sandbox "$@" > /dev/null 2>&1 & disown
+# }
+#
 # >>> juliaup initialize >>>
 
 # !! Contents within this block are managed by juliaup !!

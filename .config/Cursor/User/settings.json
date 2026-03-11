@@ -22,7 +22,7 @@
     "C_Cpp.inlayHints.referenceOperator.enabled": true,
     "C_Cpp.intelliSenseMemoryLimit": 8192,
     "C_Cpp.intelliSenseUpdateDelay": 1000,
-    "clangd.checkUpdates": true,
+    "clangd.checkUpdates": false,
     "clangd.path": "/home/blackdeer/.config/Cursor/User/globalStorage/llvm-vs-code-extensions.vscode-clangd/install/21.1.0/clangd_21.1.0/bin/clangd",
     "editor.fontSize": 13,
     "editor.guides.bracketPairs": true,
@@ -454,4 +454,5 @@
     "cursorpyright.analysis.autoFormatStrings": false,
     "kotlin.languageServer.enabled": false,
     "kotlin.debugAdapter.enabled": false,
+    "editor.unicodeHighlight.ambiguousCharacters": false,
 }

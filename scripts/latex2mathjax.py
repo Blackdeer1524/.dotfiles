@@ -21,6 +21,7 @@ def replace_special(text: str) -> str:
         .replace("\\spec", "\\operatorname{spec}")
         .replace("\\rk", "\\operatorname{rk}")
         .replace("\\Hom", "\\operatorname{Hom}")
+        .replace("\\tg", "\\tan")
     )
 
 def replace_dashes(text: str) -> str:
