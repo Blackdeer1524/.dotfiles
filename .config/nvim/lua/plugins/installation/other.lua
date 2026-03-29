@@ -2,7 +2,7 @@ local M = {
 	{
 		"danymat/neogen",
 		version = "*",
-		enabled = vim.g.vscode == nil,
+		enabled = false,
 		dependencies = {
 			"L3MON4D3/LuaSnip",
 		},
@@ -14,14 +14,14 @@ local M = {
 	},
 	{
 		"vinnymeller/swagger-preview.nvim",
-		enabled = vim.g.vscode == nil,
+		enabled = false,
 		event = "VeryLazy",
 		build = "npm install -g swagger-ui-watcher",
 		opts = { port = 8800, host = "localhost" },
 	},
 	{
 		"oysandvik94/curl.nvim",
-		enabled = vim.g.vscode == nil,
+		enabled = false,
 		event = "VeryLazy",
 		cmd = { "CurlOpen" },
 		dependencies = {
@@ -247,7 +247,7 @@ local M = {
 	{
 		-- perf annotations
 		"t-troebst/perfanno.nvim",
-		enabled = vim.g.vscode == nil,
+		enabled = false,
 		event = "VeryLazy",
 		config = function()
 			local perfanno = require("perfanno")
@@ -292,7 +292,7 @@ local M = {
 		-- Lazy load firenvim
 		-- Explanation: https://github.com/folke/lazy.nvim/discussions/463#discussioncomment-4819297
 		lazy = not vim.g.started_by_firenvim,
-		enabled = vim.g.vscode == nil,
+		enabled = false,
 		build = function()
 			vim.fn["firenvim#install"](0)
 		end,

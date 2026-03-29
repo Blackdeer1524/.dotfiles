@@ -5,6 +5,7 @@ end
 local M = {
 	{
 		"tomtomjhj/coq-lsp.nvim",
+		enabled = false,
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"whonore/Coqtail",
@@ -208,14 +209,6 @@ local M = {
 		end,
 	},
 	"williamboman/mason.nvim",
-	{
-		"jay-babu/mason-null-ls.nvim",
-		event = { "BufReadPre", "BufNewFile" },
-		dependencies = {
-			"williamboman/mason.nvim",
-			"jose-elias-alvarez/null-ls.nvim",
-		},
-	},
 	{
 		-- WARN: Inlay hints. For new languages !!follow!! https://github.com/lvimuser/lsp-inlayhints.nvim
 		"lvimuser/lsp-inlayhints.nvim",
@@ -476,6 +469,7 @@ local M = {
 	},
 	{
 		"linux-cultist/venv-selector.nvim",
+		enabled = false,
 		dependencies = {
 			"neovim/nvim-lspconfig",
 			"mfussenegger/nvim-dap",
@@ -591,6 +585,9 @@ local M = {
 		lazy = true,
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		opts = {
+			server = {
+				override = false,
+			},
 			conceal = {
 				enabled = false, -- can be toggled by commands
 				min_length = nil, -- only conceal classes exceeding the provided length

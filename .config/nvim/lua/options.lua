@@ -1,10 +1,10 @@
 -- [[ Setting options ]]
 -- See `:help vim.o`
-
-vim.o.foldcolumn = "1" -- '0' is not bad
-vim.o.foldlevel = 99 -- Using ufo provider need a large value, feel free to decrease the value
+--
+vim.o.foldcolumn = "0"
+vim.o.foldlevel = 99
 vim.o.foldlevelstart = 99
-vim.o.foldenable = true
+vim.o.foldenable = false
 
 vim.o.showtabline = 1
 
@@ -104,3 +104,24 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
+
+vim.g.clipboard = {
+  name = "WslClipboard",
+  copy = {
+    ["+"] = { "clip.exe" },
+    ["*"] = { "clip.exe" },
+  },
+  paste = {
+    ["+"] = {
+      "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
+      "-c",
+      '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+    ["*"] = {
+      "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
+      "-c",
+      '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+    },
+  },
+  cache_enabled = false,
+}

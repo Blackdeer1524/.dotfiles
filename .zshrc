@@ -160,7 +160,7 @@ export NVM_DIR="$HOME/.nvm"
 
 # !! Contents within this block are managed by juliaup !!
 
-path=('/home/blackdeer/.juliaup/bin' $path)
+path=('/home/blackdeer1524/.juliaup/bin' $path)
 export PATH
 
 # <<< juliaup initialize <<<

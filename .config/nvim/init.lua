@@ -13,7 +13,6 @@ vim.opt.rtp:prepend(lazypath)
 
 require("vim-keymaps")
 require("plugins")
--- require("mason-setup")
 require("options")
 
 if vim.g.vscode ~= nil then

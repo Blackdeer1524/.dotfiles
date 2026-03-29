@@ -148,11 +148,11 @@ eval "$(~/.rbenv/bin/rbenv init - bash)"
 # !! Contents within this block are managed by juliaup !!
 
 case ":$PATH:" in
-    *:/home/blackdeer/.juliaup/bin:*)
+    *:/home/blackdeer1524/.juliaup/bin:*)
         ;;
 
     *)
-        export PATH=/home/blackdeer/.juliaup/bin${PATH:+:${PATH}}
+        export PATH=/home/blackdeer1524/.juliaup/bin${PATH:+:${PATH}}
         ;;
 esac
 

@@ -2,18 +2,7 @@ if vim.g.vscode ~= nil then
 	return
 end
 
-require("dap.ext.vscode").json_decode = require("overseer.json").decode
-require("overseer").patch_dap(true)
-
-vim.api.nvim_create_user_command("DapLoadLaunchJSON", function()
-	require("dap.ext.vscode").load_launchjs(nil, { cppdbg = { "c", "cpp" } })
-end, { nargs = 0 })
-
-vim.api.nvim_create_autocmd({ "VimEnter" }, {
-	callback = function()
-		vim.cmd("DapLoadLaunchJSON")
-	end,
-})
+require("overseer").enable_dap()
 local dap = require("dap")
 local persisten_breakpoints = require("persistent-breakpoints.api")
 

@@ -5,7 +5,10 @@ local M = {
 		enabled = vim.g.vscode == nil,
 		config = function()
 			require("auto-save").setup({
-				trigger_events = { "InsertLeave", "BufLeave" },
+				trigger_events = { 
+					-- "InsertLeave", 
+					"BufLeave",
+				},
 				condition = function(buf)
 					local fn = vim.fn
 					local utils = require("auto-save.utils.data")

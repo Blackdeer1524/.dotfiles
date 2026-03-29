@@ -1,114 +1,164 @@
 -- https://github.com/nvim-treesitter/nvim-treesitter#supported-languages
 -- See `:help nvim-treesitter`
----@diagnostic disable-next-line: missing-fields
-require("nvim-treesitter.configs").setup({
-	-- Add languages to be installed here that you want installed for treesitter
-	ensure_installed = {
-		"dockerfile",
-		"java",
-		"json5",
-		"scala",
-		"yaml",
-		"c",
-		"sql",
-		"cpp",
-		"go",
-		"gomod",
-		"gosum",
-		"lua",
-		"python",
-		"rust",
-		"html",
-		"css",
-		"tsx",
-		"javascript",
-		"jsdoc",
-		"typescript",
-		"vimdoc",
-		"proto",
-		"markdown",
-		"markdown_inline",
-		"latex",
-		"regex",
-		"dap_repl",
-		"vim",
-		"make",
-		"doxygen",
-		"cmake",
-	},
-	auto_install = false,
-	highlight = {
-		enable = vim.g.vscode == nil,
-		disable = function(lang, bufnr)
-			if lang == "go" then
-				return vim.api.nvim_buf_line_count(bufnr) > 3000
-			end
-			return vim.api.nvim_buf_line_count(bufnr) > 5000
-		end,
-	},
-	indent = { enable = false, disable = { "python" } },
-	incremental_selection = {
-		enable = true,
-		keymaps = {
-			init_selection = "<c-space>",
-			node_incremental = "<c-space>",
-			scope_incremental = "<c-s>",
-			node_decremental = "<M-space>",
-		},
-	},
-	textobjects = {
+local parsers = {
+	"dockerfile",
+	"java",
+	"json5",
+	"scala",
+	"yaml",
+	"c",
+	"sql",
+	"cpp",
+	"go",
+	"gomod",
+	"gosum",
+	"gotmpl",
+	"lua",
+	"python",
+	"rust",
+	"html",
+	"css",
+	"tsx",
+	"javascript",
+	"jsdoc",
+	"typescript",
+	"vimdoc",
+	"proto",
+	"markdown",
+	"markdown_inline",
+	"latex",
+	"regex",
+	"dap_repl",
+	"vim",
+	"make",
+	"doxygen",
+	"cmake",
+}
+
+local function should_start_treesitter(bufnr)
+	if vim.g.vscode ~= nil then
+		return false
+	end
+
+	local filetype = vim.bo[bufnr].filetype
+	local line_count = vim.api.nvim_buf_line_count(bufnr)
+	if filetype == "go" then
+		return line_count <= 3000
+	end
+
+	return line_count <= 5000
+end
+
+local function configure_textobjects()
+	require("nvim-treesitter-textobjects").setup({
 		select = {
-			enable = true,
-			lookahead = true, -- Automatically jump forward to textobj, similar to targets.vim
-			keymaps = {
-				-- You can use the capture groups defined in textobjects.scm
-				["aa"] = "@parameter.outer",
-				["ia"] = "@parameter.inner",
-				["af"] = "@function.outer",
-				["if"] = "@function.inner",
-				["ac"] = "@class.outer",
-				["ic"] = "@class.inner",
-			},
+			lookahead = true,
 		},
 		move = {
+			set_jumps = true,
+		},
+	})
+
+	local select = require("nvim-treesitter-textobjects.select")
+	local move = require("nvim-treesitter-textobjects.move")
+	local swap = require("nvim-treesitter-textobjects.swap")
+
+	local select_maps = {
+		aa = "@parameter.outer",
+		ia = "@parameter.inner",
+		af = "@function.outer",
+		["if"] = "@function.inner",
+		ac = "@class.outer",
+		ic = "@class.inner",
+	}
+	for lhs, query in pairs(select_maps) do
+		vim.keymap.set({ "x", "o" }, lhs, function()
+			select.select_textobject(query, "textobjects")
+		end, { desc = "select " .. query })
+	end
+
+	local move_maps = {
+		["]m"] = function()
+			move.goto_next_start("@function.outer", "textobjects")
+		end,
+		["]]"] = function()
+			move.goto_next_start("@class.outer", "textobjects")
+		end,
+		["]M"] = function()
+			move.goto_next_end("@function.outer", "textobjects")
+		end,
+		["]["] = function()
+			move.goto_next_end("@class.outer", "textobjects")
+		end,
+		["[m"] = function()
+			move.goto_previous_start("@function.outer", "textobjects")
+		end,
+		["[["] = function()
+			move.goto_previous_start("@class.outer", "textobjects")
+		end,
+		["[M"] = function()
+			move.goto_previous_end("@function.outer", "textobjects")
+		end,
+		["[]"] = function()
+			move.goto_previous_end("@class.outer", "textobjects")
+		end,
+	}
+	for lhs, rhs in pairs(move_maps) do
+		vim.keymap.set({ "n", "x", "o" }, lhs, rhs, { desc = "move with treesitter textobjects" })
+	end
+
+	vim.keymap.set("n", "<leader>sn", function()
+		swap.swap_next("@parameter.inner")
+	end, { desc = "swap next parameter" })
+	vim.keymap.set("n", "<leader>sb", function()
+		swap.swap_previous("@parameter.inner")
+	end, { desc = "swap previous parameter" })
+end
+
+local function configure_incremental_selection()
+	local ok, ts_modules = pcall(require, "treesitter-modules")
+	if not ok then
+		return
+	end
+
+	ts_modules.setup({
+		incremental_selection = {
 			enable = true,
-			set_jumps = true, -- whether to set jumps in the jumplist
-			goto_next_start = {
-				["]m"] = "@function.outer",
-				["]]"] = "@class.outer",
-			},
-			goto_next_end = {
-				["]M"] = "@function.outer",
-				["]["] = "@class.outer",
-			},
-			goto_previous_start = {
-				["[m"] = "@function.outer",
-				["[["] = "@class.outer",
-			},
-			goto_previous_end = {
-				["[M"] = "@function.outer",
-				["[]"] = "@class.outer",
+			keymaps = {
+				init_selection = false,
+				node_incremental = false,
+				scope_incremental = false,
+				node_decremental = false,
 			},
 		},
-		swap = {
-			enable = true,
-			swap_next = {
-				["<leader>sn"] = "@parameter.inner",
-			},
-			swap_previous = {
-				["<leader>sb"] = "@parameter.inner",
-			},
-		},
-	},
+	})
+
+	vim.keymap.set("n", "<C-Space>", ts_modules.init_selection, { desc = "treesitter init selection" })
+	vim.keymap.set("x", "<C-Space>", ts_modules.node_incremental, { desc = "treesitter expand selection" })
+	vim.keymap.set("x", "<A-Space>", ts_modules.node_decremental, { desc = "treesitter shrink selection" })
+end
+
+require("nvim-treesitter").setup({})
+vim.treesitter.language.register("gotmpl", { "gohtmltmpl", "gotexttmpl", "gotmpl" })
+vim.treesitter.language.register("html", { "template" })
+
+local highlight_group = vim.api.nvim_create_augroup("TreesitterHighlighting", { clear = true })
+vim.api.nvim_create_autocmd("FileType", {
+	group = highlight_group,
+	pattern = "*",
+	callback = function(args)
+		if not should_start_treesitter(args.buf) then
+			return
+		end
+
+		pcall(vim.treesitter.start, args.buf)
+	end,
 })
 
-local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-parser_config.gotmpl = {
-	install_info = {
-		url = "https://github.com/ngalaiko/tree-sitter-go-template",
-		files = { "src/parser.c" },
-	},
-	filetype = "gotmpl",
-	used_by = { "gohtmltmpl", "gotexttmpl", "gotmpl", "yaml" },
-}
-vim.treesitter.language.register("html", "template")
+configure_textobjects()
+configure_incremental_selection()
+if #vim.api.nvim_list_uis() > 0 then
+	vim.schedule(function()
+		require("nvim-treesitter").install(parsers)
+	end)
+end

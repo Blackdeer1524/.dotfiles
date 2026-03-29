@@ -2,6 +2,8 @@ if vim.g.vscode ~= nil then
 	return
 end
 
+require("mason-setup.lsp")
+
 -- vim.api.nvim_create_autocmd({ "UIEnter", "ColorScheme" }, {
 -- 	callback = function(_)
 -- 		-- returns (a * c1 + (d - a) * c2) / d
