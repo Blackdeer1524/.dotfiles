@@ -105,23 +105,23 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
 
-vim.g.clipboard = {
-  name = "WslClipboard",
-  copy = {
-    ["+"] = { "clip.exe" },
-    ["*"] = { "clip.exe" },
-  },
-  paste = {
-    ["+"] = {
-      "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
-      "-c",
-      '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-    ["*"] = {
-      "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
-      "-c",
-      '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
-    },
-  },
-  cache_enabled = false,
-}
+-- vim.g.clipboard = {
+--   name = "WslClipboard",
+--   copy = {
+--     ["+"] = { "clip.exe" },
+--     ["*"] = { "clip.exe" },
+--   },
+--   paste = {
+--     ["+"] = {
+--       "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
+--       "-c",
+--       '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     },
+--     ["*"] = {
+--       "/mnt/c/Windows/System32/WindowsPowerShell/v1.0///powershell.exe",
+--       "-c",
+--       '[Console]::Out.Write($(Get-Clipboard -Raw).tostring().replace("`r", ""))',
+--     },
+--   },
+--   cache_enabled = false,
+-- }
