@@ -53,7 +53,7 @@ local lua_ls_settings = {
 }
 
 local function current_working_directory()
-	return (vim.uv or vim.loop).cwd() or vim.fn.getcwd()
+	return vim.uv.cwd() or vim.fn.getcwd()
 end
 
 local function root_dir_from_markers(markers)
@@ -209,13 +209,13 @@ vim.lsp.config("clangd", {
 			"n",
 			"<leader>ch",
 			require("clangd_extensions.switch_source_header").switch_source_header,
-			{ desc = "[c]langd switch source [h]eader", buffer = bufnr }
+			{ desc = "[c]langd switch source [h]eader", buf = bufnr }
 		)
 	end),
 	cmd = {
 		defaults.MASON_BIN .. "/clangd",
 		"--background-index",
-		string.format("-j=%d", #(vim.uv or vim.loop).cpu_info()),
+		string.format("-j=%d", #vim.uv.cpu_info()),
 		"--header-insertion=iwyu",
 		"--all-scopes-completion",
 		"--completion-style=detailed",

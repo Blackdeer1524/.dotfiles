@@ -4,10 +4,11 @@ end
 
 return {
 	"mfussenegger/nvim-dap",
-	lazy = true,
+	lazy = false,
 	dependencies = {
 		-- Creates a beautiful debugger UI
 		"rcarriga/nvim-dap-ui",
+		"nvim-neotest/nvim-nio",
 		{
 			"theHamsta/nvim-dap-virtual-text",
 			opts = {},
@@ -97,5 +98,6 @@ return {
 	},
 	config = function()
 		require("plugins/installation/debug/dapui").setup()
+		require("plugins.configuration.dap")
 	end,
 }

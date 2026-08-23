@@ -280,7 +280,7 @@ local M = {
 		opts = {
 			select = {
 				get_config = function()
-					if vim.api.nvim_buf_get_option(0, "filetype") == "idris2" then
+					if vim.api.nvim_get_option_value("filetype", { buf = 0 }) == "idris2" then
 						return { enabled = false }
 					end
 				end,

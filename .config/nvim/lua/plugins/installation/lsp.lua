@@ -230,7 +230,7 @@ local M = {
 				local package_path = require("lsp.defaults").MASON_PACKAGES .. "/codelldb"
 				local codelldb_path = package_path .. "/codelldb"
 				local liblldb_path = package_path .. "/extension/lldb/lib/liblldb"
-				local this_os = vim.loop.os_uname().sysname
+				local this_os = vim.uv.os_uname().sysname
 
 				-- The path in windows is different
 				if this_os:find("Windows") then
@@ -260,7 +260,7 @@ local M = {
 								"n",
 								"<leader>rd",
 								"<cmd>RustLsp debuggables<cr>",
-								{ buffer = bufnr, desc = "RustLps debuggables" }
+								{ buf = bufnr, desc = "RustLps debuggables" }
 							)
 						end,
 					},
@@ -379,6 +379,9 @@ local M = {
 	},
 	{
 		"lervag/vimtex",
+		init = function()
+			require("plugins.configuration.vimtex")
+		end,
 	},
 	{
 		"Julian/lean.nvim",
@@ -409,7 +412,7 @@ local M = {
 					local idris2_ca = require("idris2.code_action")
 
 					vim.api.nvim_create_autocmd({ "BufNewFile", "BufReadPre" }, {
-						buffer = bufnr,
+						buf = bufnr,
 						callback = function(ev)
 							require("which-key").add({
 								{
@@ -559,7 +562,7 @@ local M = {
 					client.server_capabilities.documentFormattingProvider = false
 					client.server_capabilities.documentRangeFormattingProvider = false
 					require("lsp.defaults").on_attach(client, bufnr)
-					vim.keymap.set("n", "gs", "<cmd>TSToolsGoToSourceDefinition<cr>", { buffer = bufnr })
+					vim.keymap.set("n", "gs", "<cmd>TSToolsGoToSourceDefinition<cr>", { buf = bufnr })
 				end,
 				settings = {
 					tsserver_file_preferences = {

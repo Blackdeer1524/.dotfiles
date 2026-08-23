@@ -1,5 +1,5 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
+if not vim.uv.fs_stat(lazypath) then
 	vim.fn.system({
 		"git",
 		"clone",
@@ -12,8 +12,8 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 require("vim-keymaps")
-require("plugins")
 require("options")
+require("plugins")
 
 if vim.g.vscode ~= nil then
 	require("vscode-conf")

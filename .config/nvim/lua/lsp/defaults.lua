@@ -8,17 +8,8 @@ M.on_attach = function(client, bufnr)
 			desc = "LSP: " .. desc
 		end
 
-		vim.keymap.set("n", keys, func, { buffer = bufnr, desc = desc })
+		vim.keymap.set("n", keys, func, { buf = bufnr, desc = desc })
 	end
-
-	-- if client.server_capabilities.codeLensProvider ~= nil and client.server_capabilities.codeLensProvider ~= false then
-	-- 	vim.api.nvim_create_autocmd({ "BufEnter", "InsertLeave" }, {
-	-- 		buffer = bufnr,
-	-- 		callback = function(ev)
-	-- 			vim.lsp.codelens.refresh()
-	-- 		end,
-	-- 	})
-	-- end
 
 	nmap("<leader>rn", vim.lsp.buf.rename, "[R]e[n]ame")
 	nmap("<leader>cl", vim.lsp.codelens.run, "select [C]ode[L]ens")
@@ -71,12 +62,14 @@ M.on_attach = function(client, bufnr)
 		elseif vim.fn.expand("%:t") == "Cargo.toml" then
 			require("crates").show_popup()
 		else
-			vim.lsp.buf.hover()
+			vim.lsp.buf.hover({ border = "rounded" })
 		end
 	end
 
 	nmap("K", show_documentation, "Hover Documentation")
-	nmap("<leader>K", vim.lsp.buf.signature_help, "Signature Documentation")
+	nmap("<leader>K", function()
+		vim.lsp.buf.signature_help({ border = "rounded" })
+	end, "Signature Documentation")
 
 	-- Lesser used LSP functionality
 	nmap("gD", vim.lsp.buf.declaration, "[G]oto [D]eclaration")
@@ -93,13 +86,6 @@ M.on_attach = function(client, bufnr)
 	vim.api.nvim_buf_create_user_command(bufnr, "LongFormat", function(_)
 		require("conform").format({ timeout_ms = 5000 })
 	end, { desc = "Format current buffer with LSP [longer timeout]" })
-
-	vim.lsp.handlers["textDocument/hover"] = vim.lsp.with(vim.lsp.handlers.hover, {
-		border = "rounded",
-	})
-	vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers.signature_help, {
-		border = "rounded",
-	})
 
 	if client.server_capabilities.inlayHintProvider then
 		vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })

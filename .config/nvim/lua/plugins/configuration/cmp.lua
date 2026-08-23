@@ -61,13 +61,8 @@ cmp.setup({
 		autocomplete = false,
 	},
 	enabled = function()
-		local new = vim.api.nvim_get_option_value("buftype", { buf = 0 })
-		local depr = vim.api.nvim_buf_get_option(0, "buftype")
-		assert(
-			depr == new,
-			"deprecated vim.api.nvim_buf_get_option(0, 'buftype') != vim.api.nvim_get_option_value('buftype', { buf = 0 })"
-		)
-		return depr ~= "prompt" or require("cmp_dap").is_dap_buffer()
+		local buftype = vim.api.nvim_get_option_value("buftype", { buf = 0 })
+		return buftype ~= "prompt" or require("cmp_dap").is_dap_buffer()
 	end,
 	preselect = cmp.PreselectMode.None,
 	---@diagnostic disable-next-line: missing-fields
