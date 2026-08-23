@@ -6,7 +6,8 @@
         "when": "editorHasCompletionItemProvider && textInputFocus && !editorReadonly"
     },
     {
-        "key": "ctrl+i", "command": "-focusSuggestion",
+        "key": "ctrl+i",
+        "command": "-focusSuggestion",
         "when": "suggestWidgetVisible && textInputFocus && !config.editor.suggest.selectQuickSuggestions && !suggestWidgetHasFocusedSuggestion"
     },
     {
@@ -117,16 +118,6 @@
         "key": "ctrl+shift+e",
         "command": "-workbench.action.quickOpenNavigatePreviousInFilePicker",
         "when": "inFilesPicker && inQuickOpen"
-    },
-    {
-        "key": "space e",
-        "command": "workbench.action.focusActiveEditorGroup",
-        "when": "explorerViewletFocus && !inputFocus"
-    },
-    {
-        "key": "space e",
-        "command": "workbench.view.explorer",
-        "when": "!inputFocus"
     },
     {
         "key": "ctrl+k ctrl+left",

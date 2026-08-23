@@ -1,5 +1,6 @@
-import pyperclip
 import re
+
+import pyperclip
 
 
 def replace_double_dollars(text):
@@ -17,12 +18,25 @@ def replace_singular_dollars(text):
 def replace_special(text: str) -> str:
     return (
         text.replace("\\Im", "\\operatorname{Im}")
+        .replace("&nbsp;", "")
+        .replace("~", " ")
+        .replace("\\eps", "\\varepsilon")
+        .replace("\\XX", "\\mathbb{X}")
+        .replace("\\YY", "\\mathbb{Y}")
+        .replace("\\EE", "\\mathbb{E}")
+        .replace("\\RR", "\\mathbb{R}")
+        .replace("\\cond", "\\mid")
+        .replace("\\Re", "\\operatorname{Re}")
+        .replace("\\diag", "\\operatorname{diag}")
         .replace("\\Identity", "\\operatorname{id}")
         .replace("\\spec", "\\operatorname{spec}")
         .replace("\\rk", "\\operatorname{rk}")
+        .replace("\\argmin", "\\operatorname{argmin}")
+        .replace("\\argmax", "\\operatorname{argmax}")
         .replace("\\Hom", "\\operatorname{Hom}")
         .replace("\\tg", "\\tan")
     )
+
 
 def replace_dashes(text: str) -> str:
     return text.replace("--", "‒")
@@ -42,9 +56,9 @@ def replace_matrix(text: str) -> str:
 
 def replace_newlines(text: str) -> str:
     # Replace multiple consecutive newlines (2 or more) with double newlines
-    text = re.sub(r'\n{2,}', '\n\n', text)
+    text = re.sub(r"\n{2,}", "\n\n", text)
     # Replace single newlines with spaces
-    text = re.sub(r'(?<!\n)\n(?!\n)', ' ', text)
+    text = re.sub(r"(?<!\n)\n(?!\n)", " ", text)
     return text
 
 

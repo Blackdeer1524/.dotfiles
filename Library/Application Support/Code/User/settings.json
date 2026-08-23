@@ -67,7 +67,7 @@
         "Revioletd"
     ],
     "python.analysis.autoImportCompletions": true,
-    "python.analysis.typeCheckingMode": "strict",
+    "python.analysis.typeCheckingMode": "standard",
     "python.analysis.inlayHints.callArgumentNames": "partial",
     "python.analysis.inlayHints.functionReturnTypes": true,
     "python.analysis.inlayHints.variableTypes": true,
@@ -274,11 +274,8 @@
     "editor.scrollbar.verticalScrollbarSize": 7,
     "workbench.list.fastScrollSensitivity": 1,
     "debug.inlineValues": "off",
-    "[javascript]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
-    },
     "[html]": {
-        "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "[yaml]": {
         "editor.defaultFormatter": "redhat.vscode-yaml"
@@ -439,13 +436,9 @@
     "markdown-pdf.headerTemplate": "\"<span style='display:none;'></span>\" e",
     "markdown-pdf.margin.bottom": "2cm",
     "launch": {
-        "configurations": [
-            
-
-        ]
+        "configurations": []
     },
     "python.defaultInterpreterPath": "/Users/alfa/anaconda3",
-    "notebook.lineNumbers": "on",
     "jupyter.widgetScriptSources": [
         "jsdelivr.com",
         "unpkg.com"
@@ -472,4 +465,16 @@
     "ltex.additionalRules.motherTongue": "en",
     "ltex.checkFrequency": "save",
     "ltex.language": "ru-RU",
+    "cmake.debugConfig": {
+        "type": "lldb",
+        "request": "launch",
+        "program": "${command:cmake.launchTargetPath}",
+        "cwd": "${workspaceFolder}",
+        "args": [],
+        "terminal": "integrated"
+    },
+    "http.useLocalProxyConfiguration": false,
+    "explorer.compactFolders": false,
+    "vscode-office.editMode": "ir",
+    "vscode-office.enableTelemetry": false,
 }
